@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ELVARON.Entities.UsuarioEnt>
+
+@{
+    ViewBag.Title = "ConsultaUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="breadcrumb-text">
+                <p> EL VARON</p>
+                <h1>Usuarios Registrados</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-12">
+
+        @if (ViewBag.MsjPantalla != null)
+        {
+            <div style="text-align:center" class="alert alert-warning" role="alert">
+                @ViewBag.MsjPantalla
+            </div>
+        }
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Identificación</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Estado</th>
+                    <th>Editar</th>
+                    <th>Cambiar Estado</th>
+                </tr>
+            <thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Identificacion</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.CorreoElectronico</td>
+                        <td>
+                            @if (item.Estado == true)
+                            {
+                                <h6>Activo</h6>
+                            }
+                            else
+                            {
+                                <h6>Inactivo</h6>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Editar","Usuario", new { q = item.IdUsuario })"><i class="fa fa-pen"></i></a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("CambiarEstado","Usuario", new { q = item.IdUsuario })"><i class="fa fa-users-cog"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model ELVARON.Entities.UsuarioEnt
+
+@{
+    ViewBag.Title = "Perfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <section class="profile">
+        <div class="user-content">
+            <div class="user-image">
+                <img src="~/images/prueba.png" /><br>
+            </div><br><br>
+            <div class="user-info">
+
+                <form id="profile-form">
+                    <h2 class="d-none d-lg-inline-flex"> @Session["NombreUsuario"].ToString() </h2> <br>
+                    <h4 class="d-none d-lg-inline-flex"> @Session["CorreoUsuario"].ToString() </h4> <br><br>
+
+
+                </form>
+            </div>
+            <div class="buttons">
+                <button class="edit-button" onclick="openEditProfileModal()">Editar</button>
+                <button class="history-button">Historial de Pedidos</button>
+            </div>
+        </div>
+    </section>
+

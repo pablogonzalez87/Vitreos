@@ -1,0 +1,400 @@
+
+/*Cards*/
+.container-card{
+	width: 100%;
+	display: flex;
+	max-width: 1100px;
+	margin: auto;
+	
+}
+.title-cards{
+	width: 100%;
+	max-width: 1080px;
+	margin: auto;
+	padding: 20px;
+	margin-top: 20px;
+	text-align: center;
+	color: #000000;
+}
+
+.card{
+	
+	width: 100%;
+	margin: 20px;
+	border-radius: 6px;
+	overflow: hidden;
+	background:#fff;
+	box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+	transition: all 400ms ease-out;
+	cursor: default;
+}
+.card:hover{
+	box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+	transform: translateY(-3%);
+}
+.card img{
+	width: 100%;
+	height: 210px;
+}
+.card .contenido-card{
+	padding: 15px;
+	text-align: center;
+}
+.card .contenido-card h3{
+	margin-bottom: 15px;
+	color: #000000;
+	
+}
+.card .contenido-card p{
+	line-height: 1.8;
+	color: #6a6a6a;
+	font-size: 14px;
+	margin-bottom: 5px;
+    
+}
+.card .contenido-card a{
+	display: inline-block;
+	padding: 10px;
+	margin-top: 10px;
+	text-decoration: none;
+	color: #e31404;
+	border: 1px solid #e31404;
+	border-radius: 4px;
+	transition: all 400ms ease;
+	margin-bottom: 5px;
+}
+.card .contenido-card a:hover{
+	background: #e31404;
+    
+	color: #fff;
+}
+
+@media only screen and (min-width:320px) and (max-width:768px){
+	.container-card{
+		flex-wrap: wrap;
+	}
+	.card{
+		margin: 13px;
+	}
+}
+
+
+
+.contact {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: #f9f9f9;
+}
+
+.contact-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	padding: 2rem;
+	width: 80%;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.restaurant-image {
+	width: 50%;
+	max-height: 400px;
+	object-fit: cover;
+	margin-right: 2rem;
+	border-radius: 8px;
+}
+
+.contact-info {
+	width: 50%;
+}
+
+	.contact-info h2 {
+		color: #2e2e34;
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.contact-info p {
+		color: #666;
+		font-size: 1rem;
+		margin-bottom: 0.5rem;
+	}
+
+
+.reports {
+	text-align: center;
+	padding: 4rem 0;
+	background-color: #f4f4f4;
+}
+
+	.reports h2 {
+		font-family: "Restora", sans-serif;
+		color: #2e2e34;
+		margin-bottom: 1rem;
+	}
+
+.report {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 1rem;
+	margin: 1rem;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+	.report h3 {
+		font-size: 1.2rem;
+		color: #2e2e34;
+		margin-bottom: 0.5rem;
+	}
+
+	.report p {
+		color: #666;
+		margin-bottom: 0.5rem;
+	}
+
+
+
+
+/* Estilos para la sección de menú */
+.menu {
+	text-align: center;
+	padding: 4rem 0;
+	background-color: #f4f4f4;
+}
+
+	.menu h2 {
+		font-family: "Restora", sans-serif;
+		color: #2e2e34;
+		margin-bottom: 1rem;
+	}
+
+.dish {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 1rem;
+	margin: 1rem;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	display: inline-block;
+	text-align: left;
+	width: calc(33.33% - 2rem); /* Distribución en 3 columnas */
+	vertical-align: top;
+	box-sizing: border-box;
+}
+
+	.dish img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 4px;
+		margin-bottom: 0.5rem;
+	}
+
+	.dish h3 {
+		font-size: 1.2rem;
+		color: #2e2e34;
+		margin: 0.5rem 0;
+	}
+
+	.dish p {
+		color: #666;
+		margin-bottom: 0.5rem;
+	}
+
+.price {
+	font-weight: bold;
+	color: #2e2e34;
+}
+
+
+.add-dish {
+	text-align: center;
+	padding: 4rem 0;
+}
+
+	.add-dish h2 {
+		font-family: "Restora", sans-serif;
+		color: #2e2e34;
+		margin-bottom: 1rem;
+	}
+
+	.add-dish form {
+		max-width: 400px;
+		margin: 0 auto;
+	}
+
+	.add-dish label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-weight: bold;
+		color: #2e2e34;
+	}
+
+	.add-dish input[type="text"],
+	.add-dish input[type="number"],
+	.add-dish textarea,
+	.add-dish input[type="file"] {
+		width: 100%;
+		padding: 0.5rem;
+		margin-bottom: 1rem;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+
+	.add-dish button {
+		display: inline-block;
+		padding: 0.5rem 1rem;
+		background-color: #2e2e34;
+		color: white;
+		border: none;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+		.add-dish button:hover {
+			background-color: #444;
+		}
+
+
+.reports {
+	text-align: center;
+	padding: 4rem 0;
+	background-color: #f4f4f4;
+}
+
+	.reports h2 {
+		font-family: "Restora", sans-serif;
+		color: #2e2e34;
+		margin-bottom: 1rem;
+	}
+
+.report {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 1rem;
+	margin: 1rem;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+	.report h3 {
+		font-size: 1.2rem;
+		color: #2e2e34;
+		margin-bottom: 0.5rem;
+	}
+
+	.report p {
+		color: #666;
+		margin-bottom: 0.5rem;
+	}
+
+
+.cart {
+	text-align: center;
+	padding: 4rem 0;
+	background-color: #f4f4f4;
+}
+
+	.cart h2 {
+		font-family: "Restora", sans-serif;
+		color: #2e2e34;
+		margin-bottom: 1rem;
+	}
+
+#cart-items {
+	list-style: none;
+	padding: 0;
+}
+
+.cart-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem 0;
+	border-bottom: 1px solid #ccc;
+}
+
+	.cart-item img {
+		max-width: 50px;
+		height: auto;
+		margin-right: 1rem;
+	}
+
+	.cart-item .item-info {
+		flex: 1;
+	}
+
+#cart-total {
+	font-weight: bold;
+	color: #2e2e34;
+}
+
+
+
+.profile {
+	display: flex;
+	flex-direction: column; /* Cambio a disposición vertical */
+	justify-content: center; /* Centrado vertical */
+	align-items: center;
+	text-align: center;
+	padding: 4rem 0;
+}
+
+.user-content {
+	display: flex;
+	flex-direction: column; /* Alinea la imagen y la info en columna */
+	align-items: center;
+}
+
+.user-image {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-bottom: 1rem;
+}
+
+	.user-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+.user-info h2 {
+	font-family: "Restora", sans-serif;
+	color: #2e2e34;
+	margin-bottom: 1rem;
+}
+
+.user-info label,
+.user-info input {
+	display: block;
+	margin-bottom: 1rem;
+}
+
+.buttons {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.edit-button,
+.history-button {
+	padding: 0.5rem 1rem;
+	background-color: #2e2e34;
+	color: white;
+	border: none;
+	cursor: pointer;
+	margin-top: 1rem;
+}
+
+	.edit-button:hover,
+	.history-button:hover {
+		background-color: #444;
+	}

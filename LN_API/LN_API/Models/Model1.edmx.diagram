@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0f8ecce8e9c24b4581990912237f25e5" Name="Diagram1">
+      <Diagram DiagramId="3c88cb6be0104c2cbddcfedfb549eb4f" Name="Diagram1">
         <EntityTypeShape EntityType="Tienda_VidreosModel.Bitacora" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Tienda_VidreosModel.Rol" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tienda_VidreosModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Tienda_VidreosModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tienda_VidreosModel.Vidrio" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tienda_VidreosModel.Vidrio" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="Tienda_VidreosModel.FK_Bitacora_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="Tienda_VidreosModel.FK_Usuario_Rol" ManuallyRouted="false" />
       </Diagram>

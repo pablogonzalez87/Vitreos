@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Tienda_Vidreos;
-
 namespace ELVARON
 {
     public class MvcApplication : System.Web.HttpApplication

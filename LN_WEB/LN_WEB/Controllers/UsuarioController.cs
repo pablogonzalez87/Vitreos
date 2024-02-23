@@ -10,19 +10,28 @@ namespace Tienda_Vidreos.Controllers
 {
     public class UsuarioController : Controller
     {
-        UsuarioModel model = new UsuarioModel();
+        UsuarioModel modelUsuario = new UsuarioModel();
 
         [HttpGet]
         public ActionResult ConsultaUsuarios()
         {
-            var resp = model.ConsultaUsuarios();
+            var resp = modelUsuario.ConsultaUsuarios();
             return View(resp);
         }
         [HttpGet]
         public ActionResult Perfil()
         {
-            return View();
+            long q = long.Parse(Session["IdUsuario"].ToString());
+            var datos = modelUsuario.ConsultaUsuario(q);
+            Session["Nombre"] = datos.Nombre;
+            ViewBag.Direcciones = modelUsuario;
+            return View(datos);
         }
+
+
+
+
+
 
 
         [HttpGet]
@@ -31,7 +40,7 @@ namespace Tienda_Vidreos.Controllers
             UsuarioEnt entidad = new UsuarioEnt();
             entidad.IdUsuario = q;
 
-            var resp = model.CambiarEstado(entidad);
+            var resp = modelUsuario.CambiarEstado(entidad);
 
             if (resp > 0)
                 return RedirectToAction("ConsultaUsuarios", "Usuario");
@@ -45,8 +54,8 @@ namespace Tienda_Vidreos.Controllers
         [HttpGet]
         public ActionResult Editar(long q)
         {
-            var resp = model.ConsultaUsuario(q);
-            var respRoles = model.ConsultaRoles();
+            var resp = modelUsuario.ConsultaUsuario(q);
+            var respRoles = modelUsuario.ConsultaRoles();
 
             var roles = new List<SelectListItem>();
             foreach (var item in respRoles)
@@ -61,7 +70,7 @@ namespace Tienda_Vidreos.Controllers
         [HttpPost]
         public ActionResult EditarUsuario(UsuarioEnt entidad)
         {
-            var resp = model.EditarUsuario(entidad);
+            var resp = modelUsuario.EditarUsuario(entidad);
 
             if (resp > 0)
                 return RedirectToAction("ConsultaUsuarios", "Usuario");

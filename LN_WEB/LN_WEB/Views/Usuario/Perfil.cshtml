@@ -1,4 +1,5 @@
-﻿@model ELVARON.Entities.UsuarioEnt
+﻿@model Tienda_Vidreos.Entities.UsuarioEnt
+
 
 @{
     ViewBag.Title = "Perfil";
@@ -6,24 +7,54 @@
 }
 
 
-    <section class="profile">
-        <div class="user-content">
-            <div class="user-image">
-                <img src="~/images/prueba.png" /><br>
-            </div><br><br>
-            <div class="user-info">
-
-                <form id="profile-form">
-                    <h2 class="d-none d-lg-inline-flex"> @Session["NombreUsuario"].ToString() </h2> <br>
-                    <h4 class="d-none d-lg-inline-flex"> @Session["CorreoUsuario"].ToString() </h4> <br><br>
+    <h1>Perfil de Usuario</h1>
 
 
-                </form>
+<div class="row align-items-center justify-content-center">
+
+    <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-5">
+
+        <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+
+                <h4 class="card-title">Información Personal</h4>
+
             </div>
-            <div class="buttons">
-                <button class="edit-button" onclick="openEditProfileModal()">Editar</button>
-                <button class="history-button">Historial de Pedidos</button>
-            </div>
+            @if (ViewBag.MsjPantalla != null)
+            {
+                <div style="text-align:center" class="alert alert-warning" role="alert">
+                    @ViewBag.MsjPantalla
+                </div>
+            }
+
+            @using (Html.BeginForm("Perfil", "Usuario", FormMethod.Post, new { @class = "pt-3" }))
+            {
+                @Html.HiddenFor(m => m.IdUsuario)
+
+                <div class="form-group">
+                    <h4 class="card-title">Identificación</h4>
+                    @Html.TextBoxFor(m => m.Identificacion, new
+                    {
+                        @class = "form-control form-control-lg",
+                        @placeholder = "Identificación",
+                        @type = "text",
+                        onkeyup = "ConsultarNombre();"
+                    })
+                </div>
+                <div class="form-group">
+                    <h4 class="card-title">Nombre</h4>
+                    @Html.TextBoxFor(m => m.Nombre, new { @readOnly = "readOnly", @style = "background-color:#eeeeee", @class = "form-control form-control-lg", @placeholder = "Nombre", @type = "text" })
+                </div>
+                <div class="form-group">
+                    <h4 class="card-title">CorreoElectronico</h4>
+                    @Html.TextBoxFor(m => m.CorreoElectronico, new { @class = "form-control form-control-lg", @placeholder = "Correo Electrónico", @type = "email" })
+                </div>
+
+                <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Confirmar</button>
+            }
         </div>
-    </section>
+        </div>
+    </div>
+</div>
 
+<script src="~/FuncionesSite/ConsultaNombres.js"></script>

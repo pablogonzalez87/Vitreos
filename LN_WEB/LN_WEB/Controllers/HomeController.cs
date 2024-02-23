@@ -121,7 +121,7 @@ namespace Tienda_Vidreos.Controllers
         }
 
         [HttpGet]
-        public ActionResult Reportes()
+        public ActionResult Reportar()
         {
             return View();
         }

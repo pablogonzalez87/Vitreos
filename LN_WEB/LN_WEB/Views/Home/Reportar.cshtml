@@ -1,0 +1,61 @@
+﻿@model Error
+
+
+@{
+    ViewBag.Title = "Reportar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Reportes del sistema</h1>
+
+
+<div class="row align-items-center justify-content-center">
+
+    <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-5">
+
+        <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+
+                <h4 class="card-title">Reporte de Errores</h4>
+
+
+
+                @using (Html.BeginForm("ReportarError", "Home", FormMethod.Post))
+                {
+
+                    @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <h4 class="card-title">Reportar error </h4>
+                @Html.LabelFor(model => model.Descripcion)
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" ,@placeholder = "Correo Electrónico", @type = "email" })
+                <label for="floatingInput">Contraseña Actual</label>
+                @Html.ValidationMessageFor(model => model.Descripcion)
+            </div>
+
+
+
+
+            <div class="form-group">
+                <h4 class="card-title">Porque no pudiste realizar tu compra o trasaccion</h4>
+                @Html.LabelFor(model => model.Usuario)
+                @Html.TextBoxFor(model => model.Usuario, new { @class = "form-control" ,@placeholder = "Correo Electrónico", @type = "email" })
+                <label for="floatingInput">Contraseña Actual</label>
+                @Html.ValidationMessageFor(model => model.Usuario)
+            </div>
+
+            <div class="form-group">
+                <h4 class="card-title">que podemos mejorar en el sistema</h4>
+                @Html.LabelFor(model => model.Tipo)
+                @Html.TextBoxFor(model => model.Tipo, new { @class = "form-control" ,@placeholder = "Correo Electrónico", @type = "email" })
+                <label for="floatingInput">Contraseña Actual</label>
+                @Html.ValidationMessageFor(model => model.Tipo)
+            </div>
+
+                    <button type="submit" class="btn btn-primary">Reportar Error</button>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,7 @@ namespace LN_WEB.Controllers
         VidrioModel model = new VidrioModel();
 
         [HttpGet]
-        public ActionResult ConsultaUsuarios()
+        public ActionResult ConsultaVidrio()
         {
             var resp = model.ConsultaVidrio();
             return View(resp);

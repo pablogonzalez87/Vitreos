@@ -30,7 +30,7 @@ namespace LN_WEB.Models
                 return 0;
             }
         }
-        public List<VidrioEnt> ConsultaVidrio()
+        public List<VidrioEnt> ConsultaVidrio(List<VidrioEnt> entidad)
         {
             using (var client = new HttpClient())
             {
@@ -87,6 +87,11 @@ namespace LN_WEB.Models
 
                 return 0;
             }
+        }
+
+        internal object ConsultaVidrio()
+        {
+            throw new NotImplementedException();
         }
     }
 }

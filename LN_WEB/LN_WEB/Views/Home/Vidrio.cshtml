@@ -1,12 +1,10 @@
-﻿@{
+﻿@model LN_WEB.Entities.VidrioEnt
+
+@{
     ViewBag.Title = "Vidrio";
+    Layout = "~/Views/Home/Vidrio.cshtml";
 }
-    @if (ViewBag.MsjPantalla != null)
-    {
-        <div style="text-align:center" class="alert alert-warning" role="alert">
-            @ViewBag.MsjPantalla
-        </div>
-    }
+
 <div class="container">
     <div class="row">
         <div class="col-lg-8 offset-lg-2 text-center">
@@ -18,42 +16,63 @@
     </div>
 </div>
 
-    <section > 
-        <center>
-            <div class="dish" style="background-color: #e8e8e8; ">
-                <img src="~/images/Vi1.jpg" />
-                <h3>Vidrio</h3>
-                <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
-                <span class="price">$12.99</span>
+@if (ViewBag.MsjPantalla != null)
 
-                <button style="background-color: #ffe600;" onclick="addToCart(Vidrios 1', 12.99)">Confirmar<i class="fa fa-shopping-cart me-2"> </i></button>
+{
+    <div style="text-align:center" class="alert alert-warning" role="alert">
+        @ViewBag.MsjPantalla
+    </div>
+}
+@using (Html.BeginForm("Vidrio", "Home", FormMethod.Post, new { @class = "pt-3" }))
+{
+<section>
+    <button style="background-color: #ffe600;" onclick="addToCart(Vidrios 1', 12.99)">Agregar Vidrio<i class="fa fa-plus me-2"> </i></button>
+    <center>
+        <div class="dish" style="background-color: #e8e8e8; ">
+            <img src="~/images/Vi1.jpg" />
+            <h3 for="floatingInput"> Vidrio</h3>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Descripcion, new 
+                {
+                    @class = "form-control form-control-lg",
+                    @placeholder = "Descripcion",
+                    @type = "text",
+                    onkeyup = "ConsultaVidrio();"
+                })
+                <label for="floatingDescripcion">Descripcion</label>
             </div>
+            <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
+            <span class="price">$12.99</span>
 
-            <div class="dish"style="background-color: #e8e8e8; ">
-                <img src="~/images/Vi2.jpg" />
-                <h3>Vidrio 1</h3>
-                <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
-                <span class="price">$12.99</span>
-                <button style="background-color: #ffe600;" onclick="addToCart(Vidrio 2', 12.99)">Confirmar<i class="fa fa-shopping-cart me-2"> </i></button>
-            </div>
+            <button style="background-color: #ffe600;" onclick="addToCart(Vidrios 1', 12.99)">Confirmar<i class="fa fa-shopping-cart me-2"> </i></button>
+        </div>
+
+        <div class="dish" style="background-color: #e8e8e8; ">
+            <img src="~/images/Vi2.jpg" />
+            <h3>Vidrio 1</h3>
+            <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
+            <span class="price">$12.99</span>
+            <button style="background-color: #ffe600;" onclick="addToCart(Vidrio 2', 12.99)">Confirmar<i class="fa fa-shopping-cart me-2"> </i></button>
+        </div>
 
 
-            <div class="dish"style="background-color: #e8e8e8; ">
-                <img src="~/images/Vi3.jpg" />
-                <h3>Vidrio 2</h3>
-                <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
-                <span class="price">$12.99</span>
-                <button style="background-color: #ffe600;" onclick="addToCart('(Vidrio 3', 12.99)">Confirmar<i class="fa fa-shopping-cart me-2"> </i></button>
-            </div>
+        <div class="dish" style="background-color: #e8e8e8; ">
+            <img src="~/images/Vi3.jpg" />
+            <h3>Vidrio 2</h3>
+            <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
+            <span class="price">$12.99</span>
+            <button style="background-color: #ffe600;" onclick="addToCart('(Vidrio 3', 12.99)">Confirmar<i class="fa fa-shopping-cart me-2"> </i></button>
+        </div>
 
-            <div class="dish"style="background-color: #e8e8e8; ">
-                <img src="~/images/vi4.jpg" />
-                <h3>Vidrio 3</h3>
-                <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
-                <span class="price">$12.99</span>
-                <button style="background-color: #ffe600;" onclick="addToCart('(Vidrio 3', 12.99)">Confirmar<i class="fa fa-shopping-cart me-2"> </i></button>
-            </div>
-        </center>
-        <!-- Repite este bloque para más Vidreos-->
-    </section>
-    </br>
+        <div class="dish" style="background-color: #e8e8e8; ">
+            <img src="~/images/vi4.jpg" />
+            <h3>Vidrio 3</h3>
+            <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
+            <span class="price">$12.99</span>
+            <button style="background-color: #ffe600;" onclick="addToCart('(Vidrio 3', 12.99)">Confirmar<i class="fa fa-shopping-cart me-2"> </i></button>
+        </div>
+    </center>
+    <!-- Repite este bloque para más Vidreos-->
+</section>
+}
+

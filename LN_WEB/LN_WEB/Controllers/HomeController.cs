@@ -1,4 +1,6 @@
 ﻿using Tienda_Vidreos.Entities;
+using LN_WEB.Entities;
+using LN_WEB.Models;
 using Tienda_Vidreos.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ namespace Tienda_Vidreos.Controllers
     public class HomeController : Controller
     {
         UsuarioModel model = new UsuarioModel();
-
+        VidrioModel model2 = new VidrioModel();
 
         [HttpGet]
         public ActionResult Login()
@@ -91,7 +93,19 @@ namespace Tienda_Vidreos.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult ConsultaVidrio(List<VidrioEnt> entidad)
+        {
+            var resp = model2.ConsultaVidrio(entidad);
 
+            if (resp != null)
+                return RedirectToAction("Vidrio", "Home");
+            else
+            {
+                ViewBag.MsjPantalla = "No se ha podido cargar la informacion";
+                return View("Registro");
+            }
+        }
 
         [HttpGet]
         public ActionResult Inicio()

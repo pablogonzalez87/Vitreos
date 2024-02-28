@@ -5,14 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LN_WEB.Model;
 
 namespace Tienda_Vidreos.Controllers
 {
     public class HomeController : Controller
     {
         UsuarioModel model = new UsuarioModel();
+        VidreoModel modelVidreos = new VidreoModel();
 
-
+        
         [HttpGet]
         public ActionResult Login()
         {
@@ -129,7 +131,8 @@ namespace Tienda_Vidreos.Controllers
         [HttpGet]
         public ActionResult Vidrio()
         {
-            return View();
+            var datos = modelVidreos.ConsultaVidreos();
+            return View(datos);
         }
 
 

@@ -1,12 +1,11 @@
-﻿@{
+﻿@model IEnumerable<LN_WEB.Entities.VidreoEnt>
+@{
     ViewBag.Title = "Vidrio";
 }
-    @if (ViewBag.MsjPantalla != null)
-    {
-        <div style="text-align:center" class="alert alert-warning" role="alert">
-            @ViewBag.MsjPantalla
-        </div>
-    }
+
+    @ViewBag.MsjPantalla
+
+
 <div class="container">
     <div class="row">
         <div class="col-lg-8 offset-lg-2 text-center">
@@ -18,18 +17,20 @@
     </div>
 </div>
 
-    <section > 
+@foreach (var item in Model)
+{
+    <section>
         <center>
             <div class="dish" style="background-color: #e8e8e8; ">
                 <img src="~/images/Vi1.jpg" />
-                <h3>Vidrio</h3>
-                <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
-                <span class="price">$12.99</span>
+                <h3>@item.Nombre</h3>
+                <p>@item.Descripcion</p>
+                <span class="price">@item.Precio</span>
 
                 <button style="background-color: #ffe600;" onclick="addToCart(Vidrios 1', 12.99)">Confirmar<i class="fa fa-shopping-cart me-2"> </i></button>
             </div>
 
-            <div class="dish"style="background-color: #e8e8e8; ">
+            <div class="dish" style="background-color: #e8e8e8; ">
                 <img src="~/images/Vi2.jpg" />
                 <h3>Vidrio 1</h3>
                 <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
@@ -38,7 +39,7 @@
             </div>
 
 
-            <div class="dish"style="background-color: #e8e8e8; ">
+            <div class="dish" style="background-color: #e8e8e8; ">
                 <img src="~/images/Vi3.jpg" />
                 <h3>Vidrio 2</h3>
                 <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
@@ -46,7 +47,7 @@
                 <button style="background-color: #ffe600;" onclick="addToCart('(Vidrio 3', 12.99)">Confirmar<i class="fa fa-shopping-cart me-2"> </i></button>
             </div>
 
-            <div class="dish"style="background-color: #e8e8e8; ">
+            <div class="dish" style="background-color: #e8e8e8; ">
                 <img src="~/images/vi4.jpg" />
                 <h3>Vidrio 3</h3>
                 <p>Descripción xxxxxxxxxxxxxxxxxxxxx.</p>
@@ -56,4 +57,5 @@
         </center>
         <!-- Repite este bloque para más Vidreos-->
     </section>
-    </br>
+    
+}

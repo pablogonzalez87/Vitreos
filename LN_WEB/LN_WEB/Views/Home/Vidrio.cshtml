@@ -23,7 +23,7 @@
                         <p class="card-text">@item.Descripcion</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="price">Precio: $@item.Precio</p>
-                            <button class="btn btn-primary add-to-cart-btn" onclick="addToCart('Vidrios 1', '@item.Precio')">Agregar al carrito</button>
+                            <a href="@Url.Action("AgregarVidreoCarrito","Carrito", new { q = item.IdVidreo})" class="btn btn-primary add-to-cart-btn" onclick="addToCart('Vidrios 1', '@item.Precio')">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>

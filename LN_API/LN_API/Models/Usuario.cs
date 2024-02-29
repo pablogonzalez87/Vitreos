@@ -18,6 +18,7 @@ namespace LN_API.Models
         public Usuario()
         {
             this.Bitacora = new HashSet<Bitacora>();
+            this.VidreoCarrito = new HashSet<VidreoCarrito>();
         }
     
         public long IdUsuario { get; set; }
@@ -33,5 +34,7 @@ namespace LN_API.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bitacora> Bitacora { get; set; }
         public virtual Rol Rol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VidreoCarrito> VidreoCarrito { get; set; }
     }
 }

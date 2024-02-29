@@ -14,10 +14,19 @@ namespace LN_API.Models
     
     public partial class Vidreo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Vidreo()
+        {
+            this.VidreoCarrito = new HashSet<VidreoCarrito>();
+        }
+    
         public long idVidreo { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public string Imagen { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VidreoCarrito> VidreoCarrito { get; set; }
     }
 }

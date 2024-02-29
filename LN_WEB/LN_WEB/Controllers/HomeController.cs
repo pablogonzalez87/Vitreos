@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LN_WEB.Model;
+using LN_WEB.Models;
 
 namespace Tienda_Vidreos.Controllers
 {
@@ -13,6 +14,7 @@ namespace Tienda_Vidreos.Controllers
     {
         UsuarioModel model = new UsuarioModel();
         VidreoModel modelVidreos = new VidreoModel();
+        CarritoModel modelCarrito = new CarritoModel();
 
         
         [HttpGet]
@@ -34,6 +36,11 @@ namespace Tienda_Vidreos.Controllers
                 Session["NombreRolUsuario"] = resp.NombreRol;
                 Session["RolUsuario"] = resp.IdRol;
                 Session["Token"] = resp.Token;
+               
+
+                var datos = modelCarrito.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+                Session["CantidadVidreos"] = datos.Count();
+                Session["subTotalVidreos"] = datos.Sum(x => x.Precio);
                 return RedirectToAction("Inicio", "Home");
             }
             else

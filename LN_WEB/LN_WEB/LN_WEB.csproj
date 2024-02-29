@@ -255,6 +255,7 @@
     <Content Include="assets\css\main.css" />
     <Content Include="assets\css\meanmenu.min.css" />
     <Content Include="assets\css\owl.carousel.css" />
+    <Content Include="assets\css\style.css" />
     <Content Include="assets\css\responsive.css" />
     <Content Include="assets\css\scss\pages\_404.css" />
     <Content Include="assets\img\1.jpg" />
@@ -370,14 +371,16 @@
     <Content Include="assets\webfonts\fa-solid-900.woff" />
     <Content Include="assets\webfonts\fa-solid-900.woff2" />
     <Content Include="images\2.jpg" />
+    <Content Include="images\Antirreflectante.jpg" />
+    <Content Include="images\cortafuego.jpg" />
+    <Content Include="images\curvo.jpg" />
     <Content Include="images\Logo.png" />
     <Content Include="images\pre.jpg" />
     <Content Include="images\redes.jpg" />
+    <Content Include="images\reflejantes.jpg" />
     <Content Include="images\ven.jpg" />
     <Content Include="images\Vi1.jpg" />
-    <Content Include="images\Vi2.jpg" />
-    <Content Include="images\Vi3.jpg" />
-    <Content Include="images\vi4.jpg" />
+    <Content Include="images\vimpreso.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

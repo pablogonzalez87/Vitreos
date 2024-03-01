@@ -61,9 +61,6 @@
                         <!-- menu start -->
                         <nav class="main-menu">
                             <ul>
-
-
-
                                 @if (Session["RolUsuario"].ToString() == "1")
                                 {
                                     <li><a href="@Url.Action("ConsultaUsuarios","Usuario")" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Usuarios</a></li>
@@ -89,6 +86,7 @@
                                 </li>
                             </ul>
                         </nav>
+                        <hr style="border-top: 3px solid #ff6a00;">
 
                     </div>
                 </div>

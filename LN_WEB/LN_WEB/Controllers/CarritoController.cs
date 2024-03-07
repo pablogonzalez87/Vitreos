@@ -19,7 +19,7 @@ namespace LN_WEB.Controllers
             entidad.FechaCarrito = DateTime.Now;
             entidad.IdVidreo = q;
             entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
-           model.AgregarVidreoCarrito(entidad);
+            model.AgregarVidreoCarrito(entidad);
 
             var datos = model.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
             Session["CantidadVidreos"] = datos.Count();

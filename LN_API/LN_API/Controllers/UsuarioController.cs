@@ -40,6 +40,7 @@ namespace LN_API.Controllers
                                 x.Identificacion,
                                 x.Estado,
                                 x.IdRol,
+
                                 x.Caducidad,
                                 x.ClaveTemporal,
                                 y.NombreRol

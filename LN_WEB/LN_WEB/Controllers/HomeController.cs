@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using LN_WEB.Model;
 using LN_WEB.Models;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Tienda_Vidreos.Controllers
 {
@@ -138,8 +139,12 @@ namespace Tienda_Vidreos.Controllers
         [HttpGet]
         public ActionResult Vidrio()
         {
-            var datos = modelVidreos.ConsultaVidreos();
-            return View(datos);
+            var datos = modelCarrito.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            Session["CantidadVidreo"] = datos.Count();
+            Session["SubTotalVidreo"] = datos.Sum(x => x.Precio);
+            Session["TotalVidreo"] = datos.Sum(x  => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
+            var vidreos = modelVidreos.ConsultaVidreos();
+            return View(vidreos);
         }
 
 

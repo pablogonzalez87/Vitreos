@@ -4,9 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="55ee427038c144a8a50b93bdb0c0bd5d" Name="Diagram1">
+      <Diagram DiagramId="db424dd8210e49b1a90da20330ac1c68" Name="Diagram1">
         <EntityTypeShape EntityType="Tienda_VidreosModel.Bitacora" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Tienda_VidreosModel.Rol" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tienda_VidreosModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Tienda_VidreosModel.Usuario" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Tienda_VidreosModel.Vidreo" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Tienda_VidreosModel.VidreoCarrito" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />

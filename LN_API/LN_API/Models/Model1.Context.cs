@@ -29,6 +29,7 @@ namespace LN_API.Models
     
         public virtual DbSet<Bitacora> Bitacora { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Vidreo> Vidreo { get; set; }
         public virtual DbSet<VidreoCarrito> VidreoCarrito { get; set; }

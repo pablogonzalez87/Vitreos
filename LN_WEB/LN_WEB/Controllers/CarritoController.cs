@@ -15,7 +15,7 @@ namespace LN_WEB.Controllers
         [HttpGet]
         public ActionResult AgregarVidreoCarrito(long q)
         {
-            CarritoEnt entidad = new CarritoEnt();// se agrega el producto si ningun problema
+            CarritoEnt entidad = new CarritoEnt();
             entidad.FechaCarrito = DateTime.Now;
             entidad.IdVidreo = q;
             entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());

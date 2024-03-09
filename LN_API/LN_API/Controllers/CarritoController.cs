@@ -11,7 +11,6 @@ namespace LN_API.Controllers
 {
     public class CarritoController : ApiController
     {
-
         [HttpGet]
         [Route("api/ConsultarVidreoCarrito")]
         public List<CarritoEnt> ConsultarVidreoCarrito(long q)
@@ -53,7 +52,6 @@ namespace LN_API.Controllers
 
             }
         }
-
             [HttpPost]
             [Route("api/AgregarVidreoCarrito")]
             public int AgregarVidreoCarrito(CarritoEnt entidad)
@@ -71,8 +69,9 @@ namespace LN_API.Controllers
                     bd.VidreoCarrito.Add(tabla);
                     return bd.SaveChanges();
                 }
+            return 0;   
+        }
 
-            }
         }
     }
 

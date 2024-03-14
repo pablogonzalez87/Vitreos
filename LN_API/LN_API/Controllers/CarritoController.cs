@@ -11,8 +11,8 @@ namespace LN_API.Controllers
     public class CarritoController : ApiController
     {
         [HttpGet]
-        [Route("api/ConsultarVidreoCarrito")]
-        public List<CarritoEnt> ConsultarVidreoCarrito(long q)
+        [Route("api/ConsultaVidreoCarrito")]
+        public List<CarritoEnt> ConsultaVidreoCarrito(long q)
         {
             using (var bd = new Tienda_VidreosEntities())
             {
@@ -73,7 +73,56 @@ namespace LN_API.Controllers
            
         }
 
+
+        //remover
+
+        [HttpPost]
+        [Route("api/PagarVidreoCarrito")]
+        public int PagarVidreoCarrito(CarritoEnt entidad)
+        {
+            using (var bd = new Tienda_VidreosEntities())
+            {
+                //Busco el carrito para pasarlo a la tabla de usuarios
+                var datos = (from cc in bd.VidreoCarrito
+                             join c in bd.Vidreo on cc.IdVidreo equals c.idVidreo
+                             where cc.IdUsuario == entidad.IdUsuario
+                             select new
+                             {
+                                 cc.IdVidreo,
+                                 cc.IdUsuario,
+                                 c.Precio
+                             }).ToList();
+
+                if (datos.Count > 0)
+                {
+                    foreach (var item in datos)
+                    {
+                        VidreoUsuario cu = new VidreoUsuario();
+                        cu.IdVidreo = item.IdVidreo;
+                        cu.IdUsuario = item.IdUsuario;
+                        cu.FechaPago = DateTime.Now;
+                        cu.PrecioPago = item.Precio;
+                        bd.VidreoUsuario.Add(cu);
+                    }
+
+                    //Busco el carrito para limpiarlo
+                    var carritoActual = (from cc in bd.VidreoCarrito
+                                         where cc.IdUsuario == entidad.IdUsuario
+                                         select cc).ToList();
+
+                    foreach (var item in carritoActual)
+                    {
+                        bd.VidreoCarrito.Remove(item);
+                    }
+
+                    return bd.SaveChanges();
+                }
+
+                return 0;
+            }
         }
     }
+}
+
 
 

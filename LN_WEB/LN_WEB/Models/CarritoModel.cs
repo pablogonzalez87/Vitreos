@@ -13,11 +13,11 @@ namespace LN_WEB.Models
 {
     public class CarritoModel
     {
-        public List<CarritoEnt> ConsultarVidreoCarrito(long q)
+        public List<CarritoEnt> ConsultaVidreoCarrito(long q)
         {
             using (var client = new HttpClient())
             {
-                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarVidreoCarrito?=" + q ;
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreoCarrito?=" + q ;
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
                 if (resp.IsSuccessStatusCode)
@@ -46,5 +46,24 @@ namespace LN_WEB.Models
                 return 0;
             }
         }
+
+        public int PagarVidreoCarrito(CarritoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/PagarVidreoCarrito";
+                JsonContent body = JsonContent.Create(entidad); //Serializar
+                HttpResponseMessage resp = client.PostAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+                }
+
+                return 0;
+            }
+        }
+
+        
     }
 }

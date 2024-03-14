@@ -12,12 +12,15 @@ namespace LN_API.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class VidreoUsuario
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public long IdVidreoUsuario { get; set; }
+        public long IdUsuario { get; set; }
+        public long IdVidreo { get; set; }
+        public System.DateTime FechaPago { get; set; }
+        public decimal PrecioPago { get; set; }
+    
+        public virtual Usuario Usuario { get; set; }
+        public virtual Vidreo Vidreo { get; set; }
     }
 }

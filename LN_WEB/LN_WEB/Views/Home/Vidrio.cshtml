@@ -10,8 +10,11 @@
         <div class="col-lg-12 text-center">
             <h1 class="section-header-yellow section-header-sm" style="color: white;">Tipos de Vidrios</h1>
             <div>
-                @Session["CantidadVidreos"].ToString()
-                @Session["subTotalVidreos"].ToString()
+                <button class="btn btn-sm order-1 order-lg-0 me-4 me-lg-0" style="color:white">
+                    &nbsp;&nbsp;
+                    <i class="fa fa-cart-plus fa-lg"></i> @Session["CantidadVidreos"].ToString() &nbsp;&nbsp;
+                    <i class="fa fa-comments-dollar fa-lg"></i> @Session["SubTotalVidreos"].ToString() + IVA
+                </button>
             </div>
         </div>
     </div>

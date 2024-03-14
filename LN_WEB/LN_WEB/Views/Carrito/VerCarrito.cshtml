@@ -1,4 +1,4 @@
-﻿@model IEnumerable< LN_WEB.Entities.CarritoEnt>
+﻿@model IEnumerable<LN_WEB.Entities.CarritoEnt>
 @{
     ViewBag.Title = "VerCarrito";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -36,9 +36,9 @@
                         <tr>
                             <td>@item.Nombre</td>
                             <td>@Math.Round(item.Precio, 2)</td>
-                            @*<td>@Math.Round(item.Impuesto, 2)</td>*@
+                            <td>@Math.Round(item.Impuesto, 2)</td>
                             <td style="text-align:center">
-                                <a href="@Url.Action("RemoverCursoCarrito", "Carrito", new { q = item.IdVidreoCarrito })"><i class="fa fa-trash"></i></a>
+                                <a href="@Url.Action("RemoverVidreoCarrito", "Carrito", new { q = item.IdVidreoCarrito })"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }
@@ -47,7 +47,7 @@
             <br />
             using (Html.BeginForm("ConfirmarPago", "Carrito", FormMethod.Post))
             {
-                <input style="width:270px" type="submit" value="Procesar Pago" class="btn btn-success">
+                <input style="width:270px" type="submit" value="Procesar Pago" class="btn btn-success">//
                 <p>El monto a cancelar es de: $ @Math.Round(double.Parse(Session["TotalVidreo"].ToString()), 2) IVI</p>
             }
         }

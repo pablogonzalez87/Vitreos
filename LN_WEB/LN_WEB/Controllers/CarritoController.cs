@@ -21,7 +21,7 @@ namespace LN_WEB.Controllers
             entidad.FechaCarrito = DateTime.Now;
             entidad.IdVidreo = q;
             entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
- 
+
 
             var respuesta = model.AgregarVidreoCarrito(entidad);
             ActualizarDatosSesion();
@@ -32,7 +32,7 @@ namespace LN_WEB.Controllers
 
         public void ActualizarDatosSesion()
         {
-            var datos = model.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            var datos = model.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
             Session["CantidadVidreos"] = datos.Count();
             Session["SubTotalVidreos"] = datos.Sum(x => x.Precio);
             Session["TotalVidreos"] = datos.Sum(x => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
@@ -43,11 +43,20 @@ namespace LN_WEB.Controllers
         public ActionResult VerCarrito()
         {
 
-            var datos = model.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            var datos = model.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
 
             return View(datos);
         }
 
-            
+
+        [HttpPost]
+        public ActionResult ConfirmarPago()
+        {
+            CarritoEnt entidad = new CarritoEnt();
+            entidad.IdVidreo = (long.Parse(Session["IdUsuario"].ToString()));
+
+            model.PagarVidreoCarrito(entidad);
+            return RedirectToAction("Inicio", "Home");
+        }
     }
 }

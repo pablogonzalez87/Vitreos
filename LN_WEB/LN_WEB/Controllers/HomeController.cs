@@ -39,7 +39,7 @@ namespace Tienda_Vidreos.Controllers
                 Session["Token"] = resp.Token;
                
 
-                var datos = modelCarrito.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+                var datos = modelCarrito.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
                 Session["CantidadVidreos"] = datos.Count();
                 Session["subTotalVidreos"] = datos.Sum(x => x.Precio);
 
@@ -105,7 +105,7 @@ namespace Tienda_Vidreos.Controllers
         [HttpPost]
         public ActionResult ConsultaVidrio(List<VidreoEnt> entidad)
         {
-            var resp = modelCarrito.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            var resp = modelCarrito.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
 
             if (resp != null)
                 return RedirectToAction("Vidrio", "Home");
@@ -154,7 +154,7 @@ namespace Tienda_Vidreos.Controllers
         public ActionResult Vidrio()
         {
       
-            var datos = modelCarrito.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            var datos = modelCarrito.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
             Session["CantidadVidreo"] = datos.Count();
             Session["SubTotalVidreo"] = datos.Sum(x => x.Precio);
             Session["TotalVidreo"] = datos.Sum(x  => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);

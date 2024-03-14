@@ -4,17 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="db424dd8210e49b1a90da20330ac1c68" Name="Diagram1">
-        <EntityTypeShape EntityType="Tienda_VidreosModel.Bitacora" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tienda_VidreosModel.Rol" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tienda_VidreosModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tienda_VidreosModel.Usuario" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tienda_VidreosModel.Vidreo" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Tienda_VidreosModel.VidreoCarrito" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="b6405c87aa984168afee29f835d8f5d2" Name="Diagram1">
+        <EntityTypeShape EntityType="Tienda_VidreosModel.Bitacora" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tienda_VidreosModel.Rol" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tienda_VidreosModel.Usuario" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tienda_VidreosModel.Vidreo" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tienda_VidreosModel.VidreoCarrito" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tienda_VidreosModel.VidreoUsuario" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="Tienda_VidreosModel.FK_Bitacora_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="Tienda_VidreosModel.FK_Usuario_Rol" ManuallyRouted="false" />
         <AssociationConnector Association="Tienda_VidreosModel.FK_VidreoCarrito_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="Tienda_VidreosModel.FK_VidreoUsuario_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="Tienda_VidreosModel.FK_VidreoCarrito_Vidreo" ManuallyRouted="false" />
+        <AssociationConnector Association="Tienda_VidreosModel.FK_VidreoUsuario_Vidreo" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

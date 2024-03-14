@@ -29,5 +29,23 @@ namespace LN_WEB.Model
                 return new List<VidreoEnt>();
             }
         }
+        public VidreoEnt ConsultaVidreo(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreo?q=" + q;
+                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<VidreoEnt>().Result;
+                }
+
+                return null;
+            }
+        }
     }
 }

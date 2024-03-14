@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
 namespace LN_API.Controllers
 {
     public class CarritoController : ApiController
@@ -25,8 +24,8 @@ namespace LN_API.Controllers
                                      x.IdVidreoCarrito,
                                      x.IdUsuario,
                                      x.IdVidreo,
-                                     y.Precio
-                                 
+                                     y.Precio,
+                                     y.Nombre                      
                                  }).ToList();
 
                     if (datos.Count > 0)
@@ -39,7 +38,9 @@ namespace LN_API.Controllers
                                 IdVidreoCarrito = item.IdVidreoCarrito,
                                 IdUsuario = item.IdUsuario,
                                 IdVidreo = item.IdVidreo,
-                                Precio  = item.Precio
+                                Precio  = item.Precio,
+                                Nombre = item.Nombre,
+                                Impuesto = item.Precio * 0.13M
                             });
                         }
                         return res;
@@ -69,7 +70,7 @@ namespace LN_API.Controllers
                     bd.VidreoCarrito.Add(tabla);
                     return bd.SaveChanges();
                 }
-            return 0;   
+           
         }
 
         }

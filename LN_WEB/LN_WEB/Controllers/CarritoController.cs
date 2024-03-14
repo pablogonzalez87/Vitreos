@@ -1,4 +1,5 @@
 ﻿using LN_WEB.Entities;
+using LN_WEB.Model;
 using LN_WEB.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace LN_WEB.Controllers
     public class CarritoController : Controller
     {
         CarritoModel model = new CarritoModel();// esto es una instancia 
-      
+        VidreoModel modelVidreo = new VidreoModel();
+
         [HttpGet]
         public ActionResult AgregarVidreoCarrito(long q)
         {
@@ -19,12 +21,33 @@ namespace LN_WEB.Controllers
             entidad.FechaCarrito = DateTime.Now;
             entidad.IdVidreo = q;
             entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
-            model.AgregarVidreoCarrito(entidad);
+ 
 
-            var datos = model.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
-            Session["CantidadVidreos"] = datos.Count();
-            Session["subTotalVidreos"] = datos.Sum(x => x.Precio);
+            var respuesta = model.AgregarVidreoCarrito(entidad);
+            ActualizarDatosSesion();
+
             return RedirectToAction("Vidrio", "Home");
         }
+
+
+        public void ActualizarDatosSesion()
+        {
+            var datos = model.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            Session["CantidadVidreos"] = datos.Count();
+            Session["SubTotalVidreos"] = datos.Sum(x => x.Precio);
+            Session["TotalVidreos"] = datos.Sum(x => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
+        }
+
+
+        [HttpGet]
+        public ActionResult VerCarrito()
+        {
+
+            var datos = model.ConsultarVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+
+            return View(datos);
+        }
+
+            
     }
 }

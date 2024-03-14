@@ -13,7 +13,7 @@ namespace LN_API.Controllers
     {
         [HttpGet]
         [Route("api/ConsultaVidreos")]
-        public List<VidreoEnt> ConsultVidreos()
+        public List<VidreoEnt> ConsultaVidreos()
         {
             using (var bd = new Tienda_VidreosEntities())
             {
@@ -41,6 +41,31 @@ namespace LN_API.Controllers
                 {
                     return new List<VidreoEnt>();
                 }
+            }
+        }
+
+        [HttpGet]
+        [Route("api/ConsultaVidreo")]
+        public VidreoEnt ConsultaVidreo(long q)
+        {
+            using (var bd = new Tienda_VidreosEntities())
+            {
+                var datos = (from x in bd.Vidreo
+                             where x.idVidreo == q
+                             select x).FirstOrDefault();
+
+                if (datos != null)
+                {
+                    VidreoEnt res = new VidreoEnt();
+                    res.IdVidreo = datos.idVidreo;
+                    res.Nombre = datos.Nombre;
+                    res.Descripcion = datos.Descripcion;
+                    res.Precio = datos.Precio;
+                    res.Imagen = datos.Imagen;
+                    return res;
+                }
+
+                return null;
             }
         }
 

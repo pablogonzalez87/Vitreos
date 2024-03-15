@@ -10,13 +10,17 @@
 namespace LN_API.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class Pagos
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public long IdPago { get; set; }
+        public long IdUsuario { get; set; }
+        public int CantidadArt { get; set; }
+        public int SubTotal { get; set; }
+        public int Total { get; set; }
+        public System.DateTime Fecha { get; set; }
+    
+        public virtual Usuario Usuario { get; set; }
     }
 }

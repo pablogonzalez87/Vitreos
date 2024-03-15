@@ -100,20 +100,6 @@ namespace Tienda_Vidreos.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult ConsultaVidrio(List<VidrioEnt> entidad)
-        {
-            var resp = model2.ConsultaVidrio(entidad);
-
-            if (resp != null)
-                return RedirectToAction("Vidrio", "Home");
-            else
-            {
-                ViewBag.MsjPantalla = "No se ha podido cargar la informacion";
-                return View("Registro");
-            }
-        }
-
         [HttpGet]
         public ActionResult Inicio()
         {

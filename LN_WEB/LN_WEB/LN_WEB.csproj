@@ -227,9 +227,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagosController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VidreoController.cs" />
     <Compile Include="Entities\CarritoEnt.cs" />
+    <Compile Include="Entities\PagosEnt.cs" />
     <Compile Include="Entities\RolEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Entities\VidreoEnt.cs" />
@@ -237,6 +239,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CarritoModel.cs" />
+    <Compile Include="Models\PagosModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Models\VidreoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -461,6 +464,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Carrito\" />
+    <Folder Include="Views\Pagos\" />
     <Folder Include="Views\Vidreo\" />
   </ItemGroup>
   <ItemGroup>

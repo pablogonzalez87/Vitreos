@@ -13,6 +13,7 @@ namespace LN_WEB.Controllers
     {
         CarritoModel model = new CarritoModel();// esto es una instancia 
         VidreoModel modelVidreo = new VidreoModel();
+        CarritoModel modelCarrito = new CarritoModel();
 
         [HttpGet]
         public ActionResult AgregarVidreoCarrito(long q)
@@ -21,30 +22,33 @@ namespace LN_WEB.Controllers
             entidad.FechaCarrito = DateTime.Now;
             entidad.IdVidreo = q;
             entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
-
-
             var respuesta = model.AgregarVidreoCarrito(entidad);
-            ActualizarDatosSesion();
+            //ActualizarDatosSesion();
+            model.AgregarVidreoCarrito(entidad);
+
+            var datos = model.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            Session["CantidadVidreo"] = datos.Count();
+            Session["SubTotalVidreo"] = datos.Sum(x => x.Precio);
+            Session["TotalVidreo"] = datos.Sum(x => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
 
             return RedirectToAction("Vidrio", "Home");
         }
 
 
-        public void ActualizarDatosSesion()
-        {
-            var datos = model.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
-            Session["CantidadVidreos"] = datos.Count();
-            Session["SubTotalVidreos"] = datos.Sum(x => x.Precio);
-            Session["TotalVidreos"] = datos.Sum(x => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
-        }
+        //public void ActualizarDatosSesion()
+        //{
+        //    var datos = modelCarrito.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+        //    Session["CantidadVidreo"] = datos.Count();
+        //    Session["SubTotalVidreo"] = datos.Sum(x => x.Precio);
+        //    Session["TotalVidreo"] = datos.Sum(x => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
+        //}
 
 
         [HttpGet]
         public ActionResult VerCarrito()
         {
 
-            var datos = model.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
-
+            var datos = modelCarrito.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
             return View(datos);
         }
 

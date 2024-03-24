@@ -17,7 +17,7 @@ namespace LN_WEB.Model
         {
             using (var client = new HttpClient())
             {
-               
+          
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreos";
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
@@ -31,12 +31,13 @@ namespace LN_WEB.Model
         }
         public VidreoEnt ConsultaVidreo(long q)
         {
+         
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreo?q=" + q;
-                string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+                ////string token = HttpContext.Current.Session["TokenUsuario"].ToString();
 
-                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                ////client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
                 if (resp.IsSuccessStatusCode)

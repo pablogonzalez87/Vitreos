@@ -15,10 +15,9 @@ namespace LN_API.Controllers
         public List<CarritoEnt> ConsultaVidreoCarrito(long q)
         {
             using (var bd = new Tienda_VidreosEntities())
-            {
-                {
+            {            
                     var datos = (from x in bd.VidreoCarrito
-                                 join y in bd.Vidreo on x.IdVidreo equals y.idVidreo
+                                 join y in bd.Vidreo on x.IdVidreo equals y.IdVidreo
                                  where x.IdUsuario == q
                                  select new {
                                      x.IdVidreoCarrito,
@@ -30,7 +29,7 @@ namespace LN_API.Controllers
 
                     if (datos.Count > 0)
                     {
-                        List<CarritoEnt> res = new List<CarritoEnt> ();
+                        List<CarritoEnt> res = new List<CarritoEnt>();
                         foreach (var item in datos)
                         {
                             res.Add(new CarritoEnt
@@ -52,8 +51,57 @@ namespace LN_API.Controllers
                 }
 
             }
+        
+
+
+
+        [HttpGet]
+        [Route("api/ConsultaVidreoUsuario")]
+        public List<CarritoEnt> ConsultaVidreoUsuario(long q)
+        {
+            using (var bd = new Tienda_VidreosEntities())
+            {
+                var datos = (from x in bd.VidreoUsuario
+                             join y in bd.Vidreo on x.IdVidreo equals y.IdVidreo
+                             where x.IdUsuario == q
+                             select new
+                             {
+                                 x.IdVidreoUsuario,
+                                 x.IdVidreo,
+                                 x.IdUsuario,
+                                 x.PrecioPago,
+                                 y.Nombre,
+
+                             }).ToList();
+
+                if (datos.Count > 0)
+                {
+                    List<CarritoEnt> res = new List<CarritoEnt>();
+                    foreach (var item in datos)
+                    {
+                        res.Add(new CarritoEnt
+                        {
+                            IdVidreoCarrito = item.IdVidreoUsuario,
+                            IdVidreo = item.IdVidreo,
+                            IdUsuario = item.IdUsuario,
+                            Precio = item.PrecioPago,
+                            Nombre = item.Nombre,
+                            Impuesto = item.PrecioPago * 0.13M
+                        });
+                    }
+
+                    return res;
+                }
+
+                return new List<CarritoEnt>();
+            }
         }
-            [HttpPost]
+
+
+
+
+
+        [HttpPost]
             [Route("api/AgregarVidreoCarrito")]
             public int AgregarVidreoCarrito(CarritoEnt entidad)
             {
@@ -76,6 +124,7 @@ namespace LN_API.Controllers
 
         //remover
 
+
         [HttpPost]
         [Route("api/PagarVidreoCarrito")]
         public int PagarVidreoCarrito(CarritoEnt entidad)
@@ -84,7 +133,7 @@ namespace LN_API.Controllers
             {
                 //Busco el carrito para pasarlo a la tabla de usuarios
                 var datos = (from cc in bd.VidreoCarrito
-                             join c in bd.Vidreo on cc.IdVidreo equals c.idVidreo
+                             join c in bd.Vidreo on cc.IdVidreo equals c.IdVidreo
                              where cc.IdUsuario == entidad.IdUsuario
                              select new
                              {

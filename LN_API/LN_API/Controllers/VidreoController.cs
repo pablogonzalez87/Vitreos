@@ -15,7 +15,7 @@ namespace LN_API.Controllers
         [Route("api/ConsultaVidreos")]
         public List<VidreoEnt> ConsultaVidreos()
         {
-            using (var bd = new Tienda_VidreosEntities())
+            using (var bd = new Tienda_VidreosEntities()) 
             {
                 var datos = (from x in bd.Vidreo
                              select x).ToList();
@@ -27,7 +27,7 @@ namespace LN_API.Controllers
                     {
                         res.Add(new VidreoEnt
                         {
-                            IdVidreo = item.idVidreo,
+                            IdVidreo = item.IdVidreo,
                             Nombre = item.Nombre,
                             Descripcion = item.Descripcion,
                             Precio = item.Precio,
@@ -51,13 +51,13 @@ namespace LN_API.Controllers
             using (var bd = new Tienda_VidreosEntities())
             {
                 var datos = (from x in bd.Vidreo
-                             where x.idVidreo == q
+                             where x.IdVidreo == q
                              select x).FirstOrDefault();
 
                 if (datos != null)
                 {
                     VidreoEnt res = new VidreoEnt();
-                    res.IdVidreo = datos.idVidreo;
+                    res.IdVidreo = datos.IdVidreo;
                     res.Nombre = datos.Nombre;
                     res.Descripcion = datos.Descripcion;
                     res.Precio = datos.Precio;

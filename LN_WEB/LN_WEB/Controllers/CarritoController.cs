@@ -53,7 +53,7 @@ namespace LN_WEB.Controllers
         public ActionResult ConfirmarPago()
         {
             CarritoEnt entidad = new CarritoEnt();
-            entidad.IdVidreo = (long.Parse(Session["IdUsuario"].ToString()));
+            entidad.IdUsuario = (long.Parse(Session["IdUsuario"].ToString()));
 
             model.PagarVidreoCarrito(entidad);
             return RedirectToAction("Inicio", "Home");

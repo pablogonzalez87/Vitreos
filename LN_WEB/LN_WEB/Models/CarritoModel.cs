@@ -71,6 +71,7 @@ namespace LN_WEB.Models
             }
         }
 
+      
         public int PagarVidreoCarrito(CarritoEnt entidad)
         {
             using (var client = new HttpClient())

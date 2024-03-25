@@ -131,7 +131,7 @@ namespace LN_API.Controllers
         {
             using (var bd = new Tienda_VidreosEntities())
             {
-                //Busco el carrito para pasarlo a la tabla de usuarios
+
                 var datos = (from cc in bd.VidreoCarrito
                              join c in bd.Vidreo on cc.IdVidreo equals c.IdVidreo
                              where cc.IdUsuario == entidad.IdUsuario
@@ -151,10 +151,11 @@ namespace LN_API.Controllers
                         cu.IdUsuario = item.IdUsuario;
                         cu.FechaPago = DateTime.Now;
                         cu.PrecioPago = item.Precio;
+
                         bd.VidreoUsuario.Add(cu);
                     }
 
-                    //Busco el carrito para limpiarlo
+       
                     var carritoActual = (from cc in bd.VidreoCarrito
                                          where cc.IdUsuario == entidad.IdUsuario
                                          select cc).ToList();

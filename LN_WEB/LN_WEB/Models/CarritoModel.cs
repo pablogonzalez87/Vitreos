@@ -71,7 +71,27 @@ namespace LN_WEB.Models
             }
         }
 
-      
+
+        public int RemoverVidreoCarrito(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/RemoverVidreoCarrito?q=" + q;
+             
+              
+                HttpResponseMessage resp = client.DeleteAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+                }
+
+                return 0;
+            }
+        }
+
+
+
         public int PagarVidreoCarrito(CarritoEnt entidad)
         {
             using (var client = new HttpClient())

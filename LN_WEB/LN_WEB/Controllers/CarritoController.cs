@@ -30,6 +30,26 @@ namespace LN_WEB.Controllers
         }
 
 
+
+        [HttpGet]
+        public ActionResult RemoverVidreoCarrito(long q)
+        {
+            var respuesta = model.RemoverVidreoCarrito(q);
+            ActualizarDatosSesion();
+
+            if (respuesta > 0)
+            {
+                return RedirectToAction("VerCarrito", "Carrito");
+            }
+            else
+            {
+                ViewBag.MsjPantalla = "No se pudo remover  de su carrito";
+                return View("VerCarrito");
+            }
+        }
+
+
+
         public void ActualizarDatosSesion()
         {
             var datos = model.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));

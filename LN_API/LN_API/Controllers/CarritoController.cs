@@ -122,7 +122,25 @@ namespace LN_API.Controllers
         }
 
 
-        //remover
+        [HttpDelete]
+        [Route("api/RemoverVidreoCarrito")]
+        public int RemoverVidreoCarrito(long q)
+        {
+            using (var bd = new Tienda_VidreosEntities())
+            {
+                var carrito = (from cc in bd.VidreoCarrito
+                               where cc.IdVidreoCarrito == q
+                               select cc).FirstOrDefault();
+
+                if (carrito != null)
+                {
+                    bd.VidreoCarrito.Remove(carrito);
+                    return bd.SaveChanges();
+                }
+
+                return 0;
+            }
+        }
 
 
         [HttpPost]

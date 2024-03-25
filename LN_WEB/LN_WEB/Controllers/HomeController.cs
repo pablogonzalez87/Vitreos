@@ -1,4 +1,6 @@
-﻿using Tienda_Vidreos.Entities;
+﻿
+
+using Tienda_Vidreos.Entities;
 using LN_WEB.Entities;
 using LN_WEB.Models;
 using Tienda_Vidreos.Models;
@@ -8,7 +10,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LN_WEB.Model;
-
 
 
 namespace Tienda_Vidreos.Controllers
@@ -31,17 +32,17 @@ namespace Tienda_Vidreos.Controllers
 
             if (resp != null)
             {
-                Session["IdUsuario"] = resp.IdUsuario.ToString();
+                Session["IdUsuario"] = resp.IdUsuario;
                 Session["CorreoUsuario"] = resp.CorreoElectronico;
                 Session["NombreUsuario"] = resp.Nombre;
                 Session["NombreRolUsuario"] = resp.NombreRol;
                 Session["RolUsuario"] = resp.IdRol;
                 Session["Token"] = resp.Token;
 
+
                 var datos = modelCarrito.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
-                Session["CantidadVidreo"] = datos.Count();
-                Session["subTotalVidreo"] = datos.Sum(x => x.Precio);
-                Session["TotalVidreo"] = datos.Sum(x => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
+                Session["CantidadVidreos"] = datos.Count();
+                Session["subTotalVidreos"] = datos.Sum(x => x.Precio);
 
                 return RedirectToAction("Inicio", "Home");
             }
@@ -52,15 +53,6 @@ namespace Tienda_Vidreos.Controllers
             }
         }
 
-        //public void ActualizarDatosSesion()
-        //{
-        //    var datos = modelCarrito.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
-        //    Session["CantidadVidreo"] = datos.Count();
-        //    Session["subTotalVidreo"] = datos.Sum(x => x.Precio);
-        //    Session["TotalVidreo"] = datos.Sum(x => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
-
-
-        //}
 
 
         [HttpGet]
@@ -76,7 +68,6 @@ namespace Tienda_Vidreos.Controllers
         {
             entidad.IdRol = 2;
             entidad.Estado = true;
-
             var resp = model.RegistrarUsuario(entidad);
 
             if (resp > 0)
@@ -129,13 +120,29 @@ namespace Tienda_Vidreos.Controllers
         [HttpGet]
         public ActionResult Inicio()
         {
-            
+
             return View();
         }
 
-       
+        [HttpGet]
+        public ActionResult Contacto()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult AgregarMenu()
+        {
+            return View();
+        }
 
 
+
+        [HttpGet]
+        public ActionResult Carrito()
+        {
+            return View();
+        }
 
         [HttpGet]
         public ActionResult Reportes()
@@ -144,12 +151,17 @@ namespace Tienda_Vidreos.Controllers
         }
 
         [HttpGet]
-        
         public ActionResult Vidrio()
         {
-            var datos = modelVidreos.ConsultaVidreos();
-            return View(datos);
+
+            var datos = modelCarrito.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            Session["CantidadVidreo"] = datos.Count();
+            Session["SubTotalVidreo"] = datos.Sum(x => x.Precio);
+            Session["TotalVidreo"] = datos.Sum(x => x.Precio) + (datos.Sum(x => x.Precio) * 0.13M);
+            var vidreos = modelVidreos.ConsultaVidreos();
+            return View(vidreos);
         }
+
 
 
         [HttpGet]

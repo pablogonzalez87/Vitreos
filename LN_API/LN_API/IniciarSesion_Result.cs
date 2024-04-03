@@ -7,20 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LN_API.Models
+namespace LN_API
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class VidreoUsuario
+    public partial class IniciarSesion_Result
     {
-        public long IdVidreoUsuario { get; set; }
         public long IdUsuario { get; set; }
-        public long IdVidreo { get; set; }
-        public System.DateTime FechaPago { get; set; }
-        public decimal PrecioPago { get; set; }
-    
-        public virtual Usuario Usuario { get; set; }
-        public virtual Vidreo Vidreo { get; set; }
+        public string CorreoElectronico { get; set; }
+        public string Identificacion { get; set; }
+        public string Nombre { get; set; }
+        public bool Estado { get; set; }
+        public int IdRol { get; set; }
     }
 }

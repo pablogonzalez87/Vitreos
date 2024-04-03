@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LN_API.Models
+namespace LN_API
 {
     using System;
     using System.Data.Entity;

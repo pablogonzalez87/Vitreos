@@ -40,9 +40,9 @@
         </EntityType>
         <EntityType Name="Vidreo">
           <Key>
-            <PropertyRef Name="IdVidreo" />
+            <PropertyRef Name="idVidreo" />
           </Key>
-          <Property Name="IdVidreo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idVidreo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="5000" Nullable="false" />
           <Property Name="Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -108,19 +108,7 @@
           <End Role="VidreoCarrito" Type="Self.VidreoCarrito" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vidreo">
-              <PropertyRef Name="IdVidreo" />
-            </Principal>
-            <Dependent Role="VidreoCarrito">
-              <PropertyRef Name="IdVidreo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VidreoCarrito_Vidreo1">
-          <End Role="Vidreo" Type="Self.Vidreo" Multiplicity="1" />
-          <End Role="VidreoCarrito" Type="Self.VidreoCarrito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vidreo">
-              <PropertyRef Name="IdVidreo" />
+              <PropertyRef Name="idVidreo" />
             </Principal>
             <Dependent Role="VidreoCarrito">
               <PropertyRef Name="IdVidreo" />
@@ -135,7 +123,7 @@
               <PropertyRef Name="IdUsuario" />
             </Principal>
             <Dependent Role="VidreoUsuario">
-              <PropertyRef Name="IdUsuario" />
+              <PropertyRef Name="IdVidreo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -144,10 +132,10 @@
           <End Role="VidreoUsuario" Type="Self.VidreoUsuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vidreo">
-              <PropertyRef Name="IdVidreo" />
+              <PropertyRef Name="idVidreo" />
             </Principal>
             <Dependent Role="VidreoUsuario">
-              <PropertyRef Name="IdVidreo" />
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -183,10 +171,6 @@
             <End Role="VidreoCarrito" EntitySet="VidreoCarrito" />
           </AssociationSet>
           <AssociationSet Name="FK_VidreoCarrito_Vidreo" Association="Self.FK_VidreoCarrito_Vidreo">
-            <End Role="Vidreo" EntitySet="Vidreo" />
-            <End Role="VidreoCarrito" EntitySet="VidreoCarrito" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VidreoCarrito_Vidreo1" Association="Self.FK_VidreoCarrito_Vidreo1">
             <End Role="Vidreo" EntitySet="Vidreo" />
             <End Role="VidreoCarrito" EntitySet="VidreoCarrito" />
           </AssociationSet>
@@ -245,15 +229,14 @@
         </EntityType>
         <EntityType Name="Vidreo">
           <Key>
-            <PropertyRef Name="IdVidreo" />
+            <PropertyRef Name="idVidreo" />
           </Key>
-          <Property Name="IdVidreo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idVidreo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Imagen" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="VidreoCarrito" Relationship="Self.FK_VidreoCarrito_Vidreo" FromRole="Vidreo" ToRole="VidreoCarrito" />
-          <NavigationProperty Name="VidreoCarrito1" Relationship="Self.FK_VidreoCarrito_Vidreo1" FromRole="Vidreo" ToRole="VidreoCarrito" />
           <NavigationProperty Name="VidreoUsuario" Relationship="Self.FK_VidreoUsuario_Vidreo" FromRole="Vidreo" ToRole="VidreoUsuario" />
         </EntityType>
         <EntityType Name="VidreoCarrito">
@@ -266,7 +249,6 @@
           <Property Name="FechaCarrito" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_VidreoCarrito_Usuario" FromRole="VidreoCarrito" ToRole="Usuario" />
           <NavigationProperty Name="Vidreo" Relationship="Self.FK_VidreoCarrito_Vidreo" FromRole="VidreoCarrito" ToRole="Vidreo" />
-          <NavigationProperty Name="Vidreo1" Relationship="Self.FK_VidreoCarrito_Vidreo1" FromRole="VidreoCarrito" ToRole="Vidreo" />
         </EntityType>
         <EntityType Name="VidreoUsuario">
           <Key>
@@ -324,7 +306,7 @@
               <PropertyRef Name="IdUsuario" />
             </Principal>
             <Dependent Role="VidreoUsuario">
-              <PropertyRef Name="IdUsuario" />
+              <PropertyRef Name="IdVidreo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -333,19 +315,7 @@
           <End Role="VidreoCarrito" Type="Self.VidreoCarrito" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vidreo">
-              <PropertyRef Name="IdVidreo" />
-            </Principal>
-            <Dependent Role="VidreoCarrito">
-              <PropertyRef Name="IdVidreo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VidreoCarrito_Vidreo1">
-          <End Role="Vidreo" Type="Self.Vidreo" Multiplicity="1" />
-          <End Role="VidreoCarrito" Type="Self.VidreoCarrito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vidreo">
-              <PropertyRef Name="IdVidreo" />
+              <PropertyRef Name="idVidreo" />
             </Principal>
             <Dependent Role="VidreoCarrito">
               <PropertyRef Name="IdVidreo" />
@@ -357,10 +327,10 @@
           <End Role="VidreoUsuario" Type="Self.VidreoUsuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vidreo">
-              <PropertyRef Name="IdVidreo" />
+              <PropertyRef Name="idVidreo" />
             </Principal>
             <Dependent Role="VidreoUsuario">
-              <PropertyRef Name="IdVidreo" />
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -388,10 +358,6 @@
             <End Role="VidreoUsuario" EntitySet="VidreoUsuario" />
           </AssociationSet>
           <AssociationSet Name="FK_VidreoCarrito_Vidreo" Association="Self.FK_VidreoCarrito_Vidreo">
-            <End Role="Vidreo" EntitySet="Vidreo" />
-            <End Role="VidreoCarrito" EntitySet="VidreoCarrito" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VidreoCarrito_Vidreo1" Association="Self.FK_VidreoCarrito_Vidreo1">
             <End Role="Vidreo" EntitySet="Vidreo" />
             <End Role="VidreoCarrito" EntitySet="VidreoCarrito" />
           </AssociationSet>
@@ -465,7 +431,7 @@
           <EntitySetMapping Name="Vidreo">
             <EntityTypeMapping TypeName="Tienda_VidreosModel.Vidreo">
               <MappingFragment StoreEntitySet="Vidreo">
-                <ScalarProperty Name="IdVidreo" ColumnName="IdVidreo" />
+                <ScalarProperty Name="idVidreo" ColumnName="idVidreo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />

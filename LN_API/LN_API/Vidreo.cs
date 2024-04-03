@@ -7,24 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LN_API.Models
+namespace LN_API
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Rol
+    public partial class Vidreo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rol()
+        public Vidreo()
         {
-            this.Usuario = new HashSet<Usuario>();
+            this.VidreoCarrito = new HashSet<VidreoCarrito>();
+            this.VidreoUsuario = new HashSet<VidreoUsuario>();
         }
     
-        public int IdRol { get; set; }
-        public string NombreRol { get; set; }
-        public bool Estado { get; set; }
+        public long idVidreo { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public decimal Precio { get; set; }
+        public string Imagen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual ICollection<VidreoCarrito> VidreoCarrito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VidreoUsuario> VidreoUsuario { get; set; }
     }
 }

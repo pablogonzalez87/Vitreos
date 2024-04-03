@@ -7,17 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LN_API.Models
+namespace LN_API
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class IniciarSesion_Result
+    public partial class Bitacora
     {
+        public long IdBitacora { get; set; }
+        public System.DateTime FechaHora { get; set; }
+        public string Mensaje { get; set; }
+        public string Origen { get; set; }
         public long IdUsuario { get; set; }
-        public string CorreoElectronico { get; set; }
-        public string Identificacion { get; set; }
-        public string Nombre { get; set; }
-        public bool Estado { get; set; }
-        public int IdRol { get; set; }
+        public string DireccionIP { get; set; }
+    
+        public virtual Usuario Usuario { get; set; }
     }
 }

@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LN_API.Models
+namespace LN_API
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class VidreoCarrito
+    public partial class VidreoUsuario
     {
-        public long IdVidreoCarrito { get; set; }
+        public long IdVidreoUsuario { get; set; }
         public long IdUsuario { get; set; }
         public long IdVidreo { get; set; }
-        public System.DateTime FechaCarrito { get; set; }
+        public System.DateTime FechaPago { get; set; }
+        public decimal PrecioPago { get; set; }
     
         public virtual Usuario Usuario { get; set; }
         public virtual Vidreo Vidreo { get; set; }
-        public virtual Vidreo Vidreo1 { get; set; }
     }
 }

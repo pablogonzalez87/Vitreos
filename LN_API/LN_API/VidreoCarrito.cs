@@ -7,20 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LN_API.Models
+namespace LN_API
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Bitacora
+    public partial class VidreoCarrito
     {
-        public long IdBitacora { get; set; }
-        public System.DateTime FechaHora { get; set; }
-        public string Mensaje { get; set; }
-        public string Origen { get; set; }
+        public long IdVidreoCarrito { get; set; }
         public long IdUsuario { get; set; }
-        public string DireccionIP { get; set; }
+        public long IdVidreo { get; set; }
+        public System.DateTime FechaCarrito { get; set; }
     
         public virtual Usuario Usuario { get; set; }
+        public virtual Vidreo Vidreo { get; set; }
     }
 }

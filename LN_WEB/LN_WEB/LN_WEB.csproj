@@ -358,7 +358,6 @@
     <Content Include="assets\webfonts\fa-solid-900.woff" />
     <Content Include="assets\webfonts\fa-solid-900.woff2" />
     <Content Include="images\2.jpg" />
-    <Content Include="images\activos.jpg" />
     <Content Include="images\Antirreflectante.jpg" />
     <Content Include="images\Barandas.jpg" />
     <Content Include="images\cortafuego.jpg" />
@@ -367,6 +366,34 @@
     <Content Include="images\insulado.jpg" />
     <Content Include="images\laminado.jpg" />
     <Content Include="images\Logo.png" />
+    <Content Include="images\Perfil\face1.jpg" />
+    <Content Include="images\Perfil\face10.jpg" />
+    <Content Include="images\Perfil\face11.jpg" />
+    <Content Include="images\Perfil\face12.jpg" />
+    <Content Include="images\Perfil\face13.jpg" />
+    <Content Include="images\Perfil\face14.jpg" />
+    <Content Include="images\Perfil\face15.jpg" />
+    <Content Include="images\Perfil\face16.jpg" />
+    <Content Include="images\Perfil\face17.jpg" />
+    <Content Include="images\Perfil\face18.jpg" />
+    <Content Include="images\Perfil\face19.jpg" />
+    <Content Include="images\Perfil\face2.jpg" />
+    <Content Include="images\Perfil\face20.jpg" />
+    <Content Include="images\Perfil\face21.jpg" />
+    <Content Include="images\Perfil\face22.jpg" />
+    <Content Include="images\Perfil\face23.jpg" />
+    <Content Include="images\Perfil\face24.jpg" />
+    <Content Include="images\Perfil\face25.jpg" />
+    <Content Include="images\Perfil\face26.jpg" />
+    <Content Include="images\Perfil\face27.jpg" />
+    <Content Include="images\Perfil\face28.jpg" />
+    <Content Include="images\Perfil\face3.jpg" />
+    <Content Include="images\Perfil\face4.jpg" />
+    <Content Include="images\Perfil\face5.jpg" />
+    <Content Include="images\Perfil\face6.jpg" />
+    <Content Include="images\Perfil\face7.jpg" />
+    <Content Include="images\Perfil\face8.jpg" />
+    <Content Include="images\Perfil\face9.jpg" />
     <Content Include="images\pre.jpg" />
     <Content Include="images\puertas.jpeg" />
     <Content Include="images\Puertas.png" />
@@ -448,6 +475,7 @@
     <Content Include="Views\Usuario\Perfil.cshtml" />
     <Content Include="Views\Home\Carrito.cshtml" />
     <Content Include="Views\Carrito\VerCarrito.cshtml" />
+    <Content Include="Views\Home\ReporteErrores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

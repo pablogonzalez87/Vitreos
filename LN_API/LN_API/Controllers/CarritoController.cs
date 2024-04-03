@@ -17,7 +17,7 @@ namespace LN_API.Controllers
             using (var bd = new Tienda_VidreosEntities())
             {            
                     var datos = (from x in bd.VidreoCarrito
-                                 join y in bd.Vidreo on x.IdVidreo equals y.IdVidreo
+                                 join y in bd.Vidreo on x.IdVidreo equals y.idVidreo
                                  where x.IdUsuario == q
                                  select new {
                                      x.IdVidreoCarrito,
@@ -62,7 +62,7 @@ namespace LN_API.Controllers
             using (var bd = new Tienda_VidreosEntities())
             {
                 var datos = (from x in bd.VidreoUsuario
-                             join y in bd.Vidreo on x.IdVidreo equals y.IdVidreo
+                             join y in bd.Vidreo on x.IdVidreo equals y.idVidreo
                              where x.IdUsuario == q
                              select new
                              {
@@ -151,7 +151,7 @@ namespace LN_API.Controllers
             {
 
                 var datos = (from cc in bd.VidreoCarrito
-                             join c in bd.Vidreo on cc.IdVidreo equals c.IdVidreo
+                             join c in bd.Vidreo on cc.IdVidreo equals c.idVidreo
                              where cc.IdUsuario == entidad.IdUsuario
                              select new
                              {

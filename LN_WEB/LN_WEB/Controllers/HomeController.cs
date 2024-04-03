@@ -131,6 +131,12 @@ namespace Tienda_Vidreos.Controllers
         }
 
         [HttpGet]
+        public ActionResult ReporteErrores()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult AgregarMenu()
         {
             return View();
@@ -171,7 +177,8 @@ namespace Tienda_Vidreos.Controllers
             return RedirectToAction("Login", "Home");
         }
 
-
+       
+       
 
         [HttpGet]
         public ActionResult Cambiar()

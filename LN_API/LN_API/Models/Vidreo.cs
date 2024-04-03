@@ -18,6 +18,7 @@ namespace LN_API.Models
         public Vidreo()
         {
             this.VidreoCarrito = new HashSet<VidreoCarrito>();
+            this.VidreoUsuario = new HashSet<VidreoUsuario>();
         }
     
         public long idVidreo { get; set; }
@@ -28,5 +29,7 @@ namespace LN_API.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VidreoCarrito> VidreoCarrito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VidreoUsuario> VidreoUsuario { get; set; }
     }
 }

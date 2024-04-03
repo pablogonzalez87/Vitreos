@@ -99,6 +99,15 @@ namespace Tienda_Vidreos.Controllers
             }
 
         }
+        public ActionResult FormularioUsuario()
+        {
+            return View();
+        }
+
+        public ActionResult FormularioCompra()
+        {
+            return View();
+        }
 
         [HttpGet]
         public ActionResult Inicio()

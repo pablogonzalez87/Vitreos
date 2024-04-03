@@ -231,6 +231,7 @@
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VidreoController.cs" />
     <Compile Include="Entities\CarritoEnt.cs" />
+    <Compile Include="Entities\FormularioEnt.cs" />
     <Compile Include="Entities\PagosEnt.cs" />
     <Compile Include="Entities\RolEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
@@ -239,6 +240,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CarritoModel.cs" />
+    <Compile Include="Models\FormularioModel.cs" />
     <Compile Include="Models\PagosModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Models\VidreoModel.cs" />
@@ -460,6 +462,8 @@
     <Content Include="WebStyles\lib\owlcarousel\LICENSE" />
     <Content Include="Views\Usuario\Perfil.cshtml" />
     <Content Include="Views\Home\Carrito.cshtml" />
+    <Content Include="Views\Home\FormularioUsuario.cshtml" />
+    <Content Include="Views\Home\FormularioCompra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

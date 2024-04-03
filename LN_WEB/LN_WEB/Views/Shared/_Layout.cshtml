@@ -61,7 +61,7 @@
                         <!-- menu start -->
                         <nav class="main-menu">
                             <ul>
-                                @if (Session["RolUsuario"].ToString() == "1")
+                                @if (Session["RolUsuario"].ToString() == "2")
                                 {
                                     <li><a href="@Url.Action("ConsultaUsuarios","Usuario")" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Usuarios</a></li>
                                     <li><a href="@Url.Action("Reportes","Home")" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Reportes</a></li>
@@ -71,6 +71,8 @@
                                 <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i class="fa fa-dollar-sign me-2"></i>Pagos</a></li>
                                 <li><a href="@Url.Action("Carrito","Home")" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i> Compras</a></li>
                                 <li><a href="@Url.Action("Contacto","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Contacto</a></li>
+                                <li><a href="@Url.Action("FormularioUsuario","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Formulario Usuario</a></li>
+                                <li><a href="@Url.Action("FormularioCompra","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Formulario Compra</a></li>
                                 <li>
                                     <div class="nav-item dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI.WebControls;
 
 namespace LN_API.Controllers
 {
@@ -15,7 +16,7 @@ namespace LN_API.Controllers
         [Route("api/ConsultaVidreos")]
         public List<VidreoEnt> ConsultaVidreos()
         {
-            using (var bd = new Tienda_VidreosEntities()) 
+            using (var bd = new Tienda_VidreosEntities())
             {
                 var datos = (from x in bd.Vidreo
                              select x).ToList();
@@ -32,7 +33,7 @@ namespace LN_API.Controllers
                             Descripcion = item.Descripcion,
                             Precio = item.Precio,
                             Imagen = item.Imagen,
-                       
+
                         });
                     }
                     return res;
@@ -68,6 +69,43 @@ namespace LN_API.Controllers
                 return null;
             }
         }
+    
+        [HttpPost]
+        [Route("api/RegistrarVidreo")]
+        public long RegistrarVidreo(VidreoEnt entidad)
+        {
+            using (var bd = new Tienda_VidreosEntities())
+            {
+                Vidreo tabla = new Vidreo();
+                tabla.Nombre = entidad.Nombre;
+                tabla.Descripcion = entidad.Descripcion;
+                tabla.Precio = entidad.Precio;
+                tabla.Imagen = entidad.Imagen;
 
+                bd.Vidreo.Add(tabla);
+                bd.SaveChanges();
+
+                return tabla.IdVidreo;
+            }
+        }
+        [HttpPut]
+        [Route("api/ActualizarRuta")]
+        public void ActualizarRuta(VidreoEnt entidad)
+        {
+            using (var bd = new Tienda_VidreosEntities())
+            {
+                var datos = (from x in bd.Vidreo
+                             where x.IdVidreo == entidad.IdVidreo
+                             select x).FirstOrDefault();
+
+                if (datos != null)
+                {
+                    datos.Imagen = entidad.Imagen;
+                    bd.SaveChanges();
+                }
+            }
+        }
     }
+
 }
+    

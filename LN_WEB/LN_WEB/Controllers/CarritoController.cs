@@ -64,6 +64,7 @@ namespace LN_WEB.Controllers
         {
 
             var datos = model.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            ActualizarDatosSesion();
 
             return View(datos);
         }
@@ -74,7 +75,7 @@ namespace LN_WEB.Controllers
         {
             CarritoEnt entidad = new CarritoEnt();
             entidad.IdUsuario = (long.Parse(Session["IdUsuario"].ToString()));
-
+            ActualizarDatosSesion();
             model.PagarVidreoCarrito(entidad);
             return RedirectToAction("Inicio", "Home");
         }

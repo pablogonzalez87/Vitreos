@@ -83,7 +83,8 @@ namespace Tienda_Vidreos.Models
                 return 0;
             }
         }
-        
+     
+
         public List<UsuarioEnt> ConsultaUsuarios()
         {
             using (var client = new HttpClient())

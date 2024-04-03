@@ -439,7 +439,6 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Recuperar.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
-    <Content Include="Views\Home\Reportes.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout - Login.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -448,10 +447,11 @@
     <Content Include="Views\Usuario\Perfil.cshtml" />
     <Content Include="Views\Home\Carrito.cshtml" />
     <Content Include="Views\Carrito\VerCarrito.cshtml" />
+    <Content Include="Views\Vidreo\ConsultarMantVidreos.cshtml" />
+    <Content Include="Views\Vidreo\Agregar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Vidreo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

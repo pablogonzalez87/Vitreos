@@ -8,6 +8,8 @@ using System.Web;
 using Tienda_Vidreos.Entities;
 using LN_WEB.Entities;
 using System.Net.Http.Json;
+using OpenAI_API.Models;
+using System.Web.Mvc;
 
 namespace LN_WEB.Model
 {
@@ -31,7 +33,7 @@ namespace LN_WEB.Model
         }
         public VidreoEnt ConsultaVidreo(long q)
         {
-         
+
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreo?q=" + q;
@@ -48,5 +50,35 @@ namespace LN_WEB.Model
                 return null;
             }
         }
+        public long RegistrarVidreo(VidreoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/RegistrarVidreo";
+                JsonContent body = JsonContent.Create(entidad); //Serializar
+
+                HttpResponseMessage resp = client.PostAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<long>().Result;
+                }
+
+                return 0;
+            }
+        }
+            public void ActualizarRuta(VidreoEnt entidad)
+            {
+                using (var client = new HttpClient())
+                {
+                    string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ActualizarRuta";
+                    JsonContent body = JsonContent.Create(entidad); //Serializar
+
+                    HttpResponseMessage resp = client.PutAsync(url, body).Result;
+                }
+            }
+
+
+        }
     }
-}
+    

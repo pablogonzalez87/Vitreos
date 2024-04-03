@@ -1,0 +1,59 @@
+﻿@model LN_WEB.Entities.VidreoEnt
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Editar", "Vidreo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-6">
+                <h2 class="text-center mb-4">Editar Información</h2>
+                @if (ViewBag.MsjPantalla != null)
+                {
+                    <div class="alert alert-warning" role="alert">
+                        @ViewBag.MsjPantalla
+                    </div>
+                }
+
+                <div class="card">
+                    <div class="card-body">
+
+                        @Html.HiddenFor(m => m.IdVidreo)
+
+                        <div class="form-floating mb-3">
+                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", @placeholder = "Nombre" })
+                            <label for="Nombre">Nombre</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", @rows = "5", @placeholder = "Descripción" })
+                            <label for="Descripcion">Descripción</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                @Html.TextBoxFor(m => m.Precio, new { @class = "form-control", @type = "number", @placeholder = "Precio" })
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="file" id="ImagenVidreo" name="ImagenVidreo" class="form-control" accept="image/png, image/jpeg, image/jpg">
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            @Html.TextAreaFor(m => m.Imagen, new { @class = "form-control", @placeholder = "Imagen", @rows = "2", @readonly = "readonly" })
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary" type="submit">Procesar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

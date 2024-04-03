@@ -31,6 +31,22 @@ namespace LN_WEB.Model
                 return new List<VidreoEnt>();
             }
         }
+        public VidreoEnt ConsultarVidreo(long q )
+        {
+            using (var client = new HttpClient())
+            {
+
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarVidreo?q=" + q;
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<VidreoEnt>().Result;
+                }
+
+                return null;
+            }
+        }
         public VidreoEnt ConsultaVidreo(long q)
         {
 
@@ -50,6 +66,34 @@ namespace LN_WEB.Model
                 return null;
             }
         }
+
+
+
+        public int ActualizarVidreo(VidreoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ActualizarVidreo";
+                JsonContent body = JsonContent.Create(entidad); //Serializar
+
+                HttpResponseMessage resp = client.PutAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+                }
+
+                return 0;
+            }
+        }
+
+
+
+
+
+
+
+
         public long RegistrarVidreo(VidreoEnt entidad)
         {
             using (var client = new HttpClient())

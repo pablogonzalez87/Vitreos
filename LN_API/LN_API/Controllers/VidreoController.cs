@@ -45,6 +45,35 @@ namespace LN_API.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("api/ConsultarVidreo")]
+        public VidreoEnt ConsultarVidreo(long q)
+        {
+            using (var bd = new Tienda_VidreosEntities())
+            {
+                var datos = (from x in bd.Vidreo
+                             where x.IdVidreo == q
+                             select x).FirstOrDefault();
+
+                if (datos != null)
+                {
+
+                    VidreoEnt resp = new VidreoEnt();
+                    resp.IdVidreo = datos.IdVidreo;
+                    resp.Nombre = datos.Nombre;
+                    resp.Descripcion = datos.Descripcion;
+                    resp.Precio = datos.Precio;
+                    resp.Imagen = datos.Imagen;
+  
+                    return resp;
+                }
+                return null;
+            }
+        }
+   
+
+
         [HttpGet]
         [Route("api/ConsultaVidreo")]
         public VidreoEnt ConsultaVidreo(long q)
@@ -70,6 +99,7 @@ namespace LN_API.Controllers
             }
         }
     
+   
         [HttpPost]
         [Route("api/RegistrarVidreo")]
         public long RegistrarVidreo(VidreoEnt entidad)
@@ -103,6 +133,29 @@ namespace LN_API.Controllers
                     datos.Imagen = entidad.Imagen;
                     bd.SaveChanges();
                 }
+            }
+        }
+
+
+
+        [HttpPut]
+        [Route("api/ActualizarVidreo")]
+        public int ActualizarVidreo(VidreoEnt entidad)
+        {
+            using (var bd = new Tienda_VidreosEntities())
+            {
+                var datos = (from x in bd.Vidreo
+                             where x.IdVidreo == entidad.IdVidreo
+                             select x).FirstOrDefault();
+
+                if (datos != null)
+                {               
+                    datos.Nombre = entidad.Nombre;
+                    datos.Descripcion = entidad.Descripcion;
+                    datos.Precio = entidad.Precio;
+                    bd.SaveChanges();
+                }
+                return 0;
             }
         }
     }

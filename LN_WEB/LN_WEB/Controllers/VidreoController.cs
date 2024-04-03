@@ -28,21 +28,50 @@ namespace LN_WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Agregar(VidreoEnt entidad, HttpPostedFileBase Imagen )
+        public ActionResult Agregar(VidreoEnt entidad, HttpPostedFileBase ImagenVidreo)
         {
             entidad.Imagen = string.Empty;
             var resp = modelVidreos.RegistrarVidreo(entidad);
 
-            string extension = Path.GetExtension(Path.GetFileName(Imagen.FileName));
+            string extension = Path.GetExtension(Path.GetFileName(ImagenVidreo.FileName));
             string ruta = @"C:\Vitreos\Vitreos\LN_WEB\LN_WEB\images\" + resp + extension;
-
+            ImagenVidreo.SaveAs(ruta);
             entidad.Imagen = "/images/" + resp + extension;
             entidad.IdVidreo = resp;
             modelVidreos.ActualizarRuta(entidad);
 
-            Imagen.SaveAs(ruta);
+
+
+            return RedirectToAction("ConsultarMantVidreos", "Vidreo");
+        }
+
+        [HttpGet]
+        public ActionResult Editar(long q)
+        {
+            var datos = modelVidreos.ConsultarVidreo(q);
+            return View(datos);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(VidreoEnt entidad, HttpPostedFileBase ImagenVidreo)
+        {
+
+
+            entidad.Imagen = string.Empty;
+            modelVidreos.ActualizarVidreo(entidad);
+
+            string extension = Path.GetExtension(Path.GetFileName(ImagenVidreo.FileName));
+            string ruta = @"C:\Vitreos\Vitreos\LN_WEB\LN_WEB\images\" + entidad.IdVidreo + extension;
+            ImagenVidreo.SaveAs(ruta);
+
+
+            entidad.Imagen ="/images/" + entidad.IdVidreo + extension;
+            modelVidreos.ActualizarRuta(entidad);
+
 
             return RedirectToAction("ConsultarMantVidreos", "Vidreo");
         }
     }
 }
+
+

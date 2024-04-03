@@ -36,9 +36,10 @@
                         <tr>
                             <th scope="col">Nombre</th>
                             <th scope="col">Precio</th>
-                            <th scope="col">Descripción</th>
+                         
                             <th scope="col">Imagen</th>
                             <th scope="col">Acciones</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -47,15 +48,13 @@
                             <tr>
                                 <td>@item.Nombre</td>
                                 <td>@item.Precio</td>
-                                <td>@(item.Descripcion.Length > 100 ? item.Descripcion.Substring(0, 100) + "..." : item.Descripcion)</td>
+                            
                                 <td style="text-align:center"><img src="@item.Imagen" width="200" height="110" /></td>
                                 <td class="text-center">
                                     <a href="@Url.Action("Editar", "Vidreo", new { q = item.IdVidreo })" class="btn btn-sm btn-primary mr-1" title="Editar">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <a href="@Url.Action("Eliminar", "Vidreo", new { q = item.IdVidreo })" class="btn btn-sm btn-danger" title="Eliminar">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
+                                                            
                                 </td>
                             </tr>
                         }

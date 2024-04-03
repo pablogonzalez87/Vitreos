@@ -449,6 +449,7 @@
     <Content Include="Views\Carrito\VerCarrito.cshtml" />
     <Content Include="Views\Vidreo\ConsultarMantVidreos.cshtml" />
     <Content Include="Views\Vidreo\Agregar.cshtml" />
+    <Content Include="Views\Vidreo\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

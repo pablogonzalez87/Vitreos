@@ -231,6 +231,7 @@
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VidreoController.cs" />
     <Compile Include="Entities\CarritoEnt.cs" />
+    <Compile Include="Entities\DatosTarjetaEnt.cs" />
     <Compile Include="Entities\FormularioEnt.cs" />
     <Compile Include="Entities\PagosEnt.cs" />
     <Compile Include="Entities\RolEnt.cs" />
@@ -464,6 +465,7 @@
     <Content Include="Views\Home\Carrito.cshtml" />
     <Content Include="Views\Home\FormularioUsuario.cshtml" />
     <Content Include="Views\Home\FormularioCompra.cshtml" />
+    <Content Include="Views\Home\PasarelaPagos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

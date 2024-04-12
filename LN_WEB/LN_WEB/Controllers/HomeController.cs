@@ -108,6 +108,11 @@ namespace Tienda_Vidreos.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult PasarelaPagos()
+        {
+            return View();
+        }
 
         [HttpGet]
         public ActionResult Inicio()

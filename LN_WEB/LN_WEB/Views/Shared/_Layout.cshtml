@@ -73,24 +73,25 @@
                                 <li><a href="@Url.Action("Contacto","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Contacto</a></li>
                                 <li><a href="@Url.Action("FormularioUsuario","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Formulario Usuario</a></li>
                                 <li><a href="@Url.Action("FormularioCompra","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Formulario Compra</a></li>
-                                <li>
-                                    <div class="nav-item dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                                            <span class="d-none d-lg-inline-flex"> @Session["NombreUsuario"].ToString() </span> <br>
-                                            <span> @Session["NombreRolUsuario"].ToString() </span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="background-color: #333333; ">
-                                            <a href="@Url.Action("Perfil","Usuario")" class="dropdown-item">Ajustes de Perfil</a>
-                                            <a href="@Url.Action("Cambiar","Home")" class="dropdown-item">Cambiar Contraseña</a>
-                                            <a href="@Url.Action("CerrarSesion","Home")" class="dropdown-item">Cerrar Sesión</a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-                        <hr style="border-top: 3px solid #ff6a00;">
+                                <li><a href="@Url.Action("PasarelaPagos","Home")" class="nav-item nav-link"><i class="fa-badge-dollar"></i>Pasarela Pagos</a></li>
+                    <li>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                <span class="d-none d-lg-inline-flex"> @Session["NombreUsuario"].ToString() </span> <br>
+                                <span> @Session["NombreRolUsuario"].ToString() </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="background-color: #333333; ">
+                                <a href="@Url.Action("Perfil","Usuario")" class="dropdown-item">Ajustes de Perfil</a>
+                                <a href="@Url.Action("Cambiar","Home")" class="dropdown-item">Cambiar Contraseña</a>
+                                <a href="@Url.Action("CerrarSesion","Home")" class="dropdown-item">Cerrar Sesión</a>
+                            </div>
+                        </div>
+                    </li>
+                    </ul>
+                    </nav>
+                    <hr style="border-top: 3px solid #ff6a00;">
 
-                    </div>
+                </div>
                 </div>
             </div>
         </div>

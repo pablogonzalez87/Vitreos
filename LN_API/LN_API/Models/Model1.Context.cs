@@ -28,9 +28,14 @@ namespace LN_API.Models
         }
     
         public virtual DbSet<Bitacora> Bitacora { get; set; }
+        public virtual DbSet<Errores> Errores { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<TDetalle> TDetalle { get; set; }
+        public virtual DbSet<TMaestro> TMaestro { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
-        public virtual DbSet<Vidrio> Vidrio { get; set; }
+        public virtual DbSet<Vidreo> Vidreo { get; set; }
+        public virtual DbSet<VidreoCarrito> VidreoCarrito { get; set; }
+        public virtual DbSet<VidreoUsuario> VidreoUsuario { get; set; }
     
         public virtual ObjectResult<IniciarSesion_Result> IniciarSesion(string correoElectronico, string contrasenna)
         {

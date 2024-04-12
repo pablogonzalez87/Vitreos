@@ -1,0 +1,67 @@
+﻿@model IEnumerable<LN_WEB.Entities.FacturaEnt>
+@{
+    ViewBag.Title = "ConsultaFacturas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Información de las Facturas</h4>
+            <br>
+
+            @if (ViewBag.MensajeUsuario != null)
+            {
+                <div class="alert alert-danger" role="alert" style="text-align:center">
+                    @ViewBag.MensajeUsuario
+                </div>
+            }
+
+            @if (Model.Count() > 0)
+            {
+
+                <table id="tableShow" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Número de Factura</th>
+                            <th>Fecha de Compra</th>
+                            <th>Total de la compra</th>
+                            <th>Ver detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="text-align:center"># @item.ConMaestro</td>
+                                <td style="text-align:center">@item.FechaCompra</td>
+                                <td style="text-align:center">@item.TotalCompra.ToString("N2")</td>
+
+                                <td style="text-align:center">
+                                    <a href="@Url.Action("ConsultaDetalleFactura", "Carrito", new { q = item.ConMaestro })"><i class="fa fa-search fa-lg"></i></a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="col-12 alert alert-info" role="alert" style="text-align: center; margin-top: 5%;">
+                    No hay productos agregados en este momento
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>$(document).ready(function () {
+        $('#tableShow').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            }
+        });
+    });</script>

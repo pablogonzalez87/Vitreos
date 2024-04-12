@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LN_WEB.Entities.FacturaEnt>
+
+@{
+    ViewBag.Title = "ConsultaFacturas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Información de las Factura # @Model.FirstOrDefault().ConMaestro</h4>
+            <br>
+
+            @if (ViewBag.MensajeUsuario != null)
+            {
+                <div class="alert alert-danger" role="alert" style="text-align:center">
+                    @ViewBag.MensajeUsuario
+                </div>
+            }
+
+            @if (Model.Count() > 0)
+            {
+
+                <table id="tableShow" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio X Und</th>
+                            <th>Impuesto X Und</th>
+                            <th>SubTotal</th>
+                            <th>Impuesto</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.Nombre</td>
+                                <td style="text-align:center">@item.CantidadPagado</td>
+                                <td style="text-align:center">@item.PrecioPagado.ToString("N2")</td>
+                                <td style="text-align:center">@item.ImpuestoPagado</td>
+                                <td style="text-align:center">@item.SubTotal.ToString("N2")</td>
+                                <td style="text-align:center">@item.Impuesto.ToString("N2")</td>
+                                <td style="text-align:center">@item.Total.ToString("N2")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="col-12 alert alert-info" role="alert" style="text-align: center; margin-top: 5%;">
+                    No hay productos agregados en este momento
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>$(document).ready(function () {
+        $('#tableShow').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            }
+        });
+    });</script>

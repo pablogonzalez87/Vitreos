@@ -18,6 +18,9 @@ namespace LN_API.Models
         public Usuario()
         {
             this.Bitacora = new HashSet<Bitacora>();
+            this.Errores = new HashSet<Errores>();
+            this.VidreoCarrito = new HashSet<VidreoCarrito>();
+            this.VidreoUsuario = new HashSet<VidreoUsuario>();
         }
     
         public long IdUsuario { get; set; }
@@ -32,6 +35,12 @@ namespace LN_API.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bitacora> Bitacora { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Errores> Errores { get; set; }
         public virtual Rol Rol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VidreoCarrito> VidreoCarrito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VidreoUsuario> VidreoUsuario { get; set; }
     }
 }

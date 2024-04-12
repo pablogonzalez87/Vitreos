@@ -29,7 +29,14 @@ namespace LN_WEB.Controllers
             return RedirectToAction("Vidrio", "Home");
         }
 
+        [HttpGet]
+        public ActionResult Tarjeta()
+        {
 
+            var datos = model.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
+            ActualizarDatosSesion();
+            return View(datos);
+        }
 
         [HttpGet]
         public ActionResult RemoverVidreoCarrito(long q)
@@ -66,8 +73,16 @@ namespace LN_WEB.Controllers
             var datos = model.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
             ActualizarDatosSesion();
 
+            
+            CarritoEnt entidad = new CarritoEnt();
+            entidad.IdUsuario = (long.Parse(Session["IdUsuario"].ToString()));
+            ActualizarDatosSesion();
+            model.PagarVidreoCarrito(entidad);
             return View(datos);
+            return RedirectToAction("Inicio", "Home");
+
         }
+
 
 
         [HttpPost]

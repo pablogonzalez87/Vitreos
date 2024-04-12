@@ -358,25 +358,8 @@
     <Content Include="assets\webfonts\fa-solid-900.woff" />
     <Content Include="assets\webfonts\fa-solid-900.woff2" />
     <Content Include="images\2.jpg" />
-    <Content Include="images\activos.jpg" />
-    <Content Include="images\Antirreflectante.jpg" />
-    <Content Include="images\Barandas.jpg" />
-    <Content Include="images\cortafuego.jpg" />
-    <Content Include="images\curvo.jpg" />
-    <Content Include="images\espejado.jpg" />
-    <Content Include="images\insulado.jpg" />
-    <Content Include="images\laminado.jpg" />
     <Content Include="images\Logo.png" />
-    <Content Include="images\pre.jpg" />
-    <Content Include="images\puertas.jpeg" />
-    <Content Include="images\Puertas.png" />
-    <Content Include="images\redes.jpg" />
-    <Content Include="images\reflejantes.jpg" />
-    <Content Include="images\templado.png" />
-    <Content Include="images\Termocrómicos.jpg" />
-    <Content Include="images\ven.jpg" />
-    <Content Include="images\Vi1.jpg" />
-    <Content Include="images\vimpreso.jpg" />
+    <Content Include="images\R.png" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -441,7 +424,6 @@
     <Content Include="Views\Home\Registro.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout - Login.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Vidrio.cshtml" />
     <Content Include="WebStyles\lib\owlcarousel\LICENSE" />
     <Content Include="Views\Usuario\Perfil.cshtml" />
@@ -450,6 +432,8 @@
     <Content Include="Views\Vidreo\ConsultarMantVidreos.cshtml" />
     <Content Include="Views\Vidreo\Agregar.cshtml" />
     <Content Include="Views\Vidreo\Editar.cshtml" />
+    <Content Include="Views\Carrito\Tarjeta.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

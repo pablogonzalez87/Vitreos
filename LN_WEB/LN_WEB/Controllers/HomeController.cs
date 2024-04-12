@@ -62,6 +62,8 @@ namespace Tienda_Vidreos.Controllers
         }
 
 
+  
+
 
         [HttpPost]
         public ActionResult RegistrarUsuario(UsuarioEnt entidad)

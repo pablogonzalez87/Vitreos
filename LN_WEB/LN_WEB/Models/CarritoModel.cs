@@ -13,7 +13,7 @@ namespace LN_WEB.Models
 {
     public class CarritoModel
     {
-        public string rutaServidor = ConfigurationManager.AppSettings["https://localhost:44366"];
+      
         public List<CarritoEnt> ConsultaVidreoCarrito(long q)
         {
             using (var client = new HttpClient())
@@ -89,29 +89,6 @@ namespace LN_WEB.Models
                 return 0;
             }
         }
-
-
-
-        public List<FacturaEnt> ConsultaFacturas(long q)
-        {
-            using (var client = new HttpClient())
-            {
-                var urlApi = rutaServidor + "https://localhost:44366/ConsultaFacturas?q=" + q;
-                var res = client.GetAsync(urlApi).Result;
-                return res.Content.ReadFromJsonAsync<List<FacturaEnt>>().Result;
-            }
-        }
-
-        public List<FacturaEnt> ConsultaDetalleFactura(long q)
-        {
-            using (var client = new HttpClient())
-            {
-                var urlApi = rutaServidor + "https://localhost:44366/ConsultaDetalleFactura?q=" + q;
-                var res = client.GetAsync(urlApi).Result;
-                return res.Content.ReadFromJsonAsync<List<FacturaEnt>>().Result;
-            }
-        }
-
 
 
 

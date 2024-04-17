@@ -53,15 +53,15 @@
                             </table>
                         </div>
                         <div class="text-center">
-                            @using (Html.BeginForm("ConfirmarPago", "Carrito", FormMethod.Post))
-                            {
-                                <button type="submit" class="btn btn-primary btn-lg">Procesar Pago</button>
-                                <p class="mt-3">El monto total es de: $ @Math.Round(double.Parse(Session["TotalVidreo"].ToString()), 2) IVI</p>
-                            }
+                            <a href="@Url.Action("Tarjeta", "Carrito")" class="btn btn-primary btn-lg">Pagar</a>
+                            <p class="mt-3">El monto total es de: $ @Math.Round(double.Parse(Session["TotalVidreo"].ToString()), 2) IVI</p>
                         </div>
+
+
                     }
                 </div>
             </div>
         </div>
     </div>
 </div>
+

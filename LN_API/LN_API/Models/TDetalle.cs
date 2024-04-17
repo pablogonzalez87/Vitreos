@@ -20,5 +20,7 @@ namespace LN_API.Models
         public decimal PrecioPagado { get; set; }
         public int CantidadPagado { get; set; }
         public decimal ImpuestoPagado { get; set; }
+    
+        public virtual TMaestro TMaestro { get; set; }
     }
 }

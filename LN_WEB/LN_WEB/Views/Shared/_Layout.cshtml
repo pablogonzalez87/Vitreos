@@ -67,12 +67,12 @@
                                     @if (Session["RolUsuario"].ToString() == "1")
 
                                     {
-                                        <div class="menu-item">
-                                        <li><a href="@Url.Action("ConsultaUsuarios","Usuario")" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Usuarios</a></li>
-                            </div>
-                            <div class="menu-item">
-                                <li><a href="@Url.Action("ConsultarMantVidreos","Vidreo")" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Mantenimiento</a></li>
-                            </div>
+                                    <div class="menu-item">
+                                    <li><a href="@Url.Action("ConsultaUsuarios","Usuario")" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Usuarios</a></li>
+                        </div>
+                        <div class="menu-item">
+                            <li><a href="@Url.Action("ConsultarMantVidreos","Vidreo")" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Mantenimiento</a></li>
+                        </div>
                         }
                                     <div class="menu-item">
                                         <li><a href="@Url.Action("Vidrio", "Home")" class="nav-item nav-link"><i class="fas fa-glass-whiskey" style="margin-right: 5px;"></i>Vidrio</a></li>
@@ -83,27 +83,24 @@
                                     <div class="menu-item">
                                         <li><a href="@Url.Action("VerCarrito","Carrito")" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i> Compras</a></li>
                                     </div>
+                                   
                                     <div class="menu-item">
                                         <li><a href="@Url.Action("Contacto","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Contacto</a></li>
                                     </div>
+
                                     <div class="menu-item">
-                                        <li><a href="@Url.Action("FormularioUsuario","Home")" class="nav-item nav-link"><i class="fa fa-list-alt me-2"></i>Formulario Usuario</a></li>
-                                    </div>
-                                    <div class="menu-item">
-                                        <li><a href="@Url.Action("ConsultaFacturas", "Carrito")" class="nav-item nav-link"><i class="fa fa-list-ul me-2"></i>Facturas</a></li>
-                                        <div class="menu-item">
-                                            <li>
-                                                <div class="nav-item dropdown">
-                                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                                                        <span class="d-none d-lg-inline-flex"> @Session["NombreUsuario"].ToString() </span> <br>
-                                                        <span> @Session["NombreRolUsuario"].ToString() </span>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="background-color: #333333; ">
-                                                        <a href="@Url.Action("Perfil","Usuario")" class="dropdown-item">Ajustes de Perfil</a>
-                                                        <a href="@Url.Action("Cambiar","Home")" class="dropdown-item">Cambiar Contraseña</a>
-                                                        <a href="@Url.Action("CerrarSesion","Home")" class="dropdown-item">Cerrar Sesión</a>
-                                                    </div>
-                                        </div>
+                                        <li>
+                                            <div class="nav-item dropdown">
+                                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                                    <span class="d-none d-lg-inline-flex"> @Session["NombreUsuario"].ToString() </span> <br>
+                                                    <span> @Session["NombreRolUsuario"].ToString() </span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="background-color: #333333; ">
+                                                    <a href="@Url.Action("Perfil","Usuario")" class="dropdown-item">Ajustes de Perfil</a>
+                                                    <a href="@Url.Action("Cambiar","Home")" class="dropdown-item">Cambiar Contraseña</a>
+                                                    <a href="@Url.Action("CerrarSesion","Home")" class="dropdown-item">Cerrar Sesión</a>
+                                                </div>
+                                            </div>
                                         </li>
                                     </div>
                                     </ul>
@@ -150,7 +147,7 @@
                                         <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i class="fa fa-dollar-sign me-2"></i>Inicio</a></li>
                                         <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i>Mis Compras</a></li>
                                         <li><a href="@Url.Action("Contacto","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Contacto</a></li>
-                                        
+         
 
                                     </ul>
                                 </div>
@@ -159,7 +156,7 @@
                                 <div class="footer-box subscribe">
                                     <h2 class="widget-title">¡Saludos!</h2>
                                     <p>Hola. Bienvenido a nuestro servicio en linea, @Session["NombreUsuario"].ToString().</p>
-                                    <a href="@Url.Action("Perfil","Usuario")"><i class="fa fa-user me-2"></i>Ajustes de Perfil</a>
+                                    <a href="@Url.Action("Inicio","Home")"><i class="fa fa-user me-2"></i>Ajustes de Perfil</a>
                                 </div>
                             </div>
                         </div>

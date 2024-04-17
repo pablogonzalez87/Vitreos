@@ -71,5 +71,6 @@ namespace Tienda_Vidreos.Controllers
                 return View("ConsultaUsuarios");
             }
         }
+
     }
 }

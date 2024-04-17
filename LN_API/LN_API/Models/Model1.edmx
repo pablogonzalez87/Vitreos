@@ -123,6 +123,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TDetalle_TMaestro">
+          <End Role="TMaestro" Type="Self.TMaestro" Multiplicity="1" />
+          <End Role="TDetalle" Type="Self.TDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMaestro">
+              <PropertyRef Name="ConMaestro" />
+            </Principal>
+            <Dependent Role="TDetalle">
+              <PropertyRef Name="ConMaestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usuario_Rol">
           <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -225,6 +237,10 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Errores" EntitySet="Errores" />
           </AssociationSet>
+          <AssociationSet Name="FK_TDetalle_TMaestro" Association="Self.FK_TDetalle_TMaestro">
+            <End Role="TMaestro" EntitySet="TMaestro" />
+            <End Role="TDetalle" EntitySet="TDetalle" />
+          </AssociationSet>
           <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -299,6 +315,7 @@
           <Property Name="PrecioPagado" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CantidadPagado" Type="Int32" Nullable="false" />
           <Property Name="ImpuestoPagado" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="TMaestro" Relationship="Self.FK_TDetalle_TMaestro" FromRole="TDetalle" ToRole="TMaestro" />
         </EntityType>
         <EntityType Name="TMaestro">
           <Key>
@@ -308,6 +325,7 @@
           <Property Name="IdUsuario" Type="Int64" Nullable="false" />
           <Property Name="FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TotalCompra" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="TDetalle" Relationship="Self.FK_TDetalle_TMaestro" FromRole="TMaestro" ToRole="TDetalle" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -401,6 +419,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TDetalle_TMaestro">
+          <End Role="TMaestro" Type="Self.TMaestro" Multiplicity="1" />
+          <End Role="TDetalle" Type="Self.TDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMaestro">
+              <PropertyRef Name="ConMaestro" />
+            </Principal>
+            <Dependent Role="TDetalle">
+              <PropertyRef Name="ConMaestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_VidreoCarrito_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="VidreoCarrito" Type="Self.VidreoCarrito" Multiplicity="*" />
@@ -482,6 +512,10 @@
           <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalle_TMaestro" Association="Self.FK_TDetalle_TMaestro">
+            <End Role="TMaestro" EntitySet="TMaestro" />
+            <End Role="TDetalle" EntitySet="TDetalle" />
           </AssociationSet>
           <AssociationSet Name="FK_VidreoCarrito_Usuario" Association="Self.FK_VidreoCarrito_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />

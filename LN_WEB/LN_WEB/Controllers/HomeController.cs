@@ -62,6 +62,8 @@ namespace Tienda_Vidreos.Controllers
         }
 
 
+  
+
 
         [HttpPost]
         public ActionResult RegistrarUsuario(UsuarioEnt entidad)
@@ -115,17 +117,8 @@ namespace Tienda_Vidreos.Controllers
         //        return View("Registro");
         //    }
         //}
-        [HttpGet]
-        public ActionResult FormularioUsuario()
-        {
-            return View();
-        }
 
-        [HttpGet]
-        public ActionResult ReporteErrores()
-        {
-            return View();
-        }
+
         [HttpGet]
         public ActionResult Inicio()
         {

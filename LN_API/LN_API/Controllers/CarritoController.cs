@@ -98,42 +98,7 @@ namespace LN_API.Controllers
         }
 
 
-        [HttpGet]
-        [Route("ConsultaFacturas")]
-        public List<TMaestro> ConsultaFacturas(long q)
-        {
-            using (var context = new Tienda_VidreosEntities())
-            {
-                context.Configuration.LazyLoadingEnabled = false;
-                return (from x in context.TMaestro
-                        where x.IdUsuario == q
-                        select x).ToList();
-            }
-        }
 
-        [HttpGet]
-        [Route("ConsultaDetalleFactura")]
-        public object ConsultaDetalleFactura(long q)
-        {
-            using (var context = new Tienda_VidreosEntities())
-            {
-                context.Configuration.LazyLoadingEnabled = false;
-                return (from x in context.TDetalle
-                        join y in context.Vidreo on x.IdVidreo equals y.IdVidreo
-                        where x.ConMaestro == q
-                        select new
-                        {
-                            x.ConMaestro,
-                            y.Nombre,
-                            x.PrecioPagado,
-                            x.CantidadPagado,
-                            x.ImpuestoPagado,
-                            SubTotal = (x.PrecioPagado * x.CantidadPagado),
-                            Impuesto = (x.ImpuestoPagado * x.CantidadPagado),
-                            Total = (x.PrecioPagado * x.CantidadPagado) + (x.ImpuestoPagado * x.CantidadPagado),
-                        }).ToList();
-            }
-        }
 
 
         [HttpPost]

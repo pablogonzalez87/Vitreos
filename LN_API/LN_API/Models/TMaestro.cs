@@ -14,9 +14,18 @@ namespace LN_API.Models
     
     public partial class TMaestro
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TMaestro()
+        {
+            this.TDetalle = new HashSet<TDetalle>();
+        }
+    
         public long ConMaestro { get; set; }
         public long IdUsuario { get; set; }
         public System.DateTime FechaCompra { get; set; }
         public decimal TotalCompra { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TDetalle> TDetalle { get; set; }
     }
 }

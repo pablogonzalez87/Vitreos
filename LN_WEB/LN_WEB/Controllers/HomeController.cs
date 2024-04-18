@@ -104,19 +104,11 @@ namespace Tienda_Vidreos.Controllers
 
         }
 
-        //[HttpPost]
-        //public ActionResult ConsultaVidrio(List<VidreoEnt> entidad)
-        //{
-        //    var resp = modelCarrito.ConsultaVidreoCarrito(long.Parse(Session["IdUsuario"].ToString()));
-
-        //    if (resp != null)
-        //        return RedirectToAction("Vidrio", "Home");
-        //    else
-        //    {
-        //        ViewBag.MsjPantalla = "No se ha podido cargar la informacion";
-        //        return View("Registro");
-        //    }
-        //}
+        [HttpGet]
+        public ActionResult ReporteErrores()
+        {
+            return View();
+        }
 
 
         [HttpGet]
@@ -142,6 +134,18 @@ namespace Tienda_Vidreos.Controllers
 
         [HttpGet]
         public ActionResult Carrito()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Datos()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Redes()
         {
             return View();
         }

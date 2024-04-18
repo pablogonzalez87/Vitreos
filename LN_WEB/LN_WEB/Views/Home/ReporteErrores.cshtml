@@ -54,7 +54,7 @@
                     <p><textarea class="form-control" id="errorDetails" placeholder="Detalles del error" name="errorDetails" rows="5" required></textarea></p>
                 </div>
                 <div class="text-center">
-                    <p><input type="submit" value="Enviar Reporte"></p>
+                    <a href="@Url.Action("Login", "Home")" class="btn btn-secondary">Enviar Reporte</a>
                 </div>
             </form>
         </div>
@@ -66,5 +66,5 @@
 <br />
 <br />
 <div class="text-center mb-4">
-    <a href="@Url.Action("Registro", "Home")" class="btn btn-secondary">Volver al Registro</a>
+    <a href="@Url.Action("Login", "Home")" class="btn btn-secondary">Volver al Login</a>
 </div>

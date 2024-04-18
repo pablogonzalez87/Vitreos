@@ -6,7 +6,7 @@
 }
 
 
-    <section class="profile">
+@*<section class="profile">
         <div class="user-content">
             <div class="user-image">
                 <img src="~/images/prueba.png" /><br>
@@ -21,9 +21,27 @@
                 </form>
             </div>
             <div class="buttons">
-                <button class="edit-button" onclick="openEditProfileModal()">Editar</button>
-                <button class="history-button">Historial de Pedidos</button>
+                <label>Muchas gracias por su preferencia</label>
             </div>
         </div>
-    </section>
+    </section>*@
+
+<section class="profile">
+    <div class="user-content">
+        <div class="user-image">
+            <img src="~/images/prueba.png" /><br>
+        </div><br><br>
+        <div class="user-info">
+            <form id="profile-form">
+                <h2 class="d-none d-lg-inline-flex">@Session["NombreUsuario"].ToString()</h2><br>
+                <h4 class="d-none d-lg-inline-flex">@Session["CorreoUsuario"].ToString()</h4><br><br>
+            </form>
+        </div>
+        <div class="buttons">
+            <label style="color: white;">Muchas gracias por su preferencia. Agradecemos su confianza y esperamos seguir sirviéndole con calidad y compromiso.</label>
+        </div>
+    </div>
+</section>
+
+
 

@@ -94,5 +94,7 @@ namespace LN_WEB.Controllers
             model.PagarVidreoCarrito(entidad);
             return RedirectToAction("Inicio", "Home");
         }
+
+
     }
 }

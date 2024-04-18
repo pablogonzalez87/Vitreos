@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Tienda_VidreosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Tienda_VidreosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bitacora">
           <Key>
             <PropertyRef Name="IdBitacora" />
@@ -15,16 +15,6 @@
           <Property Name="Origen" Type="varchar" MaxLength="5000" Nullable="false" />
           <Property Name="IdUsuario" Type="bigint" Nullable="false" />
           <Property Name="DireccionIP" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="FormularioUsuario">
-          <Key>
-            <PropertyRef Name="IdFormulario" />
-          </Key>
-          <Property Name="IdFormulario" Type="bigint" Nullable="false" />
-          <Property Name="IdUsuario" Type="bigint" Nullable="false" />
-          <Property Name="CorreoElectronico" Type="varchar" MaxLength="100" />
-          <Property Name="Nombre" Type="varchar" MaxLength="100" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -50,9 +40,9 @@
         </EntityType>
         <EntityType Name="Vidreo">
           <Key>
-            <PropertyRef Name="idVidreo" />
+            <PropertyRef Name="IdVidreo" />
           </Key>
-          <Property Name="idVidreo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdVidreo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="5000" Nullable="false" />
           <Property Name="Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -89,18 +79,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_IdUsuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="FormularioUsuario" Type="Self.FormularioUsuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="FormularioUsuario">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Usuario_Rol">
           <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -130,7 +108,19 @@
           <End Role="VidreoCarrito" Type="Self.VidreoCarrito" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vidreo">
-              <PropertyRef Name="idVidreo" />
+              <PropertyRef Name="IdVidreo" />
+            </Principal>
+            <Dependent Role="VidreoCarrito">
+              <PropertyRef Name="IdVidreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VidreoCarrito_Vidreo1">
+          <End Role="Vidreo" Type="Self.Vidreo" Multiplicity="1" />
+          <End Role="VidreoCarrito" Type="Self.VidreoCarrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vidreo">
+              <PropertyRef Name="IdVidreo" />
             </Principal>
             <Dependent Role="VidreoCarrito">
               <PropertyRef Name="IdVidreo" />
@@ -145,7 +135,7 @@
               <PropertyRef Name="IdUsuario" />
             </Principal>
             <Dependent Role="VidreoUsuario">
-              <PropertyRef Name="IdVidreo" />
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -154,10 +144,10 @@
           <End Role="VidreoUsuario" Type="Self.VidreoUsuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vidreo">
-              <PropertyRef Name="idVidreo" />
+              <PropertyRef Name="IdVidreo" />
             </Principal>
             <Dependent Role="VidreoUsuario">
-              <PropertyRef Name="IdUsuario" />
+              <PropertyRef Name="IdVidreo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -175,7 +165,6 @@
         </Function>
         <EntityContainer Name="Tienda_VidreosModelStoreContainer">
           <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FormularioUsuario" EntityType="Self.FormularioUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vidreo" EntityType="Self.Vidreo" Schema="dbo" store:Type="Tables" />
@@ -184,10 +173,6 @@
           <AssociationSet Name="FK_Bitacora_Usuario" Association="Self.FK_Bitacora_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Bitacora" EntitySet="Bitacora" />
-          </AssociationSet>
-          <AssociationSet Name="FK_IdUsuario" Association="Self.FK_IdUsuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="FormularioUsuario" EntitySet="FormularioUsuario" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
             <End Role="Rol" EntitySet="Rol" />
@@ -201,6 +186,10 @@
             <End Role="Vidreo" EntitySet="Vidreo" />
             <End Role="VidreoCarrito" EntitySet="VidreoCarrito" />
           </AssociationSet>
+          <AssociationSet Name="FK_VidreoCarrito_Vidreo1" Association="Self.FK_VidreoCarrito_Vidreo1">
+            <End Role="Vidreo" EntitySet="Vidreo" />
+            <End Role="VidreoCarrito" EntitySet="VidreoCarrito" />
+          </AssociationSet>
           <AssociationSet Name="FK_VidreoUsuario_Usuario" Association="Self.FK_VidreoUsuario_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="VidreoUsuario" EntitySet="VidreoUsuario" />
@@ -210,7 +199,8 @@
             <End Role="VidreoUsuario" EntitySet="VidreoUsuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Tienda_VidreosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -252,18 +242,18 @@
           <NavigationProperty Name="Rol" Relationship="Self.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
           <NavigationProperty Name="VidreoCarrito" Relationship="Self.FK_VidreoCarrito_Usuario" FromRole="Usuario" ToRole="VidreoCarrito" />
           <NavigationProperty Name="VidreoUsuario" Relationship="Self.FK_VidreoUsuario_Usuario" FromRole="Usuario" ToRole="VidreoUsuario" />
-          <NavigationProperty Name="FormularioUsuario" Relationship="Tienda_VidreosModel.FK_IdUsuario" FromRole="Usuario" ToRole="FormularioUsuario" />
         </EntityType>
         <EntityType Name="Vidreo">
           <Key>
-            <PropertyRef Name="idVidreo" />
+            <PropertyRef Name="IdVidreo" />
           </Key>
-          <Property Name="idVidreo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdVidreo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Imagen" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="VidreoCarrito" Relationship="Self.FK_VidreoCarrito_Vidreo" FromRole="Vidreo" ToRole="VidreoCarrito" />
+          <NavigationProperty Name="VidreoCarrito1" Relationship="Self.FK_VidreoCarrito_Vidreo1" FromRole="Vidreo" ToRole="VidreoCarrito" />
           <NavigationProperty Name="VidreoUsuario" Relationship="Self.FK_VidreoUsuario_Vidreo" FromRole="Vidreo" ToRole="VidreoUsuario" />
         </EntityType>
         <EntityType Name="VidreoCarrito">
@@ -276,6 +266,7 @@
           <Property Name="FechaCarrito" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_VidreoCarrito_Usuario" FromRole="VidreoCarrito" ToRole="Usuario" />
           <NavigationProperty Name="Vidreo" Relationship="Self.FK_VidreoCarrito_Vidreo" FromRole="VidreoCarrito" ToRole="Vidreo" />
+          <NavigationProperty Name="Vidreo1" Relationship="Self.FK_VidreoCarrito_Vidreo1" FromRole="VidreoCarrito" ToRole="Vidreo" />
         </EntityType>
         <EntityType Name="VidreoUsuario">
           <Key>
@@ -333,7 +324,7 @@
               <PropertyRef Name="IdUsuario" />
             </Principal>
             <Dependent Role="VidreoUsuario">
-              <PropertyRef Name="IdVidreo" />
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -342,7 +333,19 @@
           <End Role="VidreoCarrito" Type="Self.VidreoCarrito" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vidreo">
-              <PropertyRef Name="idVidreo" />
+              <PropertyRef Name="IdVidreo" />
+            </Principal>
+            <Dependent Role="VidreoCarrito">
+              <PropertyRef Name="IdVidreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VidreoCarrito_Vidreo1">
+          <End Role="Vidreo" Type="Self.Vidreo" Multiplicity="1" />
+          <End Role="VidreoCarrito" Type="Self.VidreoCarrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vidreo">
+              <PropertyRef Name="IdVidreo" />
             </Principal>
             <Dependent Role="VidreoCarrito">
               <PropertyRef Name="IdVidreo" />
@@ -354,10 +357,10 @@
           <End Role="VidreoUsuario" Type="Self.VidreoUsuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vidreo">
-              <PropertyRef Name="idVidreo" />
+              <PropertyRef Name="IdVidreo" />
             </Principal>
             <Dependent Role="VidreoUsuario">
-              <PropertyRef Name="IdUsuario" />
+              <PropertyRef Name="IdVidreo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -388,6 +391,10 @@
             <End Role="Vidreo" EntitySet="Vidreo" />
             <End Role="VidreoCarrito" EntitySet="VidreoCarrito" />
           </AssociationSet>
+          <AssociationSet Name="FK_VidreoCarrito_Vidreo1" Association="Self.FK_VidreoCarrito_Vidreo1">
+            <End Role="Vidreo" EntitySet="Vidreo" />
+            <End Role="VidreoCarrito" EntitySet="VidreoCarrito" />
+          </AssociationSet>
           <AssociationSet Name="FK_VidreoUsuario_Vidreo" Association="Self.FK_VidreoUsuario_Vidreo">
             <End Role="Vidreo" EntitySet="Vidreo" />
             <End Role="VidreoUsuario" EntitySet="VidreoUsuario" />
@@ -404,11 +411,6 @@
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="FormularioUsuario" EntityType="Tienda_VidreosModel.FormularioUsuario" />
-          <AssociationSet Name="FK_IdUsuario" Association="Tienda_VidreosModel.FK_IdUsuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="FormularioUsuario" EntitySet="FormularioUsuario" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="IniciarSesion_Result">
           <Property Type="Int64" Name="IdUsuario" Nullable="false" />
@@ -418,29 +420,6 @@
           <Property Type="Boolean" Name="Estado" Nullable="false" />
           <Property Type="Int32" Name="IdRol" Nullable="false" />
         </ComplexType>
-        <EntityType Name="FormularioUsuario">
-          <Key>
-            <PropertyRef Name="IdFormulario" />
-          </Key>
-          <Property Name="IdFormulario" Type="Int64" Nullable="false" />
-          <Property Name="IdUsuario" Type="Int64" Nullable="false" />
-          <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Usuario" Relationship="Tienda_VidreosModel.FK_IdUsuario" FromRole="FormularioUsuario" ToRole="Usuario" />
-        </EntityType>
-        <Association Name="FK_IdUsuario">
-          <End Type="Tienda_VidreosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="Tienda_VidreosModel.FormularioUsuario" Role="FormularioUsuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="FormularioUsuario">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -486,7 +465,7 @@
           <EntitySetMapping Name="Vidreo">
             <EntityTypeMapping TypeName="Tienda_VidreosModel.Vidreo">
               <MappingFragment StoreEntitySet="Vidreo">
-                <ScalarProperty Name="idVidreo" ColumnName="idVidreo" />
+                <ScalarProperty Name="IdVidreo" ColumnName="IdVidreo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
@@ -528,17 +507,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RegistrarUsuario" FunctionName="Tienda_VidreosModel.Store.RegistrarUsuario" />
-          <EntitySetMapping Name="FormularioUsuario">
-            <EntityTypeMapping TypeName="Tienda_VidreosModel.FormularioUsuario">
-              <MappingFragment StoreEntitySet="FormularioUsuario">
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="IdFormulario" ColumnName="IdFormulario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

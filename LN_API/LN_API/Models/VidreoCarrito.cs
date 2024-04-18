@@ -21,5 +21,6 @@ namespace LN_API.Models
     
         public virtual Usuario Usuario { get; set; }
         public virtual Vidreo Vidreo { get; set; }
+        public virtual Vidreo Vidreo1 { get; set; }
     }
 }

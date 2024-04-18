@@ -227,13 +227,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PagosController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VidreoController.cs" />
     <Compile Include="Entities\CarritoEnt.cs" />
-    <Compile Include="Entities\DatosTarjetaEnt.cs" />
-    <Compile Include="Entities\FormularioEnt.cs" />
-    <Compile Include="Entities\PagosEnt.cs" />
+    <Compile Include="Entities\FacturaEnt.cs" />
     <Compile Include="Entities\RolEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Entities\VidreoEnt.cs" />
@@ -241,8 +238,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CarritoModel.cs" />
-    <Compile Include="Models\FormularioModel.cs" />
-    <Compile Include="Models\PagosModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Models\VidreoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -315,22 +310,6 @@
     <Content Include="assets\webfonts\fa-brands-400.svg" />
     <Content Include="assets\webfonts\fa-regular-400.svg" />
     <Content Include="assets\webfonts\fa-solid-900.svg" />
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-grid.rtl.css" />
-    <Content Include="Content\bootstrap-grid.rtl.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap-reboot.rtl.css" />
-    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
-    <Content Include="Content\bootstrap-utilities.css" />
-    <Content Include="Content\bootstrap-utilities.min.css" />
-    <Content Include="Content\bootstrap-utilities.rtl.css" />
-    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\bootstrap.rtl.css" />
-    <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -380,22 +359,16 @@
     <Content Include="assets\webfonts\fa-solid-900.woff" />
     <Content Include="assets\webfonts\fa-solid-900.woff2" />
     <Content Include="images\2.jpg" />
-    <Content Include="images\Antirreflectante.jpg" />
-    <Content Include="images\cortafuego.jpg" />
-    <Content Include="images\curvo.jpg" />
     <Content Include="images\Logo.png" />
     <Content Include="images\pre.jpg" />
+    <Content Include="images\R.png" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="images\redes.jpg" />
-    <Content Include="images\reflejantes.jpg" />
     <Content Include="images\ven.jpg" />
-    <Content Include="images\Vi1.jpg" />
-    <Content Include="images\vimpreso.jpg" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap.esm.js" />
-    <Content Include="Scripts\bootstrap.esm.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="WebStyles\css\bootstrap.min.css" />
     <Content Include="WebStyles\css\estilos1.css" />
     <Content Include="WebStyles\estilos1.css" />
@@ -427,10 +400,8 @@
     <Content Include="WebStyles\lib\waypoints\links.php" />
     <Content Include="WebStyles\lib\waypoints\waypoints.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -455,50 +426,27 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Recuperar.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
-    <Content Include="Views\Home\Reportes.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout - Login.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Vidrio.cshtml" />
     <Content Include="WebStyles\lib\owlcarousel\LICENSE" />
     <Content Include="Views\Usuario\Perfil.cshtml" />
     <Content Include="Views\Home\Carrito.cshtml" />
-    <Content Include="Views\Home\FormularioUsuario.cshtml" />
-    <Content Include="Views\Home\FormularioCompra.cshtml" />
-    <Content Include="Views\Home\PasarelaPagos.cshtml" />
+    <Content Include="Views\Carrito\VerCarrito.cshtml" />
+    <Content Include="Views\Vidreo\ConsultarMantVidreos.cshtml" />
+    <Content Include="Views\Vidreo\Agregar.cshtml" />
+    <Content Include="Views\Vidreo\Editar.cshtml" />
+    <Content Include="Views\Carrito\Tarjeta.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Datos.cshtml" />
+    <Content Include="Views\Home\Redes.cshtml" />
+    <Content Include="Views\Home\ReporteErrores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Carrito\" />
-    <Folder Include="Views\Pagos\" />
-    <Folder Include="Views\Vidreo\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.rtl.min.css.map" />
-    <Content Include="Content\bootstrap.rtl.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
-    <Content Include="Content\bootstrap-utilities.min.css.map" />
-    <Content Include="Content\bootstrap-utilities.css.map" />
-    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-grid.rtl.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.esm.js.map" />
-    <Content Include="Scripts\bootstrap.esm.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

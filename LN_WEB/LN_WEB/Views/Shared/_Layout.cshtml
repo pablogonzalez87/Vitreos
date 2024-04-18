@@ -22,7 +22,7 @@
     <link href="~/WebStyles/css/estilos1.css" rel="stylesheet" />
     <link href="~/WebStyles/css/_contact.css" rel="stylesheet" />
     <link href="~/WebStyles/css/_contact.css" rel="stylesheet" />
-<link href="~/WebStyles/css/estilos1.css" rel="stylesheet" />
+    <link href="~/WebStyles/css/estilos1.css" rel="stylesheet" />
     <!-- fontawesome -->
     <link rel="stylesheet" href="~/assets/css/all.min.css">
     <!-- owl carousel -->
@@ -45,145 +45,162 @@
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-    <!-- header -->
-    <div class="top-header-area" id="sticker">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-sm-12 text-center">
-                    <div class="main-menu-wrap">
-                        <!-- logo -->
-                        <div class="site-logo">
-                            <a href="@Url.Action("Inicio", "Home")">
-                                <img src="~/images/Logo.png" alt="Go Home">
-                            </a>
-                        </div>
-                        <!-- logo -->
-                        <!-- menu start -->
-                        <nav class="main-menu">
-                            <ul>
-                                @if (Session["RolUsuario"].ToString() == "2")
-                                {
-                                    <li><a href="@Url.Action("ConsultaUsuarios","Usuario")" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Usuarios</a></li>
-                                    <li><a href="@Url.Action("Reportes","Home")" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Reportes</a></li>
+   
+        <!-- header -->
+        <div class="top-header-area" id="sticker">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 text-center">
+                        <div class="main-menu-wrap">
+                            <!-- logo -->
+                            <div class="site-logo">
+                                <a href="@Url.Action("Inicio", "Home")">
+                                    <img src="~/images/Logo.png" alt="Go Home">
+                                </a>
+                            </div>
 
-                                }
-                                <li><a href="@Url.Action("Vidrio", "Home")" class="nav-item nav-link"><i class="fas fa-glass-whiskey" style="margin-right: 5px;"></i>Vidrio</a></li>
-                                <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i class="fa fa-dollar-sign me-2"></i>Pagos</a></li>
-                                <li><a href="@Url.Action("Carrito","Home")" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i> Compras</a></li>
-                                <li><a href="@Url.Action("Contacto","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Contacto</a></li>
-                                <li><a href="@Url.Action("FormularioUsuario","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Formulario Usuario</a></li>
-                                <li><a href="@Url.Action("FormularioCompra","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Formulario Compra</a></li>
-                                <li><a href="@Url.Action("PasarelaPagos","Home")" class="nav-item nav-link"><i class="fa-badge-dollar"></i>Pasarela Pagos</a></li>
-                    <li>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                                <span class="d-none d-lg-inline-flex"> @Session["NombreUsuario"].ToString() </span> <br>
-                                <span> @Session["NombreRolUsuario"].ToString() </span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="background-color: #333333; ">
-                                <a href="@Url.Action("Perfil","Usuario")" class="dropdown-item">Ajustes de Perfil</a>
-                                <a href="@Url.Action("Cambiar","Home")" class="dropdown-item">Cambiar Contraseña</a>
-                                <a href="@Url.Action("CerrarSesion","Home")" class="dropdown-item">Cerrar Sesión</a>
+                            <!-- logo -->
+                            <!-- menu start -->
+                            <nav class="main-menu">
+
+                                <ul>
+                                    @if (Session["RolUsuario"].ToString() == "1")
+
+                                    {
+                                    <div class="menu-item">
+                                    <li><a href="@Url.Action("ConsultaUsuarios","Usuario")" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Usuarios</a></li>
+                        </div>
+                        <div class="menu-item">
+                            <li><a href="@Url.Action("ConsultarMantVidreos","Vidreo")" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Mantenimiento</a></li>
+                        </div>
+                        }
+                                    <div class="menu-item">
+                                        <li><a href="@Url.Action("Vidrio", "Home")" class="nav-item nav-link"><i class="fas fa-glass-whiskey" style="margin-right: 5px;"></i>Vidrio</a></li>
+                                    </div>
+                                    <div class="menu-item">
+                                        <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i class="bi bi-house-fill me-2"></i>Inicio</a></li>
+                                    </div>
+                                    <div class="menu-item">
+                                        <li><a href="@Url.Action("VerCarrito","Carrito")" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i> Compras</a></li>
+                                    </div>
+                                   
+                                    <div class="menu-item">
+                                        <li><a href="@Url.Action("Contacto","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Contacto</a></li>
+                                    </div>
+                                    
+
+                                    <div class="menu-item">
+                                        <li>
+                                            <div class="nav-item dropdown">
+                                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                                    <span class="d-none d-lg-inline-flex"> @Session["NombreUsuario"].ToString() </span> <br>
+                                                    <span> @Session["NombreRolUsuario"].ToString() </span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="background-color: #333333; ">
+                                                    <a href="@Url.Action("Perfil","Usuario")" class="dropdown-item">Ajustes de Perfil</a>
+                                                    <a href="@Url.Action("Cambiar","Home")" class="dropdown-item">Cambiar Contraseña</a>
+                                                    <a href="@Url.Action("CerrarSesion","Home")" class="dropdown-item">Cerrar Sesión</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    </ul>
+                                    </nav>
+                                    <hr style="border-top: 3px solid #ff6a00;">
+                                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <!-- end header -->
+                <br><br><br><br><br>
+                @RenderBody()
+
+                <!-- footer -->
+                <div class="footer-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6">
+                                <div class="footer-box about-widget">
+                                    <h2 class="widget-title">About us</h2>
+                                    <p>
+                                        En la tienda de vidrios, nuestra pasión es la calidad y la creación de experiencias culinarias inolvidables. Desde que abrimos nuestras puertas, nos hemos dedicado a ofrecer a nuestros servicio de gran variedad de
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="footer-box get-in-touch">
+                                    <h2 class="widget-title">Ubication</h2>
+                                    <ul>
+                                        <li>Calle Bolaños, Alajuela, Costa Rica</li>
+                                        <li>supp@gmail.com</li>
+                                        <li>Phone: +506 8886 0525</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="footer-box pages">
+
+                                    <h2 class="widget-title">Pages</h2>
+                                    <ul>
+                                        <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i></i>Home</a></li>
+                                        <li><a href="@Url.Action("Vidrios", "Home")" class="nav-item nav-link"><i class="fa-solid fa-ticket"></i>Vidrio </a></li>
+                                        <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i class="fa fa-dollar-sign me-2"></i>Inicio</a></li>
+                                        <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i>Mis Compras</a></li>
+                                        <li><a href="@Url.Action("Contacto","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Contacto</a></li>
+         
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="footer-box subscribe">
+                                    <h2 class="widget-title">¡Saludos!</h2>
+                                    <p>Hola. Bienvenido a nuestro servicio en linea, @Session["NombreUsuario"].ToString().</p>
+                                    <a href="@Url.Action("Inicio","Home")"><i class="fa fa-user me-2"></i>Ajustes de Perfil</a>
+                                </div>
                             </div>
                         </div>
-                    </li>
-                    </ul>
-                    </nav>
-                    <hr style="border-top: 3px solid #ff6a00;">
-
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end header -->
-    </br></br></br></br></br>
-    @RenderBody()
-
-    <!-- footer -->
-    <div class="footer-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-box about-widget">
-                        <h2 class="widget-title">About us</h2>
-                        <p>
-                            En la tienda de vidrios, nuestra pasión es la calidad y la creación de experiencias culinarias inolvidables. Desde que abrimos nuestras puertas, nos hemos dedicado a ofrecer a nuestros servicio de gran variedad de vidrios 
-                        </p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-box get-in-touch">
-                        <h2 class="widget-title">Ubication</h2>
-                        <ul>
-                            <li>Calle Bolaños, Alajuela, Costa Rica</li>
-                            <li>supp@gmail.com</li>
-                            <li>Phone: +506 8886 0525</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-box pages">
 
-                        <h2 class="widget-title">Pages</h2>
-                        <ul>
-                            <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i></i>Home</a></li>
-                            <li><a href="@Url.Action("Vidrios", "Home")" class="nav-item nav-link"><i class="fa-solid fa-ticket"></i>Vidrio </a></li>
-                            <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i class="fa fa-dollar-sign me-2"></i>Pagos</a></li>
-                            <li><a href="@Url.Action("Inicio","Home")" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i>Mis Compras</a></li>
-                            <li><a href="@Url.Action("Contacto","Home")" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Contacto</a></li>
-                           
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-box subscribe">
-                        <h2 class="widget-title">¡Saludos!</h2>
-                        <p>Hola. Bienvenido a nuestro servicio en linea, @Session["NombreUsuario"].ToString().</p>
-                        <a href="@Url.Action("Inicio","Home")" ><i class="fa fa-user me-2"></i>Ajustes de Perfil</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                <!-- end footer -->
+                <!-- jquery -->
 
-    <!-- end footer -->
-    <!-- jquery -->
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/WebStyles/lib/chart/chart.min.js"></script>
-    <script src="~/WebStyles/lib/easing/easing.min.js"></script>
-    <script src="~/WebStyles/lib/waypoints/waypoints.min.js"></script>
-    <script src="~/WebStyles/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="~/WebStyles/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="~/WebStyles/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="~/WebStyles/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="~/WebStyles/js/main.js"></script>
-    <script src="~/Scripts/report_script.js"></script>
+                <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="~/WebStyles/lib/chart/chart.min.js"></script>
+                <script src="~/WebStyles/lib/easing/easing.min.js"></script>
+                <script src="~/WebStyles/lib/waypoints/waypoints.min.js"></script>
+                <script src="~/WebStyles/lib/owlcarousel/owl.carousel.min.js"></script>
+                <script src="~/WebStyles/lib/tempusdominus/js/moment.min.js"></script>
+                <script src="~/WebStyles/lib/tempusdominus/js/moment-timezone.min.js"></script>
+                <script src="~/WebStyles/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+                <script src="~/WebStyles/js/main.js"></script>
+                <script src="~/Scripts/report_script.js"></script>
 
 
-    <script src="assets/js/jquery-1.11.3.min.js"></script>
-    <!-- bootstrap -->
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <!-- count down -->
-    <script src="assets/js/jquery.countdown.js"></script>
-    <!-- isotope -->
-    <script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-    <!-- waypoints -->
-    <script src="assets/js/waypoints.js"></script>
-    <!-- owl carousel -->
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <!-- magnific popup -->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <!-- mean menu -->
-    <script src="assets/js/jquery.vidr.min.js"></script>
-    <!-- sticker js -->
-    <script src="assets/js/sticker.js"></script>
-    <!-- form validation js -->
-    <script src="assets/js/form-validate.js"></script>
-    <!-- main js -->
-    <script src="assets/js/main.js"></script>
-</body>
+                <script src="assets/js/jquery-1.11.3.min.js"></script>
+                <!-- bootstrap -->
+                <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+                <!-- count down -->
+                <script src="assets/js/jquery.countdown.js"></script>
+                <!-- isotope -->
+                <script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+                <!-- waypoints -->
+                <script src="assets/js/waypoints.js"></script>
+                <!-- owl carousel -->
+                <script src="assets/js/owl.carousel.min.js"></script>
+                <!-- magnific popup -->
+                <script src="assets/js/jquery.magnific-popup.min.js"></script>
+                <!-- mean menu -->
+                <script src="assets/js/jquery.vidr.min.js"></script>
+                <!-- sticker js -->
+                <script src="assets/js/sticker.js"></script>
+                <!-- form validation js -->
+                <script src="assets/js/form-validate.js"></script>
+                <!-- main js -->
+                <script src="assets/js/main.js"></script>
+            </body>
 
-</html>
+        </html>

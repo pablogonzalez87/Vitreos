@@ -7,7 +7,7 @@ namespace LN_API.Entities
 {
     public class CarritoEnt
     {
-        public long IdVidreoCarrito { get; set; }
+        public  long IdVidreoCarrito {  get; set; }
         public long IdUsuario { get; set; }
         public long IdVidreo { get; set; }
         public decimal Impuesto { get; set; }

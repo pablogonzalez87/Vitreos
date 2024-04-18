@@ -13,11 +13,12 @@ namespace LN_WEB.Models
 {
     public class CarritoModel
     {
-        public List<CarritoEnt> ConsultarVidreoCarrito(long q)
+      
+        public List<CarritoEnt> ConsultaVidreoCarrito(long q)
         {
             using (var client = new HttpClient())
             {
-                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarVidreoCarrito?=" + q ;
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreoCarrito?q=" + q ;
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
                 if (resp.IsSuccessStatusCode)
@@ -28,6 +29,29 @@ namespace LN_WEB.Models
                 return new List<CarritoEnt>();
             }
         }
+
+
+
+        public List<CarritoEnt> ConsultaVidreosUsuario(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreosUsuario?q=" + q;
+                //string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<List<CarritoEnt>>().Result;
+                }
+
+                return new List<CarritoEnt>();
+            }
+        }
+
+
 
 
         public int AgregarVidreoCarrito(CarritoEnt entidad)
@@ -46,5 +70,63 @@ namespace LN_WEB.Models
                 return 0;
             }
         }
+
+
+        public int RemoverVidreoCarrito(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/RemoverVidreoCarrito?q=" + q;
+             
+              
+                HttpResponseMessage resp = client.DeleteAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+                }
+
+                return 0;
+            }
+        }
+
+
+
+        public int PagarVidreoCarrito(CarritoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/PagarVidreoCarrito";
+                JsonContent body = JsonContent.Create(entidad); //Serializar
+                HttpResponseMessage resp = client.PostAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+                }
+
+                return 0;
+            }
+        }
+
+        public List<FacturaEnt> ConsultaFactura(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaFactura?q=" + q;
+                //string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<List<FacturaEnt>>().Result;
+                }
+
+                return new List<FacturaEnt>();
+            }
+        }
+
     }
 }

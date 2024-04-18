@@ -8,6 +8,8 @@ using System.Web;
 using Tienda_Vidreos.Entities;
 using LN_WEB.Entities;
 using System.Net.Http.Json;
+using OpenAI_API.Models;
+using System.Web.Mvc;
 
 namespace LN_WEB.Model
 {
@@ -17,7 +19,7 @@ namespace LN_WEB.Model
         {
             using (var client = new HttpClient())
             {
-               
+          
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreos";
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
@@ -29,5 +31,98 @@ namespace LN_WEB.Model
                 return new List<VidreoEnt>();
             }
         }
+        public VidreoEnt ConsultarVidreo(long q )
+        {
+            using (var client = new HttpClient())
+            {
+
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultarVidreo?q=" + q;
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<VidreoEnt>().Result;
+                }
+
+                return null;
+            }
+        }
+        public VidreoEnt ConsultaVidreo(long q)
+        {
+
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreo?q=" + q;
+                ////string token = HttpContext.Current.Session["TokenUsuario"].ToString();
+
+                ////client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<VidreoEnt>().Result;
+                }
+
+                return null;
+            }
+        }
+
+
+
+        public int ActualizarVidreo(VidreoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ActualizarVidreo";
+                JsonContent body = JsonContent.Create(entidad); //Serializar
+
+                HttpResponseMessage resp = client.PutAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<int>().Result;
+                }
+
+                return 0;
+            }
+        }
+
+
+
+
+
+
+
+
+        public long RegistrarVidreo(VidreoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/RegistrarVidreo";
+                JsonContent body = JsonContent.Create(entidad); //Serializar
+
+                HttpResponseMessage resp = client.PostAsync(url, body).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<long>().Result;
+                }
+
+                return 0;
+            }
+        }
+            public void ActualizarRuta(VidreoEnt entidad)
+            {
+                using (var client = new HttpClient())
+                {
+                    string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ActualizarRuta";
+                    JsonContent body = JsonContent.Create(entidad); //Serializar
+
+                    HttpResponseMessage resp = client.PutAsync(url, body).Result;
+                }
+            }
+
+
+        }
     }
-}
+    

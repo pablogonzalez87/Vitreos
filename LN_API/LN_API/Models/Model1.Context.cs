@@ -33,7 +33,6 @@ namespace LN_API.Models
         public virtual DbSet<Vidreo> Vidreo { get; set; }
         public virtual DbSet<VidreoCarrito> VidreoCarrito { get; set; }
         public virtual DbSet<VidreoUsuario> VidreoUsuario { get; set; }
-        public virtual DbSet<FormularioUsuario> FormularioUsuario { get; set; }
     
         public virtual ObjectResult<IniciarSesion_Result> IniciarSesion(string correoElectronico, string contrasenna)
         {

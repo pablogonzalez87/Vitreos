@@ -13,4 +13,4 @@ namespace LN_WEB.Entities
         public decimal Precio { get; set; }
         public string Imagen { get; set; }
     }
-}
+}                    

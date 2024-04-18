@@ -1,0 +1,67 @@
+﻿@model IEnumerable<LN_WEB.Entities.CarritoEnt>
+@{
+    ViewBag.Title = "VerCarrito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="text-center mb-0">Resumen del Carrito</h3>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.MsjPantalla != null)
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            @ViewBag.MsjPantalla
+                        </div>
+                    }
+
+                    @if (Model.Count() == 0)
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            No hay productos en el carrito.
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Impuesto</th>
+                                        <th scope="col">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Nombre</td>
+                                            <td>@Math.Round(item.Precio, 2)</td>
+                                            <td>@Math.Round(item.Impuesto, 2)</td>
+                                            <td>
+                                                <a href="@Url.Action("RemoverVidreoCarrito", "Carrito", new { q = item.IdVidreoCarrito })" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center">
+                            <a href="@Url.Action("Tarjeta", "Carrito")" class="btn btn-primary btn-lg">Pagar</a>
+                            <p class="mt-3">El monto total es de: $ @Math.Round(double.Parse(Session["TotalVidreo"].ToString()), 2) IVI</p>
+                        </div>
+
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

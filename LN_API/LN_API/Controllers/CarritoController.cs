@@ -6,13 +6,56 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
 namespace LN_API.Controllers
 {
     public class CarritoController : ApiController
     {
+        [HttpGet]
+        [Route("api/ConsultaVidreoCarrito")]
+        public List<CarritoEnt> ConsultaVidreoCarrito(long q)
+        {
+            using (var bd = new Tienda_VidreosEntities())
+            {            
+                    var datos = (from x in bd.VidreoCarrito
+                                 join y in bd.Vidreo on x.IdVidreo equals y.IdVidreo
+                                 where x.IdUsuario == q
+                                 select new {
+                                     x.IdVidreoCarrito,
+                                     x.IdUsuario,
+                                     x.IdVidreo,
+                                     y.Precio,
+                                     y.Nombre                      
+                                 }).ToList();
 
-        [[HttpGet]
+                    if (datos.Count > 0)
+                    {
+                        List<CarritoEnt> res = new List<CarritoEnt>();
+                        foreach (var item in datos)
+                        {
+                            res.Add(new CarritoEnt
+                            {
+                                IdVidreoCarrito = item.IdVidreoCarrito,
+                                IdUsuario = item.IdUsuario,
+                                IdVidreo = item.IdVidreo,
+                                Precio  = item.Precio,
+                                Nombre = item.Nombre,
+                                Impuesto = item.Precio * 0.13M
+                            });
+                        }
+                        return res;
+                    }
+                    return new List<CarritoEnt>();
+                    {
+                       
+                    }
+                }
+
+            }
+        
+
+
+
+        [HttpGet]
         [Route("api/ConsultaVidreoUsuario")]
         public List<CarritoEnt> ConsultaVidreoUsuario(long q)
         {
@@ -54,25 +97,30 @@ namespace LN_API.Controllers
             }
         }
 
+
+
+
+
         [HttpPost]
-        [Route("api/AgregarVidreoCarrito")]
-        public int AgregarVidreoCarrito(CarritoEnt entidad)
-        {
-            using (var bd = new Tienda_VidreosEntities())
+            [Route("api/AgregarVidreoCarrito")]
+            public int AgregarVidreoCarrito(CarritoEnt entidad)
             {
-                //var datos = (from x in bd.Usuario
-                //                         select x).ToList();
-                VidreoCarrito tabla = new VidreoCarrito();
-                tabla.IdUsuario = entidad.IdUsuario;
-                tabla.IdVidreo = entidad.IdVidreo;
-                tabla.FechaCarrito = entidad.FechaCarrito;
+                using (var bd = new Tienda_VidreosEntities())
+                {
+                    //var datos = (from x in bd.Usuario
+                    //                         select x).ToList();
+                    VidreoCarrito tabla = new VidreoCarrito();
+                    tabla.IdUsuario = entidad.IdUsuario;
+                    tabla.IdVidreo = entidad.IdVidreo;
+                    tabla.FechaCarrito = entidad.FechaCarrito;
 
 
-                bd.VidreoCarrito.Add(tabla);
-                return bd.SaveChanges();
-            }
-
+                    bd.VidreoCarrito.Add(tabla);
+                    return bd.SaveChanges();
+                }
+           
         }
+
 
         [HttpDelete]
         [Route("api/RemoverVidreoCarrito")]
@@ -93,6 +141,7 @@ namespace LN_API.Controllers
                 return 0;
             }
         }
+
 
         [HttpPost]
         [Route("api/PagarVidreoCarrito")]
@@ -124,7 +173,7 @@ namespace LN_API.Controllers
                         bd.VidreoUsuario.Add(cu);
                     }
 
-
+       
                     var carritoActual = (from cc in bd.VidreoCarrito
                                          where cc.IdUsuario == entidad.IdUsuario
                                          select cc).ToList();
@@ -142,5 +191,6 @@ namespace LN_API.Controllers
         }
     }
 }
+
 
 

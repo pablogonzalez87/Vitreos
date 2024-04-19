@@ -15,20 +15,20 @@ namespace LN_API.Models
 using System;
     using System.Collections.Generic;
     
-public partial class Bitacora
+public partial class Errores
 {
 
-    public long IdBitacora { get; set; }
+    public long IdError { get; set; }
 
-    public System.DateTime FechaHora { get; set; }
+    public string DescripcionError { get; set; }
 
-    public string Mensaje { get; set; }
+    public string CorreoElectronico { get; set; }
 
-    public string Origen { get; set; }
+    public Nullable<int> Celular { get; set; }
+
+    public string Detalles { get; set; }
 
     public long IdUsuario { get; set; }
-
-    public string DireccionIP { get; set; }
 
 
 

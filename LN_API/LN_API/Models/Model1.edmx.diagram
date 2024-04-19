@@ -18,6 +18,8 @@
         <AssociationConnector Association="Tienda_VidreosModel.FK_VidreoCarrito_Vidreo" ManuallyRouted="false" />
         <AssociationConnector Association="Tienda_VidreosModel.FK_VidreoCarrito_Vidreo1" ManuallyRouted="false" />
         <AssociationConnector Association="Tienda_VidreosModel.FK_VidreoUsuario_Vidreo" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Tienda_VidreosModel.Errores" Width="1.5" PointX="5.25" PointY="8.75" />
+        <AssociationConnector Association="Tienda_VidreosModel.FK_Errores_Usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -65,13 +65,13 @@ namespace LN_API.Controllers
                     resp.Descripcion = datos.Descripcion;
                     resp.Precio = datos.Precio;
                     resp.Imagen = datos.Imagen;
-  
+
                     return resp;
                 }
                 return null;
             }
         }
-   
+
 
 
         [HttpGet]
@@ -98,8 +98,8 @@ namespace LN_API.Controllers
                 return null;
             }
         }
-    
-   
+
+
         [HttpPost]
         [Route("api/RegistrarVidreo")]
         public long RegistrarVidreo(VidreoEnt entidad)
@@ -149,7 +149,7 @@ namespace LN_API.Controllers
                              select x).FirstOrDefault();
 
                 if (datos != null)
-                {               
+                {
                     datos.Nombre = entidad.Nombre;
                     datos.Descripcion = entidad.Descripcion;
                     datos.Precio = entidad.Precio;
@@ -161,4 +161,3 @@ namespace LN_API.Controllers
     }
 
 }
-    

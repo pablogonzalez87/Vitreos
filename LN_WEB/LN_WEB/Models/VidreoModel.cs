@@ -19,7 +19,6 @@ namespace LN_WEB.Model
         {
             using (var client = new HttpClient())
             {
-          
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreos";
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
@@ -31,7 +30,7 @@ namespace LN_WEB.Model
                 return new List<VidreoEnt>();
             }
         }
-        public VidreoEnt ConsultarVidreo(long q )
+        public VidreoEnt ConsultarVidreo(long q)
         {
             using (var client = new HttpClient())
             {
@@ -68,7 +67,6 @@ namespace LN_WEB.Model
         }
 
 
-
         public int ActualizarVidreo(VidreoEnt entidad)
         {
             using (var client = new HttpClient())
@@ -91,9 +89,6 @@ namespace LN_WEB.Model
 
 
 
-
-
-
         public long RegistrarVidreo(VidreoEnt entidad)
         {
             using (var client = new HttpClient())
@@ -111,18 +106,17 @@ namespace LN_WEB.Model
                 return 0;
             }
         }
-            public void ActualizarRuta(VidreoEnt entidad)
+        public void ActualizarRuta(VidreoEnt entidad)
+        {
+            using (var client = new HttpClient())
             {
-                using (var client = new HttpClient())
-                {
-                    string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ActualizarRuta";
-                    JsonContent body = JsonContent.Create(entidad); //Serializar
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ActualizarRuta";
+                JsonContent body = JsonContent.Create(entidad); //Serializar
 
-                    HttpResponseMessage resp = client.PutAsync(url, body).Result;
-                }
+                HttpResponseMessage resp = client.PutAsync(url, body).Result;
             }
-
-
         }
+
+
     }
-    
+}

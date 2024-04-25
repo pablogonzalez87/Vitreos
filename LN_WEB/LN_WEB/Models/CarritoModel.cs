@@ -13,12 +13,12 @@ namespace LN_WEB.Models
 {
     public class CarritoModel
     {
-      
-        public List<CarritoEnt> ConsultaVidreoCarrito(long q)
+
+        public List<CarritoEnt> ConsultaVidreoUsuario(long q)
         {
             using (var client = new HttpClient())
             {
-                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreoCarrito?q=" + q ;
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreoUsuario?q=" + q;
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
                 if (resp.IsSuccessStatusCode)
@@ -29,7 +29,6 @@ namespace LN_WEB.Models
                 return new List<CarritoEnt>();
             }
         }
-
 
 
         public List<CarritoEnt> ConsultaVidreosUsuario(long q)
@@ -37,9 +36,6 @@ namespace LN_WEB.Models
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreosUsuario?q=" + q;
-                //string token = HttpContext.Current.Session["TokenUsuario"].ToString();
-
-                //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
                 if (resp.IsSuccessStatusCode)
@@ -51,8 +47,21 @@ namespace LN_WEB.Models
             }
         }
 
+        public List<CarritoEnt> ConsultaVidreoCarrito(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreoCarrito?q=" + q;
+                HttpResponseMessage resp = client.GetAsync(url).Result;
 
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<List<CarritoEnt>>().Result;
+                }
 
+                return new List<CarritoEnt>();
+            }
+        }
 
         public int AgregarVidreoCarrito(CarritoEnt entidad)
         {
@@ -77,8 +86,7 @@ namespace LN_WEB.Models
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/RemoverVidreoCarrito?q=" + q;
-             
-              
+
                 HttpResponseMessage resp = client.DeleteAsync(url).Result;
 
                 if (resp.IsSuccessStatusCode)
@@ -109,24 +117,7 @@ namespace LN_WEB.Models
             }
         }
 
-        public List<FacturaEnt> ConsultaFactura(long q)
-        {
-            using (var client = new HttpClient())
-            {
-                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaFactura?q=" + q;
-                //string token = HttpContext.Current.Session["TokenUsuario"].ToString();
-
-                //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                HttpResponseMessage resp = client.GetAsync(url).Result;
-
-                if (resp.IsSuccessStatusCode)
-                {
-                    return resp.Content.ReadFromJsonAsync<List<FacturaEnt>>().Result;
-                }
-
-                return new List<FacturaEnt>();
-            }
-        }
+        
 
     }
 }

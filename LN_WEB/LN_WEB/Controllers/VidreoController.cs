@@ -34,12 +34,11 @@ namespace LN_WEB.Controllers
             var resp = modelVidreos.RegistrarVidreo(entidad);
 
             string extension = Path.GetExtension(Path.GetFileName(ImagenVidreo.FileName));
-            string ruta = @"C:\Vitreos\Vitreos\LN_WEB\LN_WEB\images\" + resp + extension;
+            string ruta = @"F:\Universidad\Diseño y Desarrollo de sistemas\Repositorio\Vitreos\LN_WEB\LN_WEB\images\" + resp + extension;
             ImagenVidreo.SaveAs(ruta);
             entidad.Imagen = "/images/" + resp + extension;
             entidad.IdVidreo = resp;
             modelVidreos.ActualizarRuta(entidad);
-
 
 
             return RedirectToAction("ConsultarMantVidreos", "Vidreo");
@@ -61,11 +60,11 @@ namespace LN_WEB.Controllers
             modelVidreos.ActualizarVidreo(entidad);
 
             string extension = Path.GetExtension(Path.GetFileName(ImagenVidreo.FileName));
-            string ruta = @"C:\Vitreos\Vitreos\LN_WEB\LN_WEB\images\" + entidad.IdVidreo + extension;
+            string ruta = @"F:\Universidad\Diseño y Desarrollo de sistemas\Repositorio\Vitreos\LN_WEB\LN_WEB\images\" + entidad.IdVidreo + extension;
             ImagenVidreo.SaveAs(ruta);
 
 
-            entidad.Imagen ="/images/" + entidad.IdVidreo + extension;
+            entidad.Imagen = "/images/" + entidad.IdVidreo + extension;
             modelVidreos.ActualizarRuta(entidad);
 
 
@@ -73,5 +72,6 @@ namespace LN_WEB.Controllers
         }
     }
 }
+
 
 

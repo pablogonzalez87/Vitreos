@@ -441,6 +441,7 @@
     <Content Include="Views\Home\Datos.cshtml" />
     <Content Include="Views\Home\Redes.cshtml" />
     <Content Include="Views\Home\ReporteErrores.cshtml" />
+    <Content Include="Views\Carrito\Factura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

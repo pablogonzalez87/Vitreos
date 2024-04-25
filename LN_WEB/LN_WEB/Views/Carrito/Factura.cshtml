@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LN_WEB.Entities.CarritoEnt>
+@{
+    ViewBag.Title = "Factura";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="invoice-header">
+                <h1>Tienda de Vidrios</h1>
+                <p>Factura</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+
+            @if (ViewBag.MsjPantalla != null)
+            {
+                <div class="alert alert-warning text-center" role="alert">
+                    @ViewBag.MsjPantalla
+                </div>
+            }
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Fecha de Pago</th>
+                            <th scope="col">Precio Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                                <td>@item.FechaPago</td>
+                                <td>@(item.PrecioPago + item.Impuesto)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

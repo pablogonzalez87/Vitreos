@@ -95,6 +95,12 @@ namespace LN_WEB.Controllers
             return RedirectToAction("Inicio", "Home");
         }
 
+        [HttpGet]
+        public ActionResult Factura()
+        {
+            var resp = model.ConsultaVidreoUsuario(long.Parse(Session["IdUsuario"].ToString()));
+            return View(resp);
+        }
 
     }
 }

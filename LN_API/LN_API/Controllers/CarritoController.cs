@@ -15,44 +15,42 @@ namespace LN_API.Controllers
         public List<CarritoEnt> ConsultaVidreoCarrito(long q)
         {
             using (var bd = new Tienda_VidreosEntities())
-            {            
-                    var datos = (from x in bd.VidreoCarrito
-                                 join y in bd.Vidreo on x.IdVidreo equals y.IdVidreo
-                                 where x.IdUsuario == q
-                                 select new {
-                                     x.IdVidreoCarrito,
-                                     x.IdUsuario,
-                                     x.IdVidreo,
-                                     y.Precio,
-                                     y.Nombre                      
-                                 }).ToList();
+            {
+                var datos = (from x in bd.VidreoCarrito
+                             join y in bd.Vidreo on x.IdVidreo equals y.IdVidreo
+                             where x.IdUsuario == q
+                             select new
+                             {
+                                 x.IdVidreoCarrito,
+                                 x.IdUsuario,
+                                 x.IdVidreo,
+                                 y.Precio,
+                                 y.Nombre
+                             }).ToList();
 
-                    if (datos.Count > 0)
+                if (datos.Count > 0)
+                {
+                    List<CarritoEnt> res = new List<CarritoEnt>();
+                    foreach (var item in datos)
                     {
-                        List<CarritoEnt> res = new List<CarritoEnt>();
-                        foreach (var item in datos)
+                        res.Add(new CarritoEnt
                         {
-                            res.Add(new CarritoEnt
-                            {
-                                IdVidreoCarrito = item.IdVidreoCarrito,
-                                IdUsuario = item.IdUsuario,
-                                IdVidreo = item.IdVidreo,
-                                Precio  = item.Precio,
-                                Nombre = item.Nombre,
-                                Impuesto = item.Precio * 0.13M
-                            });
-                        }
-                        return res;
+                            IdVidreoCarrito = item.IdVidreoCarrito,
+                            IdUsuario = item.IdUsuario,
+                            IdVidreo = item.IdVidreo,
+                            Precio = item.Precio,
+                            Nombre = item.Nombre,
+                            Impuesto = item.Precio * 0.13M
+                        });
                     }
-                    return new List<CarritoEnt>();
-                    {
-                       
-                    }
+                    return res;
                 }
-
+                return new List<CarritoEnt>();
+                {
+                }
             }
-        
 
+        }
 
 
         [HttpGet]
@@ -70,6 +68,7 @@ namespace LN_API.Controllers
                                  x.IdVidreo,
                                  x.IdUsuario,
                                  x.PrecioPago,
+                                 x.FechaPago,
                                  y.Nombre,
 
                              }).ToList();
@@ -84,8 +83,9 @@ namespace LN_API.Controllers
                             IdVidreoCarrito = item.IdVidreoUsuario,
                             IdVidreo = item.IdVidreo,
                             IdUsuario = item.IdUsuario,
-                            Precio = item.PrecioPago,
+                            PrecioPago = item.PrecioPago,
                             Nombre = item.Nombre,
+                            FechaPago = item.FechaPago,
                             Impuesto = item.PrecioPago * 0.13M
                         });
                     }
@@ -96,8 +96,6 @@ namespace LN_API.Controllers
                 return new List<CarritoEnt>();
             }
         }
-
-
 
 
 

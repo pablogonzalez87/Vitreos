@@ -86,8 +86,7 @@ namespace LN_WEB.Models
             using (var client = new HttpClient())
             {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/RemoverVidreoCarrito?q=" + q;
-             
-              
+
                 HttpResponseMessage resp = client.DeleteAsync(url).Result;
 
                 if (resp.IsSuccessStatusCode)

@@ -34,6 +34,45 @@ namespace LN_API.Models
         public virtual DbSet<VidreoCarrito> VidreoCarrito { get; set; }
         public virtual DbSet<VidreoUsuario> VidreoUsuario { get; set; }
     
+        public virtual int AjustarStockVidreo(Nullable<long> idVidreo, Nullable<int> nuevaCantidad)
+        {
+            var idVidreoParameter = idVidreo.HasValue ?
+                new ObjectParameter("IdVidreo", idVidreo) :
+                new ObjectParameter("IdVidreo", typeof(long));
+    
+            var nuevaCantidadParameter = nuevaCantidad.HasValue ?
+                new ObjectParameter("NuevaCantidad", nuevaCantidad) :
+                new ObjectParameter("NuevaCantidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AjustarStockVidreo", idVidreoParameter, nuevaCantidadParameter);
+        }
+    
+        public virtual int DecrementarStockVidreo(Nullable<long> idVidreo, Nullable<int> cantidad)
+        {
+            var idVidreoParameter = idVidreo.HasValue ?
+                new ObjectParameter("IdVidreo", idVidreo) :
+                new ObjectParameter("IdVidreo", typeof(long));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DecrementarStockVidreo", idVidreoParameter, cantidadParameter);
+        }
+    
+        public virtual int IncrementarStockVidreo(Nullable<long> idVidreo, Nullable<int> cantidad)
+        {
+            var idVidreoParameter = idVidreo.HasValue ?
+                new ObjectParameter("IdVidreo", idVidreo) :
+                new ObjectParameter("IdVidreo", typeof(long));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IncrementarStockVidreo", idVidreoParameter, cantidadParameter);
+        }
+    
         public virtual ObjectResult<IniciarSesion_Result> IniciarSesion(string correoElectronico, string contrasenna)
         {
             var correoElectronicoParameter = correoElectronico != null ?

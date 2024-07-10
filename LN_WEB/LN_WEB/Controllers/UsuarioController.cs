@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OpenAI_API.Models;
+using System.Web.Script.Serialization;
+
 
 namespace Tienda_Vidreos.Controllers
 {
@@ -18,12 +21,12 @@ namespace Tienda_Vidreos.Controllers
             var resp = model.ConsultaUsuarios();
             return View(resp);
         }
+
         [HttpGet]
         public ActionResult Perfil()
         {
             return View();
         }
-
 
         [HttpGet]
         public ActionResult CambiarEstado(long q)
@@ -71,6 +74,45 @@ namespace Tienda_Vidreos.Controllers
                 return View("ConsultaUsuarios");
             }
         }
+
+        public ActionResult Registrar()
+        {
+            var respRoles = model.ConsultaRoles();
+
+            var roles = new List<SelectListItem>();
+            foreach (var item in respRoles)
+            {
+                roles.Add(new SelectListItem { Value = item.IdRol.ToString(), Text = item.NombreRol.ToString() });
+            }
+
+            ViewBag.ComboRoles = roles;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RegistrarUsuario(UsuarioEnt entidad)
+        {
+            try
+            {
+                string errorMessage;
+                var resp = model.RegistrarUsuario(entidad, out errorMessage);
+
+                if (resp > 0)
+                    return RedirectToAction("ConsultaUsuarios", "Usuario");
+                else
+                {
+                    ViewBag.MsjPantalla = errorMessage ?? "No se ha podido registrar el usuario";
+                    return View("Registrar");
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.MsjPantalla = ex.Message;
+                return View("Registrar");
+            }
+        }
+
+
 
     }
 }

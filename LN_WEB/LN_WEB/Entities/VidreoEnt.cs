@@ -12,5 +12,8 @@ namespace LN_WEB.Entities
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public string Imagen { get; set; }
+        public int CantidadStock { get; set; }
+
+        public string ImagenComprobante { get; set; }
     }
-}                    
+}

@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "ReporteErrores";
+    Layout = "~/Views/Shared/_Layout - Login.cshtml";
+}
+
+@if (ViewBag.MsjPantalla != null)
+{
+    <div style="text-align:center" class="alert alert-warning" role="alert">
+        @ViewBag.MsjPantalla
+    </div>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="breadcrumb-text">
+                <br />
+                <br />
+                <img src="~/images/Logo.png" width="200" height="100"> <!-- Ajusté el ancho y el alto del logo -->
+                <br />
+                <br />
+                <h4>Tienda de Vidreos</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end breadcrumb section -->
+<!-- error report form -->
+<div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h2 class="text-center mb-4">Reporte de Errores del Sitio Web</h2>
+            </div>
+            <form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+                <p>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="errorDescription" placeholder="Descripción del error" name="errorDescription" required>
+                        <label for="errorDescription">Descripción del Error</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="userEmail" placeholder="Correo Electrónico" name="userEmail" required>
+                        <label for="userEmail">Correo Electrónico</label>
+                    </div>
+                </p>
+                <p>
+                    <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" id="Celular" placeholder="Celular" name="Celular" required>
+                        <label for="userEmail">Numero Telefonico</label>
+                    </div>
+                </p>
+                <div class="form-floating mb-4">
+                    <p><textarea class="form-control" id="errorDetails" placeholder="Detalles del error" name="errorDetails" rows="5" required></textarea></p>
+                </div>
+                <div class="text-center">
+                    <a href="@Url.Action("Login", "Home")" class="btn btn-secondary">Enviar Reporte</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<!-- end error report form -->
+<!-- option to go back to main menu -->
+<br />
+<br />
+<div class="text-center mb-4">
+    <a href="@Url.Action("Login", "Home")" class="btn btn-secondary">Volver al Login</a>
+</div>

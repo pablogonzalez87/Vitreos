@@ -2,11 +2,11 @@
 using LN_API.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.UI.WebControls;
 
 namespace LN_API.Controllers
 {
@@ -18,33 +18,18 @@ namespace LN_API.Controllers
         {
             using (var bd = new Tienda_VidreosEntities())
             {
-                var datos = (from x in bd.Vidreo
-                             select x).ToList();
-
-                if (datos.Count > 0)
+                var datos = bd.Vidreo.ToList();
+                return datos.Select(item => new VidreoEnt
                 {
-                    List<VidreoEnt> res = new List<VidreoEnt>();
-                    foreach (var item in datos)
-                    {
-                        res.Add(new VidreoEnt
-                        {
-                            IdVidreo = item.IdVidreo,
-                            Nombre = item.Nombre,
-                            Descripcion = item.Descripcion,
-                            Precio = item.Precio,
-                            Imagen = item.Imagen,
-
-                        });
-                    }
-                    return res;
-                }
-                else
-                {
-                    return new List<VidreoEnt>();
-                }
+                    IdVidreo = item.IdVidreo,
+                    Nombre = item.Nombre,
+                    Descripcion = item.Descripcion,
+                    Precio = item.Precio,
+                    CantidadStock = item.CantidadStock,
+                    Imagen = item.Imagen
+                }).ToList();
             }
         }
-
 
         [HttpGet]
         [Route("api/ConsultarVidreo")]
@@ -52,65 +37,35 @@ namespace LN_API.Controllers
         {
             using (var bd = new Tienda_VidreosEntities())
             {
-                var datos = (from x in bd.Vidreo
-                             where x.IdVidreo == q
-                             select x).FirstOrDefault();
+                var datos = bd.Vidreo.FirstOrDefault(x => x.IdVidreo == q);
+                if (datos == null) return null;
 
-                if (datos != null)
+                return new VidreoEnt
                 {
-
-                    VidreoEnt resp = new VidreoEnt();
-                    resp.IdVidreo = datos.IdVidreo;
-                    resp.Nombre = datos.Nombre;
-                    resp.Descripcion = datos.Descripcion;
-                    resp.Precio = datos.Precio;
-                    resp.Imagen = datos.Imagen;
-  
-                    return resp;
-                }
-                return null;
+                    IdVidreo = datos.IdVidreo,
+                    Nombre = datos.Nombre,
+                    Descripcion = datos.Descripcion,
+                    Precio = datos.Precio,
+                    CantidadStock = datos.CantidadStock,
+                    Imagen = datos.Imagen
+                };
             }
         }
-   
 
-
-        [HttpGet]
-        [Route("api/ConsultaVidreo")]
-        public VidreoEnt ConsultaVidreo(long q)
-        {
-            using (var bd = new Tienda_VidreosEntities())
-            {
-                var datos = (from x in bd.Vidreo
-                             where x.IdVidreo == q
-                             select x).FirstOrDefault();
-
-                if (datos != null)
-                {
-                    VidreoEnt res = new VidreoEnt();
-                    res.IdVidreo = datos.IdVidreo;
-                    res.Nombre = datos.Nombre;
-                    res.Descripcion = datos.Descripcion;
-                    res.Precio = datos.Precio;
-                    res.Imagen = datos.Imagen;
-                    return res;
-                }
-
-                return null;
-            }
-        }
-    
-   
         [HttpPost]
         [Route("api/RegistrarVidreo")]
         public long RegistrarVidreo(VidreoEnt entidad)
         {
             using (var bd = new Tienda_VidreosEntities())
             {
-                Vidreo tabla = new Vidreo();
-                tabla.Nombre = entidad.Nombre;
-                tabla.Descripcion = entidad.Descripcion;
-                tabla.Precio = entidad.Precio;
-                tabla.Imagen = entidad.Imagen;
+                var tabla = new Vidreo
+                {
+                    Nombre = entidad.Nombre,
+                    Descripcion = entidad.Descripcion,
+                    Precio = entidad.Precio,
+                    Imagen = entidad.Imagen,
+                    CantidadStock = entidad.CantidadStock
+                };
 
                 bd.Vidreo.Add(tabla);
                 bd.SaveChanges();
@@ -118,16 +73,87 @@ namespace LN_API.Controllers
                 return tabla.IdVidreo;
             }
         }
+
+        //[HttpPost]
+        //[Route("api/ImagenComprobante")]
+        //public long ImagenComprobante(VidreoEnt entidad)
+        //{
+        //    using (var bd = new Tienda_VidreosEntities())
+        //    {
+        //        var tabla = new VidreoUsuario
+        //        {
+        //           ImagenComprobante = entidad.ImagenComprobante,
+        //        };
+        //        bd.VidreoUsuario.Add(tabla);
+        //        bd.SaveChanges();
+        //        return tabla.IdVidreo;
+        //    }
+        //}
+
+
+
+        [HttpPost]
+        [Route("api/ImagenComprobante")]
+        public async Task<IHttpActionResult> ImagenComprobante()
+        {
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                return BadRequest("El tipo de contenido no es multipart/form-data");
+            }
+
+            var provider = new MultipartMemoryStreamProvider();
+            await Request.Content.ReadAsMultipartAsync(provider);
+
+            var file = provider.Contents.FirstOrDefault();
+            if (file == null)
+            {
+                return BadRequest("No se ha subido ningún archivo");
+            }
+
+            var fileName = file.Headers.ContentDisposition.FileName.Trim('\"');
+            var buffer = await file.ReadAsByteArrayAsync();
+            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Uploads", fileName);
+
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+            File.WriteAllBytes(filePath, buffer);
+
+            using (var bd = new Tienda_VidreosEntities())
+            {
+                var nuevaEntrada = new VidreoUsuario
+                {
+                    ImagenComprobante = filePath
+                };
+
+                bd.VidreoUsuario.Add(nuevaEntrada);
+                bd.SaveChanges();
+
+                return Ok(nuevaEntrada.IdVidreoUsuario); // Asegúrate de devolver el ID correcto
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [HttpPut]
         [Route("api/ActualizarRuta")]
         public void ActualizarRuta(VidreoEnt entidad)
         {
             using (var bd = new Tienda_VidreosEntities())
             {
-                var datos = (from x in bd.Vidreo
-                             where x.IdVidreo == entidad.IdVidreo
-                             select x).FirstOrDefault();
-
+                var datos = bd.Vidreo.FirstOrDefault(x => x.IdVidreo == entidad.IdVidreo);
                 if (datos != null)
                 {
                     datos.Imagen = entidad.Imagen;
@@ -136,29 +162,25 @@ namespace LN_API.Controllers
             }
         }
 
-
-
         [HttpPut]
         [Route("api/ActualizarVidreo")]
         public int ActualizarVidreo(VidreoEnt entidad)
         {
             using (var bd = new Tienda_VidreosEntities())
             {
-                var datos = (from x in bd.Vidreo
-                             where x.IdVidreo == entidad.IdVidreo
-                             select x).FirstOrDefault();
-
+                var datos = bd.Vidreo.FirstOrDefault(x => x.IdVidreo == entidad.IdVidreo);
                 if (datos != null)
-                {               
+                {
                     datos.Nombre = entidad.Nombre;
                     datos.Descripcion = entidad.Descripcion;
                     datos.Precio = entidad.Precio;
+                    datos.CantidadStock = entidad.CantidadStock;
                     bd.SaveChanges();
                 }
                 return 0;
             }
         }
-    }
 
+
+    }
 }
-    

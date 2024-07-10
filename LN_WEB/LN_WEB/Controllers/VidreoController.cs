@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -45,7 +46,46 @@ namespace LN_WEB.Controllers
             return RedirectToAction("ConsultarMantVidreos", "Vidreo");
         }
 
-        [HttpGet]
+
+        public ActionResult SubirComprobante()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SubirComprobante(HttpPostedFileBase imagenComprobante)
+        {
+            try
+            {
+                if (imagenComprobante != null && imagenComprobante.ContentLength > 0)
+                {
+                    string extension = Path.GetExtension(imagenComprobante.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(imagenComprobante.FileName) + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                    string path = Path.Combine(Server.MapPath("~/ImagenComprobante"), fileName);
+
+                    var directory = Path.GetDirectoryName(path);
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+                    imagenComprobante.SaveAs(path);
+                    ViewBag.Message = "Comprobante subido exitosamente.";
+                }
+                else
+                {
+                    ViewBag.Message = "Por favor seleccione un archivo.";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al subir la imagen del comprobante: " + ex.Message);
+            }
+
+            return View();
+        }
+   
+
+
+       [HttpGet]
         public ActionResult Editar(long q)
         {
             var datos = modelVidreos.ConsultarVidreo(q);
@@ -65,7 +105,7 @@ namespace LN_WEB.Controllers
             ImagenVidreo.SaveAs(ruta);
 
 
-            entidad.Imagen ="/images/" + entidad.IdVidreo + extension;
+            entidad.Imagen = "/images/" + entidad.IdVidreo + extension;
             modelVidreos.ActualizarRuta(entidad);
 
 

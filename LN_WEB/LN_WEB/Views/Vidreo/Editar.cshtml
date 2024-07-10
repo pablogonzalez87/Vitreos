@@ -24,28 +24,36 @@
                         @Html.HiddenFor(m => m.IdVidreo)
 
                         <div class="form-floating mb-3">
-                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", @placeholder = "Nombre" })
+                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", @placeholder = "Nombre", required = "required" })
                             <label for="Nombre">Nombre</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", @rows = "5", @placeholder = "Descripción" })
+                            @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", @rows = "5", @placeholder = "Descripción", required = "required" })
                             <label for="Descripcion">Descripción</label>
                         </div>
 
                         <div class="form-floating mb-3">
                             <div class="input-group">
                                 <span class="input-group-text">$</span>
-                                @Html.TextBoxFor(m => m.Precio, new { @class = "form-control", @type = "number", @placeholder = "Precio" })
+                                @Html.TextBoxFor(m => m.Precio, new { @class = "form-control", @type = "number", @placeholder = "Precio", required = "required" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-floating mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">C</span>
+                                @Html.TextBoxFor(m => m.CantidadStock, new { @class = "form-control", @type = "number", @placeholder = "CantidadStock", required = "required" })
                             </div>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="file" id="ImagenVidreo" name="ImagenVidreo" class="form-control" accept="image/png, image/jpeg, image/jpg">
+                            <input type="file" id="ImagenVidreo" name="ImagenVidreo" class="form-control" accept="image/png, image/jpeg, image/jpg" required="required">
                         </div>
 
                         <div class="form-floating mb-3">
-                            @Html.TextAreaFor(m => m.Imagen, new { @class = "form-control", @placeholder = "Imagen", @rows = "2", @readonly = "readonly" })
+                            @Html.TextAreaFor(m => m.Imagen, new { @class = "form-control", @placeholder = "Imagen", @rows = "2", @readonly = "readonly", required = "required" })
                         </div>
 
                         <div class="text-center mt-4">
@@ -57,3 +65,4 @@
         </div>
     </div>
 }
+

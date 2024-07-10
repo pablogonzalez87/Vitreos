@@ -1,0 +1,341 @@
+﻿@model IEnumerable<LN_WEB.Entities.CarritoEnt>
+
+@{
+    ViewBag.Title = "Subir Comprobante";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Comprobante</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        form {
+            margin: auto;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #007bff;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        label {
+            color: #333;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            display: inline-block;
+        }
+
+            .btn:hover {
+                background-color: #0056b3;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .btn:disabled {
+                background-color: #cccccc;
+                cursor: not-allowed;
+            }
+
+        .btn-link {
+            background-color: transparent;
+            color: #007bff;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+            .btn-link:hover {
+                color: #0056b3;
+            }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        .custom-checkbox {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+            .custom-checkbox span {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+                background-color: #fff;
+                border: 1px solid #007bff;
+                border-radius: 4px;
+                transition: background-color 0.3s ease, border-color 0.3s ease;
+            }
+
+            .custom-checkbox input[type="checkbox"]:checked + span {
+                background-color: #007bff;
+                border-color: #007bff;
+            }
+
+                .custom-checkbox input[type="checkbox"]:checked + span:before {
+                    content: "\f00c";
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    height: 100%;
+                }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 12px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .modal-content p {
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .modal-content ul {
+            padding-left: 20px;
+        }
+
+        .modal-content li {
+            margin-bottom: 10px;
+        }
+
+        .simpe-info {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            padding: 15px;
+            border: 1px solid #007bff;
+            border-radius: 10px;
+            background-color: #e9f7ff;
+        }
+    </style>
+</head>
+<body>
+    <form action="@Url.Action("SubirComprobante", "Carrito")" method="post" enctype="multipart/form-data" id="uploadForm">
+        <div class="card-header">
+            <img src="~/images/si.jpeg" alt="Logo" style="max-width: 150px; display: block; margin: auto;">
+        </div>
+
+        <div class="card-body">
+            <label for="imagenComprobante"><i class="fas fa-file-upload icon"></i> Seleccionar Comprobante:</label>
+            <input type="file" id="imagenComprobante" name="imagenComprobante" required><br>
+
+            <div class="simpe-info">
+                <p>Realice el Simpe al número:</p>
+                <p style="font-size: 24px;">8751-7749</p>
+            </div>
+
+            <button type="button" id="terminosButton" class="btn-link">Leer Términos y Condiciones</button><br>
+
+            <label class="custom-checkbox">
+                <input type="checkbox" id="aceptoTerminos" name="aceptoTerminos">
+                <span></span>He leído y acepto los Términos y Condiciones
+            </label><br>
+
+            <div class="text-center">
+                <p class="mt-3">El monto total es de: $ @Math.Round(double.Parse(Session["TotalVidreo"].ToString()), 2) IVI</p>
+            </div>
+            <button type="submit" id="submitBtn" class="btn" disabled>Subir Comprobante</button>
+        </div>
+    </form>
+
+    <!-- Modal de Términos y Condiciones -->
+    <div id="terminosModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Términos y Condiciones</h2>
+            <p>
+                El comprobante que usted ha subido será revisado por un supervisor en el plazo más breve posible. Durante este período, los productos de vidrio que ha seleccionado estarán completamente apartados y reservados para usted.
+            </p>
+            <p>
+                La revisión del comprobante es un paso crucial para garantizar que la transacción se ha realizado correctamente y que todos los detalles proporcionados son precisos. Nuestro equipo de supervisión se encargará de verificar la autenticidad del comprobante y asegurarse de que se cumplan todas las políticas y normativas de nuestra empresa.
+            </p>
+            <p>
+                Le pedimos que tenga en cuenta lo siguiente:
+            </p>
+            <ul>
+                <li><strong>Tiempo de Revisión:</strong> El proceso de revisión puede tomar algunos minutos. Apreciamos su paciencia mientras nuestro equipo trabaja para confirmar su compra.</li>
+                <li><strong>Confirmación de Compra:</strong> Una vez que el comprobante haya sido validado, recibirá una notificación de confirmación de la compra. En ese momento, los productos de vidrio serán oficialmente suyos.</li>
+                <li><strong>Política de Reservas:</strong> Durante el tiempo de revisión, sus productos estarán reservados y no serán ofrecidos a otros clientes. Esta reserva es temporal y está sujeta a la validación exitosa del comprobante.</li>
+                <li><strong>Comunicación:</strong> En caso de que surja alguna discrepancia o se requiera información adicional, nos pondremos en contacto con usted a través de los medios proporcionados durante la compra.</li>
+                <li><strong>Privacidad y Seguridad:</strong> Todos los datos y documentos que nos proporcione serán tratados con la máxima confidencialidad y de acuerdo con nuestra política de privacidad. Solo el personal autorizado tendrá acceso a su comprobante para la revisión necesaria.</li>
+            </ul>
+            <p>
+                Agradecemos su cooperación y comprensión en este proceso. Nuestro objetivo es garantizar una experiencia de compra segura y satisfactoria para todos nuestros clientes. Si tiene alguna pregunta o necesita asistencia adicional, no dude en ponerse en contacto con nuestro servicio de atención al cliente.
+            </p>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#aceptoTerminos').change(function () {
+                var checkbox = $(this);
+                var submitBtn = $('#submitBtn');
+                var fileInput = $('#imagenComprobante');
+
+                submitBtn.prop('disabled', !checkbox.is(':checked') || fileInput.get(0).files.length === 0);
+            });
+
+            $('#imagenComprobante').change(function () {
+                var checkbox = $('#aceptoTerminos');
+                var submitBtn = $('#submitBtn');
+                var fileInput = $(this);
+
+                submitBtn.prop('disabled', !checkbox.is(':checked') || fileInput.get(0).files.length === 0);
+            });
+
+            var modal = document.getElementById("terminosModal");
+            var btn = document.getElementById("terminosButton");
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            var checkbox = document.getElementById("aceptoTerminos");
+            var submitBtn = document.getElementById("submitBtn");
+            var fileInput = document.getElementById("imagenComprobante");
+
+            function toggleSubmitButton() {
+                submitBtn.disabled = !checkbox.checked || fileInput.files.length === 0;
+            }
+
+            checkbox.onchange = toggleSubmitButton;
+            fileInput.onchange = function () {
+                toggleSubmitButton();
+            };
+
+            // Intercept form submission
+            $('#uploadForm').on('submit', function (event) {
+                event.preventDefault();
+
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: '@Url.Action("SubirComprobante", "Carrito")',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        // Redirect to payment page after successful upload
+                        window.location.href = '@Url.Action("Tarjeta", "Carrito")';
+                    },
+                    error: function (response) {
+                        // Handle errors here
+                        alert("Error al subir el comprobante. Por favor, inténtelo de nuevo.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

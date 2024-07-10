@@ -1,8 +1,96 @@
 ﻿<head>
     <style>
-        body, th, td {
+        body {
+            background-color: #121212;
+            font-family: Arial, sans-serif;
             color: white !important;
         }
+
+
+        .custom-header {
+        
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
+
+        .btn-sm {
+            padding: 5px 10px;
+        }
+
+        .alert {
+            background-color: #444;
+            border-color: #333;
+            color: white !important;
+        }
+
+        .table-responsive {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .custom-table {
+            width: 100%;
+            margin: auto;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+
+            .custom-table th, .custom-table td {
+                background-color: #2a2a2a;
+                padding: 15px;
+                text-align: center;
+                border: 1px solid #444;
+                color: white !important;
+            }
+
+            .custom-table thead {
+                background-color: #333;
+            }
+
+            .custom-table th {
+                border-bottom: 2px solid #555;
+            }
+
+            .custom-table img {
+                border-radius: 10px;
+            }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+        }
+
+            .actions .btn {
+                margin-right: 5px;
+            }
+
+                .actions .btn:last-child {
+                    margin-right: 0;
+                }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .header-container h4 {
+                margin: 0;
+            }
+
+            .header-container .btn-primary {
+                margin-top: 10px;
+            }
     </style>
 </head>
 <body>
@@ -13,54 +101,49 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-    <div class="row justify-content-center mt-5">
-        <div class="col-lg-10">
-            <h4 class="text-center" style="color: #007bff;">Vidreos</h4>
-            <br />
+    <div class="container">
+        <div class="header-container">
+            <h4 class="custom-header">Vidrios</h4>
+            <a href="@Url.Action("Agregar", "Vidreo")" class="btn btn-primary">Agregar</a>
+        </div>
 
-            @if (ViewBag.MsjPantalla != null)
-            {
-                <div class="alert alert-warning text-center" role="alert">
-                    @ViewBag.MsjPantalla
-                </div>
-            }
-
-            <div style="text-align:right">
-                <a href="@Url.Action("Agregar", "Vidreo")" class="btn btn-primary" style="width:10%">Agregar</a>
+        @if (ViewBag.MsjPantalla != null)
+        {
+            <div class="alert alert-warning text-center" role="alert">
+                @ViewBag.MsjPantalla
             </div>
-            <br />
+        }
 
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered">
-                    <thead class="thead-dark">
+        <div class="table-responsive">
+            <table class="table custom-table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Precio</th>
-                         
-                            <th scope="col">Imagen</th>
-                            <th scope="col">Acciones</th>
-
+                            <td>@item.Nombre</td>
+                            <td>@item.Precio</td>
+                            <td>@item.CantidadStock</td>
+                            <td style="text-align:center">
+                                <img src="@item.Imagen" width="200" height="110" />
+                            </td>
+                            <td class="actions">
+                                <a href="@Url.Action("Editar", "Vidreo", new { q = item.IdVidreo })" class="btn btn-sm btn-primary" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@item.Nombre</td>
-                                <td>@item.Precio</td>
-                            
-                                <td style="text-align:center"><img src="@item.Imagen" width="200" height="110" /></td>
-                                <td class="text-center">
-                                    <a href="@Url.Action("Editar", "Vidreo", new { q = item.IdVidreo })" class="btn btn-sm btn-primary mr-1" title="Editar">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </a>
-                                                            
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

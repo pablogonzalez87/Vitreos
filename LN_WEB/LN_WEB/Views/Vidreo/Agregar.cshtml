@@ -5,46 +5,104 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .custom-container {
+        margin-top: 80px;
+        color: white !important;
+    }
+
+    .custom-header {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ff5722;
+    }
+
+    .custom-card {
+        background-color: #333;
+        border: 1px solid #444;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+        .custom-card h4 {
+            color: white !important;
+        }
+
+    .form-floating label {
+        color: #ccc;
+    }
+
+    .form-control {
+        background-color: #444;
+        color: white;
+        border: 1px solid #555;
+    }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+    .input-group-text {
+        background-color: #444;
+        color: #ff5722;
+        border: 1px solid #555;
+    }
+
+    .btn-primary {
+        background-color: #ff5722;
+        border-color: #ff5722;
+    }
+
+        .btn-primary:hover {
+            background-color: #ff7043;
+            border-color: #ff7043;
+        }
+
+    .alert {
+        background-color: #444;
+        border-color: #333;
+        color: white !important;
+    }
+</style>
+
 @using (Html.BeginForm("Agregar", "Vidreo", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="row justify-content-center" style="margin-top:80px;">
+    <div class="row justify-content-center custom-container">
         <div class="col-lg-5">
-
-            <h4 style="text-align: center; color: black">Registrar Información</h4>
-            <br />
-
-            @if (ViewBag.MsjPantalla != null)
-            {
-                <div style="text-align:center" class="alert alert-warning" role="alert">
-                    @ViewBag.MsjPantalla
-                </div>
-            }
-
-            <div class="card-body">
-
+            <div class="custom-card">
+                <h4 class="custom-header">Registrar Información</h4>
+                <br />
+                @if (ViewBag.MsjPantalla != null)
+                {
+                    <div style="text-align:center" class="alert alert-warning" role="alert">
+                        @ViewBag.MsjPantalla
+                    </div>
+                }
                 <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.Nombre, new { @type = "text", @placeholder = "Nombre", @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Nombre, new { @type = "text", @placeholder = "Nombre", @class = "form-control", required = "required" })
                     <label for="inputFirstName">Nombre</label>
                 </div>
-
                 <div class="form-floating mb-3">
-                    @Html.TextAreaFor(m => m.Descripcion, new { @style = "height:200px", @placeholder = "Descripción", @class = "form-control" })
+                    @Html.TextAreaFor(m => m.Descripcion, new { @style = "height:200px", @placeholder = "Descripción", @class = "form-control", required = "required" })
                     <label for="inputLastName">Descripción</label>
                 </div>
-
+                <div class="form-floating mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">C</span>
+                        @Html.TextBoxFor(m => m.CantidadStock, new { @class = "form-control", @type = "number", @placeholder = "Cantidad de Stock", required = "required" })
+                    </div>
+                </div>
                 <div class="form-floating mb-3">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span style="height:60px" class="input-group-text">$</span>
                         </div>
-                        @Html.TextBoxFor(m => m.Precio, new { @type = "number", @placeholder = "Precio", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Precio, new { @type = "number", @placeholder = "Precio", @class = "form-control", required = "required" })
                     </div>
                 </div>
-
                 <div class="form-floating mb-3">
-                    <input type="file" id="ImagenVidreo" name="ImagenVidreo" class="form-control" accept="image/png, image/jpeg, image/jpg">
+                    <input type="file" id="ImagenVidreo" name="ImagenVidreo" class="form-control" accept="image/png, image/jpeg, image/jpg" required="required">
                 </div>
-
                 <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                     <a class="small"></a>
                     <button class="btn btn-primary" type="submit">Procesar</button>

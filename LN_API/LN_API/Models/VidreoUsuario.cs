@@ -19,6 +19,7 @@ namespace LN_API.Models
         public long IdVidreo { get; set; }
         public System.DateTime FechaPago { get; set; }
         public decimal PrecioPago { get; set; }
+        public string ImagenComprobante { get; set; }
     
         public virtual Usuario Usuario { get; set; }
         public virtual Vidreo Vidreo { get; set; }

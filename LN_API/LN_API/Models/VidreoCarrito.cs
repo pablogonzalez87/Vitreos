@@ -18,9 +18,6 @@ namespace LN_API.Models
         public long IdUsuario { get; set; }
         public long IdVidreo { get; set; }
         public System.DateTime FechaCarrito { get; set; }
-    
-        public virtual Usuario Usuario { get; set; }
-        public virtual Vidreo Vidreo { get; set; }
-        public virtual Vidreo Vidreo1 { get; set; }
+        public int Cantidad { get; set; }
     }
 }

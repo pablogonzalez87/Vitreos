@@ -230,8 +230,10 @@
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VidreoController.cs" />
     <Compile Include="Entities\CarritoEnt.cs" />
+    <Compile Include="Entities\FacturaEnt.cs" />
     <Compile Include="Entities\RolEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
+    <Compile Include="Entities\VidreoComprobantePagoViewModelEnt.cs" />
     <Compile Include="Entities\VidreoEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -358,9 +360,24 @@
     <Content Include="assets\webfonts\fa-solid-900.woff" />
     <Content Include="assets\webfonts\fa-solid-900.woff2" />
     <Content Include="images\2.jpg" />
+    <Content Include="images\3.jpg" />
+    <Content Include="images\4.jpeg" />
+    <Content Include="images\5.jpg" />
+    <Content Include="images\e.png" />
+    <Content Include="images\im1.jpg" />
+    <Content Include="images\im2.jpg" />
+    <Content Include="images\im3.jpg" />
+    <Content Include="images\im4.jpg" />
+    <Content Include="images\im5.jpg" />
     <Content Include="images\Logo.png" />
+    <Content Include="images\pre.jpg" />
+    <Content Include="images\r.jpg" />
     <Content Include="images\R.png" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="images\redes.jpg" />
+    <Content Include="images\si.jpeg" />
+    <Content Include="images\ven.jpg" />
+    <Content Include="images\w.jpeg" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
@@ -434,9 +451,16 @@
     <Content Include="Views\Vidreo\Editar.cshtml" />
     <Content Include="Views\Carrito\Tarjeta.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Datos.cshtml" />
+    <Content Include="Views\Home\Redes.cshtml" />
+    <Content Include="Views\Home\ReporteErrores.cshtml" />
+    <Content Include="Views\Carrito\Factura.cshtml" />
+    <Content Include="Views\Vidreo\SubirComprobante.cshtml" />
+    <Content Include="Views\Carrito\SubirComprobante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ImagenComprobante\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

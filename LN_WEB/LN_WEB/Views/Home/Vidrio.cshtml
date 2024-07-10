@@ -12,9 +12,10 @@
             <div>
                 <button class="btn btn-sm order-1 order-lg-0 me-4 me-lg-0" style="color:white">
                     &nbsp;&nbsp;
-                    <i class="fa fa-cart-plus fa-lg"></i> @Session["CantidadVidreo"].ToString() &nbsp;&nbsp;
-                                                 
-                    <i class="fa fa-comments-dollar fa-lg"></i> @Session["TotalVidreo"].ToString() + IVA
+                    <span class="cart-icon">
+                        <i class="fa fa-cart-plus fa-lg"></i> @Session["CantidadVidreo"].ToString() &nbsp;&nbsp;
+                        <i class="fa fa-comments-dollar fa-lg"></i> @Session["TotalVidreo"].ToString() + IVA
+                    </span>
                 </button>
             </div>
         </div>
@@ -26,13 +27,26 @@
             <div class="col-md-4">
                 <div class="card">
                     <img src="@item.Imagen" class="card-img-top" alt="@item.Nombre">
-                    <div class="card-body" style="background-color: #f0f0f0;">
+                    <div class="card-body">
                         <h5 class="card-title">@item.Nombre</h5>
                         <p class="card-text">@item.Descripcion</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="price">Precio: $@item.Precio</p>
-                            <a href="@Url.Action("AgregarVidreoCarrito","Carrito", new { q = item.IdVidreo})" class="btn btn-primary add-to-cart-btn" onclick="addToCart('Vidrios 1', '@item.Precio')">Agregar al carrito</a>
+                            @if (item.CantidadStock > 0)
+                            {
+                                <a href="@Url.Action("AgregarVidreoCarrito", "Carrito", new { q = item.IdVidreo })" class="btn btn-primary add-to-cart-btn"
+                                    onclick="cartIconAnimation(this)">
+                                    <i class="fa fa-cart-plus me-2"></i> Agregar al carrito
+                                </a>
+                            }
+                            else
+                            {
+                                <button class="btn btn-secondary add-to-cart-btn" disabled>
+                                    <i class="fa fa-times me-2"></i> No disponible
+                                </button>
+                            }
                         </div>
+                        <p class="stock-status">Cantidad: @item.CantidadStock</p>
                     </div>
                 </div>
             </div>
@@ -42,7 +56,7 @@
 
 <style>
     .section-header-yellow {
-        color: #ff6a00; /* Color naranja suave */
+        color: #ff6a00;
     }
 
     .section-header {
@@ -52,19 +66,21 @@
     }
 
     .section-header-sm {
-        font-size: 24px; /* Tamaño de fuente más pequeño */
+        font-size: 24px;
     }
 
     .card {
-        border: 1px solid #ddd;
+        border: 4px solid #555; /* Borde gris más oscuro y más grueso */
         border-radius: 15px;
         margin-bottom: 30px;
-        transition: box-shadow 0.3s ease;
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        box-shadow: 0px 0px 15px 4px #0056b3; /* Gris luminoso fijo */
     }
 
-        .card:hover {
-            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-        }
+    .card:hover {
+        box-shadow: 0px 0px 15px 4px rgba(255, 165, 0, 0.7); /* Naranja luminoso */
+        border-color: #ff6a00; /* Naranja */
+    }
 
     .card-title {
         font-size: 24px;
@@ -74,10 +90,12 @@
     }
 
     .card-text {
-        background-color: #f8f9fa;
+        background-color: #e9ecef; /* Fondo gris claro para la descripción */
         padding: 15px;
         border-radius: 0 0 15px 15px;
         color: #555;
+        border: 3px solid #dcdcdc; /* Borde gris claro */
+        box-shadow: 0px 0px 20px 5px rgba(211, 211, 211, 1); /* Luminosidad en la descripción */
     }
 
     .price {
@@ -94,10 +112,36 @@
         padding: 10px 20px;
         font-size: 16px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-        .add-to-cart-btn:hover {
-            background-color: #0056b3;
-        }
+    .add-to-cart-btn:hover {
+        background-color: #0056b3; /* Azul más oscuro */
+        box-shadow: 0px 0px 15px 4px rgba(0, 123, 255, 0.7); /* Azul luminoso */
+    }
+
+    .add-to-cart-btn:disabled {
+        background-color: #6c757d;
+        cursor: not-allowed;
+    }
+
+    .stock-status {
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+        font-size: 16px;
+    }
 </style>
+
+<script>
+    // Función para el efecto visual del ícono del carrito
+    function cartIconAnimation(btn) {
+        var cartIcon = btn.querySelector('.fa-cart-plus');
+        if (cartIcon) {
+            cartIcon.style.color = '#0056b3'; // Cambia el color del ícono al azul oscuro
+            setTimeout(function () {
+                cartIcon.style.color = ''; // Restaura el color original del ícono después de 300ms (ajustable)
+            }, 300);
+        }
+    }
+</script>

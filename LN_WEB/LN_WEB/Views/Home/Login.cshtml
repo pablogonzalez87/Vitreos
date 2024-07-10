@@ -5,42 +5,152 @@
     Layout = "~/Views/Shared/_Layout - Login.cshtml";
 }
 
-@using (Html.BeginForm("IniciarSesion", "Home", FormMethod.Post))
+<style>
+    .fade-in {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px) rotate(-10deg);
+        filter: blur(3px);
+        transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
+    }
+
+    .fade-in-active {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(0deg);
+        filter: blur(0);
+    }
+
+    .fade-out {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(0deg);
+        filter: blur(0);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out, filter 0.5s ease-out;
+    }
+
+    .fade-out-active {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px) rotate(10deg);
+        filter: blur(3px);
+    }
+
+    body {
+        background: url('~/images/your-background-image.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Sombra más notable */
+        border-radius: 10px; /* Bordes redondeados */
+        background: rgba(255, 255, 255, 0.8); /* Fondo ligeramente transparente */
+        border: 2px solid rgba(0, 0, 0, 0.1); /* Marco sutil */
+    }
+
+        .card:hover {
+            transform: translateY(-10px); /* Efecto de flotación */
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3); /* Sombra más profunda en hover */
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        font-size: 1.2rem; /* Tamaño de fuente del botón */
+        padding: 0.75rem 1.25rem; /* Espacio interior del botón */
+        border-radius: 0.3rem; /* Bordes redondeados del botón */
+        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra de texto sutil */
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Sombra del botón en hover */
+        }
+
+        .btn-primary:focus {
+            background-color: #004494;
+            border-color: #004494;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Sombra del botón al enfocar */
+        }
+
+    .text-dark-custom {
+        color: #000 !important; /* Color negro */
+    }
+</style>
+
+@using (Html.BeginForm("IniciarSesion", "Home", FormMethod.Post, new { id = "loginForm" }))
 {
-    <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-5">
-            <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3 text-center" style="background-color: rgba(255, 255, 255, 0.8);">
-                <!-- Ajusté la opacidad del fondo -->
-                <h3 class="text-dark mb-4">Iniciar Sesión</h3> <!-- Agregué el título de Iniciar Sesión -->
-                <img src="~/images/Logo.png" width="200" height="100"> <!-- Ajusté el ancho y el alto del logo -->
-                <h4 class="text-dark mt-3">Tienda Vidreos</h4>
-
-                @if (ViewBag.MsjPantalla != null)
-                {
-                    <div style="text-align:center" class="alert alert-warning" role="alert">
-                        @ViewBag.MsjPantalla
+    <div id="loginContainer" class="row h-100 align-items-center justify-content-center fade-in" style="min-height: 100vh;">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <!-- Carousel -->
+                        <div id="logoCarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="~/images/Logo.png" class="d-block mx-auto" alt="Logo" style="width: 185px; height: auto;">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="~/images/Logo.png" class="d-block mx-auto" alt="Logo" style="width: 185px; height: auto;">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="~/images/Logo.png" class="d-block mx-auto" alt="Logo" style="width: 185px; height: auto;">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Carousel -->
+                        <h3 class="text-dark-custom mb-0">Iniciar Sesión</h3>
+                        <h5 class="text-dark-custom">Tienda Vidreos</h5>
                     </div>
-                }
 
-                <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.CorreoElectronico, new { @type = "email", @class = "form-control", @placeholder = "correo@correo.com" })
-                    <label for="floatingInput">Correo Electrónico</label>
-                </div>
-                <div class="form-floating mb-4">
-                    @Html.TextBoxFor(m => m.Contrasenna, new { @type = "password", @class = "form-control", placeholder = "Contraseña" })
-                    <label for="floatingPassword">Contraseña</label>
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="form-check">
+                    @if (ViewBag.MsjPantalla != null)
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            @ViewBag.MsjPantalla
+                        </div>
+                    }
+
+                    <div class="form-floating mb-3">
+                        @Html.TextBoxFor(m => m.CorreoElectronico, new { @type = "email", @class = "form-control", @placeholder = "correo@correo.com", id = "floatingInput" })
+                        <label for="floatingInput">Correo Electrónico</label>
                     </div>
-                    <a href="@Url.Action("Recuperar", "Home")" style="color: black;">Recuperar Contraseña</a>
+                    <div class="form-floating mb-4">
+                        @Html.TextBoxFor(m => m.Contrasenna, new { @type = "password", @class = "form-control", @placeholder = "Contraseña", id = "floatingPassword" })
+                        <label for="floatingPassword">Contraseña</label>
+                    </div>
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="@Url.Action("Recuperar", "Home")" class="text-decoration-none">Recuperar Contraseña</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Iniciar Sesión</button>
+                    <div class="text-center mt-3">
+                        <p class="mb-0 text-dark-custom">
+                            ¿Aún no tienes una cuenta?
+                            <a href="@Url.Action("Registro", "Home")" class="text-primary font-weight-bold">Regístrate</a>
+                        </p>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Iniciar Sesión</button>
-                <p class="text-center mb-0">
-                    Si aún no tiene una cuenta,
-                    <a href="@Url.Action("Registro", "Home")" class="text-dark font-weight-bold">Regístrese</a>
-                </p>
             </div>
         </div>
     </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Apply fade-in effect
+            $('#loginContainer').addClass('fade-in-active');
+
+            $('#loginForm').on('submit', function (event) {
+                event.preventDefault();
+                $('#loginContainer').addClass('fade-out-active');
+                setTimeout(function () {
+                    $('#loginForm').off('submit').submit();
+                }, 500); // Tiempo de la transición en ms (0.5 segundos)
+            });
+        });
+
+        $('#logoCarousel').carousel({
+            interval: 2000 // Cambia la imagen cada 2 segundos
+        });
+    </script>
 }

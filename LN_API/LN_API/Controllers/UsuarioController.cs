@@ -30,19 +30,19 @@ namespace LN_API.Controllers
                 var datos = (from x in bd.Usuario
                              join y in bd.Rol on x.IdRol equals y.IdRol
                              where x.CorreoElectronico == entidad.CorreoElectronico
-                                      && x.Contrasenna == entidad.Contrasenna
-                                      && x.Estado == true
-                             select new 
-                             { 
-                                x.IdUsuario,
-                                x.CorreoElectronico,
-                                x.Nombre,
-                                x.Identificacion,
-                                x.Estado,
-                                x.IdRol,
-                                x.Caducidad,
-                                x.ClaveTemporal,
-                                y.NombreRol
+                                   && x.Contrasenna == entidad.Contrasenna
+                                   && x.Estado == true
+                             select new
+                             {
+                                 x.IdUsuario,
+                                 x.CorreoElectronico,
+                                 x.Nombre,
+                                 x.Identificacion,
+                                 x.Estado,
+                                 x.IdRol,
+                                 x.Caducidad,
+                                 x.ClaveTemporal,
+                                 y.NombreRol
                              }).FirstOrDefault();
 
                 if (datos != null)
@@ -73,10 +73,23 @@ namespace LN_API.Controllers
         [HttpPost]
         [Route("api/RegistrarUsuario")]
         [AllowAnonymous]
-        public int RegistrarUsuario(UsuarioEnt entidad)
+        public IHttpActionResult RegistrarUsuario(UsuarioEnt entidad)
         {
             using (var bd = new Tienda_VidreosEntities())
             {
+              
+                var existingUser = bd.Usuario.FirstOrDefault(u => u.CorreoElectronico == entidad.CorreoElectronico);
+                if (existingUser != null)
+                {
+                    return BadRequest("El correo electrónico ya está registrado.");
+                }
+
+                var rolExistente = bd.Rol.FirstOrDefault(r => r.IdRol == entidad.IdRol);
+                if (rolExistente == null)
+                {
+                    return BadRequest("El IdRol proporcionado no existe.");
+                }
+
                 Usuario tabla = new Usuario();
                 tabla.CorreoElectronico = entidad.CorreoElectronico;
                 tabla.Contrasenna = entidad.Contrasenna;
@@ -88,18 +101,28 @@ namespace LN_API.Controllers
                 tabla.Caducidad = DateTime.Now;
 
                 bd.Usuario.Add(tabla);
-                return bd.SaveChanges();
+                int result = bd.SaveChanges();
+
+                return Ok(result);  
+            }
+        }
+
+
+        [HttpGet]
+        [Route("api/ValidarCorreo")]
+        [AllowAnonymous]
+        public IHttpActionResult ValidarCorreo(string correo)
+        {
+            if (string.IsNullOrEmpty(correo))
+            {
+                return BadRequest("El correo no puede estar vacío");
             }
 
-            /*using (var bd = new Tienda_VidreosEntitiesntities())
+            using (var bd = new Tienda_VidreosEntities())
             {
-                return bd.RegistrarUsuario(entidad.CorreoElectronico,
-                                           entidad.Contrasenna,
-                                           entidad.Identificacion,
-                                           entidad.Nombre,
-                                           entidad.Estado,
-                                           entidad.IdRol);
-            }*/
+                var existeCorreo = bd.Usuario.Any(u => u.CorreoElectronico == correo);
+                return Ok(new { correoValido = !existeCorreo });
+            }
         }
 
         [HttpPost]
@@ -113,7 +136,7 @@ namespace LN_API.Controllers
             {
                 var datos = (from x in bd.Usuario
                              where x.CorreoElectronico == entidad.CorreoElectronico
-                                           && x.Estado == true
+                                   && x.Estado == true
                              select x).FirstOrDefault();
 
                 if (datos != null)
@@ -289,6 +312,5 @@ namespace LN_API.Controllers
                 return 0;
             }
         }
-        
     }
 }

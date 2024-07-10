@@ -3,33 +3,90 @@
 @{
     ViewBag.Title = "ConsultaUsuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2 text-center">
-            <div class="breadcrumb-text">
-                <p> Tienda de Vidros</p>
-                <h1>Usuarios Registrados</h1>
-            </div>
-        </div>
-    </div>
-</div>
-<br>
+<style>
+    .custom-container {
+        color: white !important;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 
-<div class="row">
-    <div class="col-12">
+    .custom-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
 
-        @if (ViewBag.MsjPantalla != null)
-        {
-            <div style="text-align:center" class="alert alert-warning" role="alert">
-                @ViewBag.MsjPantalla
-            </div>
+        .custom-header p {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff5722;
         }
 
-        <table class="table table-hover">
+        .custom-header h1 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+        }
+
+    .custom-table {
+        width: 90%;
+        margin: auto;
+        border-collapse: collapse;
+    }
+
+        .custom-table th, .custom-table td {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #444;
+            color: white !important;
+        }
+
+        .custom-table thead th {
+            background-color: #555;
+            border-bottom: 2px solid #666;
+        }
+
+        .custom-table tbody tr:hover {
+            background-color: #555;
+        }
+
+        .custom-table a {
+            color: #ff5722;
+            transition: color 0.3s ease;
+        }
+
+            .custom-table a:hover {
+                color: #ff9800;
+            }
+
+    .alert {
+        background-color: #444;
+        border-color: #333;
+        color: white !important;
+    }
+
+
+</style>
+
+<div class="container custom-container">
+    <div class="custom-header">
+        <p>Tienda de Vidrios</p>
+        <h1>Usuarios Registrados</h1>
+    </div>
+
+    @if (ViewBag.MsjPantalla != null)
+    {
+        <div class="alert alert-warning text-center" role="alert">
+            @ViewBag.MsjPantalla
+        </div>
+    }
+
+    <div class="table-responsive">
+        <table class="table table-hover custom-table">
             <thead>
                 <tr>
                     <th>Identificación</th>
@@ -39,7 +96,7 @@
                     <th>Editar</th>
                     <th>Cambiar Estado</th>
                 </tr>
-            <thead>
+            </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
@@ -48,14 +105,7 @@
                         <td>@item.Nombre</td>
                         <td>@item.CorreoElectronico</td>
                         <td>
-                            @if (item.Estado == true)
-                            {
-                                <h6>Activo</h6>
-                            }
-                            else
-                            {
-                                <h6>Inactivo</h6>
-                            }
+                            <h6>@(item.Estado ? "Activo" : "Inactivo")</h6>
                         </td>
                         <td>
                             <a href="@Url.Action("Editar","Usuario", new { q = item.IdUsuario })"><i class="fa fa-pen"></i></a>
@@ -67,6 +117,5 @@
                 }
             </tbody>
         </table>
-
     </div>
 </div>

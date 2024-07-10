@@ -6,13 +6,13 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Web;
 using System.Web.Security;
-
+using System;
+using System.Web.Script.Serialization;
 
 namespace Tienda_Vidreos.Models
 {
     public class UsuarioModel
     {
-
         public UsuarioEnt IniciarSesion(UsuarioEnt entidad)
         {
             using (var client = new HttpClient())
@@ -30,24 +30,74 @@ namespace Tienda_Vidreos.Models
             }
         }
 
-        public int RegistrarUsuario(UsuarioEnt entidad)
+
+        public bool ValidarCorreo(string correoElectronico)
         {
             using (var client = new HttpClient())
             {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ValidarCorreo?correo=" + correoElectronico;
+                HttpResponseMessage resp = client.GetAsync(url).Result;
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return resp.Content.ReadFromJsonAsync<bool>().Result;
+                }
+
+                return false;
+            }
+        }
+
+        public int RegistrarUsuario(UsuarioEnt entidad, out string errorMessage)
+        {
+            errorMessage = null;
+            using (var client = new HttpClient())
+            {
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/RegistrarUsuario";
-                JsonContent body = JsonContent.Create(entidad); //Serializar
+                JsonContent body = JsonContent.Create(entidad); // Serializar
                 HttpResponseMessage resp = client.PostAsync(url, body).Result;
 
                 if (resp.IsSuccessStatusCode)
                 {
-                    return resp.Content.ReadFromJsonAsync<int>().Result;
+                    var responseContent = resp.Content.ReadAsStringAsync().Result;
+                    if (int.TryParse(responseContent, out int result))
+                    {
+                        return result;
+                    }
+                    else
+                    {
+                        // Manejo de error en caso de que la conversión falle
+                        throw new FormatException("La respuesta no es un entero válido.");
+                    }
+                }
+                else if (resp.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    var responseContent = resp.Content.ReadAsStringAsync().Result;
+
+                    // Deserializar el mensaje de error JSON
+                    var serializer = new JavaScriptSerializer();
+                    var errorObj = serializer.Deserialize<Dictionary<string, string>>(responseContent);
+                    if (errorObj != null && errorObj.ContainsKey("Message"))
+                    {
+                        errorMessage = errorObj["Message"];
+                    }
+                    else
+                    {
+                        errorMessage = "Error desconocido.";
+                    }
+
+                    return 0;
                 }
 
                 return 0;
             }
         }
+    
 
-        public bool RecuperarClave(UsuarioEnt entidad)
+
+
+
+
+    public bool RecuperarClave(UsuarioEnt entidad)
         {
             using (var client = new HttpClient())
             {
@@ -83,7 +133,6 @@ namespace Tienda_Vidreos.Models
                 return 0;
             }
         }
-     
 
         public List<UsuarioEnt> ConsultaUsuarios()
         {
@@ -181,6 +230,23 @@ namespace Tienda_Vidreos.Models
                 return 0;
             }
         }
-        
+
+        //// Método para validar correo
+        //public bool ValidarCorreo(string correo)
+        //{
+        //    using (var client = new HttpClient())
+        //    {
+        //        string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ValidarCorreo?correo=" + correo;
+        //        HttpResponseMessage resp = client.GetAsync(url).Result;
+
+        //        if (resp.IsSuccessStatusCode)
+        //        {
+        //            var result = resp.Content.ReadFromJsonAsync<dynamic>().Result;
+        //            return result.correoValido;
+        //        }
+
+        //        return false;
+        //    }
+        }
     }
-}
+

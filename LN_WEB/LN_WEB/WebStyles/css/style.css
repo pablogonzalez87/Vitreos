@@ -13,6 +13,15 @@
     z-index: 99;
 }
 
+.fade-out {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.fade-out-active {
+    opacity: 0;
+}
+
 
 /*** Spinner ***/
 #spinner {

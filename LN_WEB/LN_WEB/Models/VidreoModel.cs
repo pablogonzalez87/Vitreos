@@ -10,6 +10,7 @@ using LN_WEB.Entities;
 using System.Net.Http.Json;
 using OpenAI_API.Models;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 
 namespace LN_WEB.Model
 {
@@ -19,7 +20,6 @@ namespace LN_WEB.Model
         {
             using (var client = new HttpClient())
             {
-          
                 string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ConsultaVidreos";
                 HttpResponseMessage resp = client.GetAsync(url).Result;
 
@@ -31,7 +31,7 @@ namespace LN_WEB.Model
                 return new List<VidreoEnt>();
             }
         }
-        public VidreoEnt ConsultarVidreo(long q )
+        public VidreoEnt ConsultarVidreo(long q)
         {
             using (var client = new HttpClient())
             {
@@ -68,7 +68,6 @@ namespace LN_WEB.Model
         }
 
 
-
         public int ActualizarVidreo(VidreoEnt entidad)
         {
             using (var client = new HttpClient())
@@ -87,13 +86,6 @@ namespace LN_WEB.Model
             }
         }
 
-
-
-
-
-
-
-
         public long RegistrarVidreo(VidreoEnt entidad)
         {
             using (var client = new HttpClient())
@@ -111,18 +103,47 @@ namespace LN_WEB.Model
                 return 0;
             }
         }
-            public void ActualizarRuta(VidreoEnt entidad)
+        public void ActualizarRuta(VidreoEnt entidad)
+        {
+            using (var client = new HttpClient())
             {
-                using (var client = new HttpClient())
-                {
-                    string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ActualizarRuta";
-                    JsonContent body = JsonContent.Create(entidad); //Serializar
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ActualizarRuta";
+                JsonContent body = JsonContent.Create(entidad);
 
-                    HttpResponseMessage resp = client.PutAsync(url, body).Result;
-                }
+                HttpResponseMessage resp = client.PutAsync(url, body).Result;
             }
+        }
 
+        public async Task<long> SubirImagenComprobante(HttpPostedFileBase archivo)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlApi"].ToString() + "api/ImagenComprobante";
 
+                var content = new MultipartFormDataContent();
+                if (archivo != null && archivo.ContentLength > 0)
+                {
+                    var streamContent = new StreamContent(archivo.InputStream);
+                    streamContent.Headers.ContentType = new MediaTypeHeaderValue(archivo.ContentType);
+                    content.Add(streamContent, "file", archivo.FileName);
+                }
+                else
+                {
+                    throw new ArgumentException("No se ha proporcionado un archivo válido.");
+                }
+
+                HttpResponseMessage resp = await client.PostAsync(url, content);
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    return await resp.Content.ReadFromJsonAsync<long>();
+                }
+
+                throw new Exception("Error al subir la imagen del comprobante.");
+            }
         }
     }
+}
+
+
     
